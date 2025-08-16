@@ -1,0 +1,33 @@
+[
+  {
+    "id": "dualPad",
+    "name": "Preset 01",
+    "pads": [
+      {
+        "id": "xy1",
+        "title": "Mod index Harmonicity",
+        "xParamId": "mod_index",
+        "yParamId": "harmonicity",
+        "xMin": 0.05,
+        "xMax": 1.0,
+        "yMin": 0.0,
+        "yMax": 1.0,
+        "xInvert": false,
+        "yInvert": false
+      },
+      {
+        "id": "xy2",
+        "title": "Filter Delay",
+        "xParamId": "poly\/stereo_delay\/fb",
+        "yParamId": "filter",
+        "xMin": 0.0,
+        "xMax": 1.0,
+        "yMin": 0.0,
+        "yMax": 1.0,
+        "xInvert": false,
+        "yInvert": false
+      }
+    ]
+  }
+]
+

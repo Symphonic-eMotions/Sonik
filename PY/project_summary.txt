@@ -1,0 +1,1200 @@
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/AudioKitKeyboard.swift ===
+#if !os(tvOS)
+    import Keyboard
+    import SwiftUI
+
+    struct AudioKitKeyboard: View {
+        @EnvironmentObject var rnbo: RNBOAudioUnitHostModel
+        @State private var latch = false
+        var body: some View {
+            VStack {
+                HStack {
+                    Toggle(isOn: $latch) {
+                        Text("Latch keys")
+                    }
+                    Spacer()
+                }
+                Keyboard(latching: latch) { pitch, point in
+                    let pitch = UInt8(pitch.midiNoteNumber)
+                    let velocity = latch ? 60 : UInt8(point.y * 127)
+                    rnbo.sendNoteOn(pitch, velocity: velocity)
+                } noteOff: { pitch in
+                    let pitch = UInt8(pitch.midiNoteNumber)
+                    rnbo.sendNoteOff(pitch)
+                }
+                .frame(height: 100)
+                .frame(minWidth: 600)
+            }
+        }
+    }
+
+    #Preview {
+        AudioKitKeyboard()
+    }
+#endif
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/AudioKitMIDIManager.swift ===
+import AudioKit
+
+class AudioKitMIDIManager: ObservableObject {
+    static let shared = AudioKitMIDIManager()
+    
+    let midi = MIDI()
+    
+    private init() {
+        midi.openOutput()
+        midi.openInput()
+    }
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/Buttons.swift ===
+import SwiftUI
+
+struct Buttons: View {
+    @EnvironmentObject var rnbo: RNBOAudioUnitHostModel
+    @State private var enableMic: Bool = false
+    var body: some View {
+        HStack {
+            Button("Test MIDI") {
+                print("CC")
+                rnbo.sendContinuousController(11, value: 60)
+                print("PitchBend")
+                rnbo.sendPitchBend(8192)
+                print("Patch")
+                rnbo.sendPatchChange(1)
+                print("Pressure")
+                rnbo.sendChannelPressure(60)
+                print("Aftertouch")
+                rnbo.sendAftertouch(60, pressure: 50)
+            }
+            Button("Randomize") {
+                randomize()
+            }
+            Button("Send message") {
+                let message: [Double] = [220, 330, 0.2, 0.3, 0.5]
+                rnbo.sendMessage(message)
+            }
+            Button("Play Input") {
+                rnbo.playAudioFile()
+            }
+            Button("Pause Input") {
+                rnbo.pauseAudioFile()
+            }
+            Toggle(isOn: $rnbo.showDescription) {
+                Text("Show description")
+            }
+            Toggle(isOn: $enableMic) {
+                Text("Mic")
+            }
+            .onChange(of: enableMic) { newValue in
+                rnbo.toggleMic(newValue)
+            }
+        }
+        .padding(.bottom)
+    }
+
+    fileprivate func randomize() {
+        for i in rnbo.parameters.indices {
+            rnbo.setParameterValueNormalizedHot(to: Double.random(in: 0 ... 1), at: i)
+        }
+    }
+}
+
+#Preview {
+    Buttons()
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUIApp.swift ===
+import SwiftUI
+
+@main
+struct SwiftRNBO_Example_multiplatfrom_SwiftUIApp: App {
+    @ObservedObject var rnbo = RNBOAudioUnitHostModel()
+    @StateObject  var sequencer: MIDISequencer
+
+    init() {
+
+        let hostModel = RNBOAudioUnitHostModel()
+        _rnbo = ObservedObject(wrappedValue: hostModel)
+        _sequencer = StateObject(wrappedValue: MIDISequencer(rnbo: hostModel))
+    }
+
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .onAppear { rnbo.connectEventHandler() }
+                .environmentObject(rnbo)
+                .environmentObject(sequencer)
+        }
+    }
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/RNBOAudioKitMIDIRouter.swift ===
+import AudioKit
+import CoreMIDI
+
+class RNBOAudioKitMIDIRouter: NSObject, MIDIListener {
+    private let rnboHostModel: RNBOAudioUnitHostModel
+
+    init(rnboHostModel: RNBOAudioUnitHostModel) {
+        self.rnboHostModel = rnboHostModel
+        super.init()
+
+        MIDI.sharedInstance.openInput()
+        MIDI.sharedInstance.addListener(self)
+    }
+
+
+    func receivedMIDINoteOn(noteNumber: MIDINoteNumber,
+                            velocity: MIDIVelocity,
+                            channel: MIDIChannel,
+                            portID: MIDIUniqueID?,
+                            timeStamp: MIDITimeStamp?) {
+
+        rnboHostModel.sendNoteOn(noteNumber, velocity: velocity, channel: channel)
+    }
+
+    func receivedMIDINoteOff(noteNumber: MIDINoteNumber,
+                             velocity: MIDIVelocity,
+                             channel: MIDIChannel,
+                             portID: MIDIUniqueID?,
+                             timeStamp: MIDITimeStamp?) {
+
+        rnboHostModel.sendNoteOff(noteNumber, releaseVelocity: velocity, channel: channel)
+    }
+
+    func receivedMIDIController(_ controller: MIDIByte,
+                                value: MIDIByte,
+                                channel: MIDIChannel,
+                                portID: MIDIUniqueID?,
+                                timeStamp: MIDITimeStamp?) {
+
+        rnboHostModel.sendContinuousController(controller, value: value, channel: channel)
+    }
+
+
+
+
+    func receivedMIDIAftertouch(noteNumber: MIDINoteNumber,
+                                pressure: MIDIByte,
+                                channel: MIDIChannel,
+                                portID: MIDIUniqueID?,
+                                timeStamp: MIDITimeStamp?) { }
+
+    func receivedMIDIAftertouch(_ pressure: MIDIByte,
+                                channel: MIDIChannel,
+                                portID: MIDIUniqueID?,
+                                timeStamp: MIDITimeStamp?) { }
+
+    func receivedMIDIPitchWheel(_ pitchWheelValue: MIDIWord,
+                                channel: MIDIChannel,
+                                portID: MIDIUniqueID?,
+                                timeStamp: MIDITimeStamp?) { }
+
+    func receivedMIDIProgramChange(_ program: MIDIByte,
+                                   channel: MIDIChannel,
+                                   portID: MIDIUniqueID?,
+                                   timeStamp: MIDITimeStamp?) { }
+
+    func receivedMIDISystemExclusive(_ data: [MIDIByte],
+                                     portID: MIDIUniqueID?,
+                                     timeStamp: MIDITimeStamp?) { }
+
+    func receivedMIDISetupChange() { }
+
+    func receivedMIDIPropertyChange(propertyChangeInfo: MIDIObjectPropertyChangeNotification) { }
+
+    func receivedMIDINotification(notification: MIDINotification) { }
+    
+    func receivedMIDIChannelAftertouch(_ pressure: MIDIByte,
+                                       channel: MIDIChannel,
+                                       portID: MIDIUniqueID?,
+                                       timeStamp: MIDITimeStamp?) { }
+    
+    func receivedMIDISystemCommand(_ data: [MIDIByte],
+                                   portID: MIDIUniqueID?,
+                                   timeStamp: MIDITimeStamp?) { }
+        
+    func receivedMIDITimecodeQuarterFrame(_ quarterFrame: MIDIByte,
+                                          portID: MIDIUniqueID?,
+                                          timeStamp: MIDITimeStamp?) { }
+    
+    func receivedMIDISongPosition(_ songPosition: MIDIWord,
+                                  portID: MIDIUniqueID?,
+                                  timeStamp: MIDITimeStamp?) { }
+    
+    func receivedMIDISongSelect(_ songSelect: MIDIByte,
+                                portID: MIDIUniqueID?,
+                                timeStamp: MIDITimeStamp?) { }
+    
+    func receivedMIDITuneRequest(portID: MIDIUniqueID?,
+                                 timeStamp: MIDITimeStamp?) { }
+    
+    func receivedMIDITiming(portID: MIDIUniqueID?,
+                            timeStamp: MIDITimeStamp?) { }
+    
+    func receivedMIDIStart(portID: MIDIUniqueID?,
+                           timeStamp: MIDITimeStamp?) { }
+    
+    func receivedMIDIContinue(portID: MIDIUniqueID?,
+                              timeStamp: MIDITimeStamp?) { }
+    
+    func receivedMIDIStop(portID: MIDIUniqueID?,
+                          timeStamp: MIDITimeStamp?) { }
+    
+    func receivedMIDIActiveSensing(portID: MIDIUniqueID?,
+                                   timeStamp: MIDITimeStamp?) { }
+    
+    func receivedMIDISystemReset(portID: MIDIUniqueID?,
+                                 timeStamp: MIDITimeStamp?) { }
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/Sliders.swift ===
+#if !os(tvOS)
+    import SwiftUI
+
+    struct Sliders: View {
+        @EnvironmentObject var rnbo: RNBOAudioUnitHostModel
+
+        var body: some View {
+            ScrollView {
+                VStack {
+                    ForEach($rnbo.parameters) { $parameter in
+                        SliderView(parameter: $parameter)
+                    }
+                }
+                .padding()
+                .background()
+                .padding(.bottom)
+            }
+            .frame(minHeight: 100)
+            .padding(.bottom)
+        }
+    }
+
+    struct SliderValueLabel: View {
+        let value: Double
+        var body: some View {
+            Text(String(format: "%.2f", value))
+                .frame(minWidth: 50)
+        }
+    }
+
+    struct SliderNameLabel: View {
+        let name: String
+        var body: some View {
+            Text(name)
+                .frame(minWidth: 100)
+        }
+    }
+#endif
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/SliderView.swift ===
+import SwiftUI
+
+struct SliderView: View {
+    @EnvironmentObject var rnbo: RNBOAudioUnitHostModel
+    @Binding var parameter: RNBOParameter
+    var body: some View {
+        HStack {
+
+            let displayName = parameter.info.paramId
+            #if os(iOS)
+                SliderNameLabel(name: displayName)
+            #endif
+            Slider(value: $parameter.valueNormalized) {
+                SliderNameLabel(name: displayName)
+            } minimumValueLabel: {
+                SliderValueLabel(value: parameter.info.minimum)
+            } maximumValueLabel: {
+                SliderValueLabel(value: parameter.info.maximum)
+            }
+            .onChange(of: parameter.valueNormalized) { rnbo.setParameterValueNormalized(to: $0, at: parameter.info.index) }
+            SliderValueLabel(value: parameter.value)
+        }
+    }
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/MIDISequencer.swift ===
+import AudioKit
+
+
+class MIDISequencer: ObservableObject {
+    private let sequencer = AppleSequencer()
+    private var noteEvents: [MIDINoteData] = []
+    private var sequenceLength: TimeInterval = 0
+    private var isPlaying = false
+    private var scheduledItems: [DispatchWorkItem] = []
+    private weak var rnbo: RNBOAudioUnitHostModel?
+
+    init(rnbo: RNBOAudioUnitHostModel) {
+        self.rnbo = rnbo
+    }
+
+    func clearAllTracks() {
+
+        for index in sequencer.tracks.indices.reversed() {
+            sequencer.tracks[index].clear()  // lege track
+            sequencer.deleteTrack(trackIndex: index)
+        }
+        noteEvents.removeAll()
+        sequenceLength = 0
+        stop()
+    }
+
+    func loadMIDIFile(named fileName: String) {
+        clearAllTracks()
+        guard let url = Bundle.main.url(forResource: fileName, withExtension: "mid") else {
+            print("❌ MIDI \(fileName).mid niet gevonden in bundle.")
+            return
+        }
+        
+        sequencer.loadMIDIFile(fromURL: url)
+
+        if let track = sequencer.tracks.first {
+            noteEvents = track.getMIDINoteData()
+            sequenceLength = sequencer.length.seconds
+            print("✅ MIDI geladen: \(noteEvents.count) events, lengte \(sequenceLength)s")
+        }
+    }
+
+    func generateRandomSequence() {
+        clearAllTracks()
+        guard let track = sequencer.newTrack() else {
+            print("❌ Kan geen nieuwe track maken.")
+            return
+        }
+        track.clear()
+
+        let totalBeats = 4.0
+        var posBeats = 0.0
+        while posBeats < totalBeats {
+            let isRest = Bool.random() && Bool.random()   // ca. 25% rust
+            let dur = Bool.random() ? 0.25 : 0.5          // 16e of 8e
+            if !isRest {
+                let note = MIDINoteNumber(Int.random(in: 60...72))
+                let vel  = MIDIVelocity(Int.random(in: 60...100))
+                track.add(noteNumber: note,
+                          velocity: vel,
+                          position: Duration(beats: posBeats),
+                          duration: Duration(beats: dur))
+            }
+            posBeats += dur
+        }
+
+        noteEvents = track.getMIDINoteData()
+        sequenceLength = totalBeats * (60.0 / sequencer.tempo)
+
+        print("🎲 Willekeurige sequence: \(noteEvents.count) events")
+    }
+
+    func play() {
+        guard !isPlaying, noteEvents.count > 0 else {
+            if noteEvents.isEmpty { print("⚠️ Laad eerst een sequence of genereer er een.") }
+            return
+        }
+        isPlaying = true
+        scheduleLoop(offset: 0)
+        print("▶︎ Sequencer gestart")
+    }
+
+    func stop() {
+        guard isPlaying else { return }
+        isPlaying = false
+        for item in scheduledItems {
+            item.cancel()
+        }
+        scheduledItems.removeAll()
+        print("■ Sequencer gestopt")
+    }
+
+    private func scheduleLoop(offset: TimeInterval) {
+        guard isPlaying else { return }
+        for event in noteEvents {
+
+            let onTime  = offset + event.position.seconds
+            let onItem  = DispatchWorkItem { [weak self] in
+                self?.rnbo?.sendNoteOn(event.noteNumber, velocity: event.velocity)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + onTime, execute: onItem)
+            scheduledItems.append(onItem)
+
+            let offTime = offset + event.position.seconds + event.duration.seconds
+            let offItem = DispatchWorkItem { [weak self] in
+                self?.rnbo?.sendNoteOff(event.noteNumber)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + offTime, execute: offItem)
+            scheduledItems.append(offItem)
+        }
+
+        let loopItem = DispatchWorkItem { [weak self] in
+            self?.scheduleLoop(offset: offset + self!.sequenceLength)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + offset + sequenceLength, execute: loopItem)
+        scheduledItems.append(loopItem)
+    }
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/ContentView.swift ===
+import SwiftUI
+
+struct ContentView: View {
+    @EnvironmentObject var rnbo: RNBOAudioUnitHostModel
+    @EnvironmentObject var sequencer: MIDISequencer
+
+    var body: some View {
+        VStack(spacing: 10) {
+            Buttons()
+
+            #if !os(tvOS)
+                if rnbo.showDescription {
+                    DescriptionView()
+                } else {
+                    Sliders()
+                    AudioKitKeyboard()
+                    
+                    HStack(spacing: 10) {
+                        Button("Laad MIDI") {
+                            sequencer.loadMIDIFile(named: "midiMelody")
+                        }
+                        Button("Genereer Willekeurig") {
+                            sequencer.generateRandomSequence()
+                        }
+                        Button("Leegmaken") {
+                            sequencer.clearAllTracks()
+                        }
+                    }
+                    
+                    HStack(spacing: 10) {
+                        Button("▶︎ Play") { sequencer.play() }
+                        Button("■ Stop") { sequencer.stop() }
+                    }
+                }
+            #endif
+        }
+        .padding()
+    }
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/DescriptionView.swift ===
+#if !os(tvOS)
+    import SwiftUI
+
+    struct DescriptionView: View {
+        @EnvironmentObject var rnbo: RNBOAudioUnitHostModel
+
+        var body: some View {
+            Group {
+                if let rnboDescription = rnbo.description {
+                    List {
+                        Section(header: Text("Parameters")) {
+                            if !rnboDescription.parameters.isEmpty {
+                                ForEach(rnboDescription.parameters) { parameter in
+
+                                    DisclosureGroup("\(parameter.index): \(parameter.paramId)") {
+                                        ParameterView(parameter: parameter)
+                                    }
+                                }
+                            }
+                        }
+
+                        Section(header: Text("External Data Refs")) {
+                            if !rnboDescription.externalDataRefs.isEmpty {
+                                ForEach(rnboDescription.externalDataRefs, id: \.id) { ref in
+                                    ExternalDataRefView(ref: ref)
+                                }
+                            }
+                        }
+
+                        Section(header: Text("Inports")) {
+                            if !rnboDescription.inports.isEmpty {
+                                ForEach(rnboDescription.inports, id: \.tag) { port in
+                                    PortView(port: port)
+                                }
+                            }
+                        }
+
+                        Section(header: Text("Outports")) {
+                            if !rnboDescription.outports.isEmpty {
+                                ForEach(rnboDescription.outports, id: \.tag) { port in
+                                    PortView(port: port)
+                                }
+                            }
+                        }
+
+                        Section(header: Text("Inlets")) {
+                            if !rnboDescription.inlets.isEmpty {
+                                ForEach(rnboDescription.inlets.indices, id: \.self) { index in
+                                    InletOutletView(inletOutlet: rnboDescription.inlets[index])
+                                }
+                            }
+                        }
+
+                        Section(header: Text("Outlets")) {
+                            if !rnboDescription.outlets.isEmpty {
+                                ForEach(rnboDescription.outlets.indices, id: \.self) { index in
+                                    InletOutletView(inletOutlet: rnboDescription.outlets[index])
+                                }
+                            }
+                        }
+
+                        Section(header: Text("Meta")) {
+                            MetaView(meta: rnboDescription.meta)
+                        }
+                    }
+                    .frame(minHeight: 100)
+                } else {
+                    Text("Error loading description")
+                        .padding()
+                        .background()
+                }
+            }
+
+            .padding(.bottom)
+        }
+    }
+
+    struct ParameterView: View {
+        let parameter: ParameterInfo
+
+        var body: some View {
+            Text("Name: \(parameter.name)")
+            Text("ID: \(parameter.paramId)")
+            Text("Minimum Value: \(parameter.minimum)")
+            Text("Maximum Value: \(parameter.maximum)")
+            Text("Exponent: \(parameter.exponent)")
+            Text("Steps: \(parameter.steps)")
+            Text("Initial Value: \(parameter.initialValue)")
+            Text("Is Enum: \(parameter.isEnum ? "Yes" : "No")")
+            if parameter.isEnum {
+                Text("Enum Values: \(parameter.enumValues.map { $0.string }.joined(separator: ", "))")
+            }
+            Text("Display Name: \(parameter.displayName)")
+            Text("Unit: \(parameter.unit)")
+            Text("Order: \(parameter.order)")
+            Text("Debug: \(parameter.debug ? "Yes" : "No")")
+            Text("Visible: \(parameter.visible ? "Yes" : "No")")
+            if let signalIndex = parameter.signalIndex {
+                Text("Signal Index: \(signalIndex)")
+            } else {
+                Text("Signal Index: Not Available")
+            }
+            Text("IO Type: \(parameter.ioType)")
+        }
+    }
+
+    struct ExternalDataRefView: View {
+        let ref: ExternalDataRef
+
+        var body: some View {
+            DisclosureGroup(ref.id) {
+                Text("ID: \(ref.id)")
+                Text("File: \(ref.file)")
+                Text("Tag: \(ref.tag)")
+                Text("Type: \(ref.type)")
+            }
+        }
+    }
+
+    struct PortView: View {
+        let port: Port
+
+        var body: some View {
+            Text("Tag: \(port.tag)")
+            Text("Meta: \(port.meta)")
+        }
+    }
+
+    struct InletOutletView: View {
+        let inletOutlet: InletOutlet
+
+        var body: some View {
+            let indexString: String = if let index = inletOutlet.index {
+                String(index)
+            } else {
+                ""
+            }
+            let tagString = if let tag = inletOutlet.tag {
+                ": \(tag)"
+            } else {
+                ""
+            }
+
+            Text("\(inletOutlet.type.capitalizedSentence) \(indexString)\(tagString)")
+        }
+    }
+
+    struct MetaView: View {
+        let meta: Meta
+
+        var body: some View {
+            Text("architecture: \(meta.architecture)")
+            Text("filename: \(meta.filename)")
+            Text("rnboobjname: \(meta.rnboobjname)")
+            Text("maxversion: \(meta.maxversion)")
+            Text("rnboversion: \(meta.rnboversion)")
+            Text("name: \(meta.name)")
+        }
+    }
+#endif
+
+extension String {
+    var capitalizedSentence: String {
+
+        let firstLetter = prefix(1).capitalized
+
+        let remainingLetters = dropFirst().lowercased()
+
+        return firstLetter + remainingLetters
+    }
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/RNBO/Interface/RNBODescription.swift ===
+import Foundation
+
+struct RNBODescription: Codable {
+    let parameters: [ParameterInfo]
+    let numParameters, numSignalInParameters, numSignalOutParameters: Int
+    let numInputChannels, numOutputChannels, numMidiInputPorts, numMidiOutputPorts: Int
+    let externalDataRefs: [ExternalDataRef]
+    let patcherSerial: Int
+    let inports, outports: [Port]
+    let inlets, outlets: [InletOutlet]
+    let presetid: String
+    let meta: Meta
+}
+
+struct ParameterInfo: Codable {
+    let type: String
+    let index: Int
+    let name, paramId: String
+    let minimum, maximum, exponent: Double
+    let steps: Int
+    let initialValue: Double
+    let isEnum: Bool
+    let enumValues: [EnumValue]
+    let displayName, unit: String
+    let order: Int
+    let debug, visible: Bool
+    let signalIndex: Int?
+    let ioType: String
+}
+
+extension ParameterInfo: Identifiable {
+    var id: String { paramId }
+}
+
+struct ExternalDataRef: Codable {
+    let id, file, type, tag: String
+}
+
+struct Port: Codable {
+    let tag, meta: String
+}
+
+struct InletOutlet: Codable {
+    let type: String
+    let index: Int?
+    let tag, meta: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case type, index, tag, meta
+    }
+}
+
+struct Meta: Codable {
+    let architecture, filename, rnboobjname, maxversion: String
+    let rnboversion, name: String
+}
+
+struct JSONNull: Codable, Hashable {}
+
+struct EnumValue: Codable {
+    let string: String
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let intVal = try? container.decode(Int.self) {
+            string = String(intVal)
+        } else if let doubleVal = try? container.decode(Double.self) {
+            string = String(doubleVal)
+        } else if let stringVal = try? container.decode(String.self) {
+            string = stringVal
+        } else if container.decodeNil() {
+            string = "null"
+        } else {
+            throw DecodingError.typeMismatch(EnumValue.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Failed to decode JSONAny"))
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(string)
+    }
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/RNBO/Interface/MIDIHelpers.swift ===
+import Foundation
+
+enum MidiCommand: UInt8 {
+    case noteOff = 0x80
+    case noteOn = 0x90
+    case polyphonicKeyPressure = 0xA0
+    case controlChange = 0xB0
+    case programChange = 0xC0
+    case channelPressure = 0xD0
+    case pitchBend = 0xE0
+
+    init?(statusByte: UInt8) {
+        switch statusByte & 0xF0 {
+        case MidiCommand.noteOff.rawValue: self = .noteOff
+        case MidiCommand.noteOn.rawValue: self = .noteOn
+        case MidiCommand.polyphonicKeyPressure.rawValue: self = .polyphonicKeyPressure
+        case MidiCommand.controlChange.rawValue: self = .controlChange
+        case MidiCommand.programChange.rawValue: self = .programChange
+        case MidiCommand.channelPressure.rawValue: self = .channelPressure
+        case MidiCommand.pitchBend.rawValue: self = .pitchBend
+        default: return nil
+        }
+    }
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/RNBO/Interface/RNBOParameter.swift ===
+import Foundation
+
+struct RNBOParameter {
+    var value: Double
+    let info: ParameterInfo
+
+    var valueNormalized: Double {
+        get {
+            value.toNormalised(minValue: info.minimum, maxValue: info.maximum, factor: info.exponent)
+        }
+        set {
+            value = newValue.fromNormalised(minValue: info.minimum, maxValue: info.maximum, factor: info.exponent)
+        }
+    }
+
+    init(_ info: ParameterInfo) {
+        value = info.initialValue.clip(from: info.minimum, to: info.maximum)
+        self.info = info
+    }
+}
+
+extension RNBOParameter: Equatable {
+    static func == (lhs: RNBOParameter, rhs: RNBOParameter) -> Bool {
+        (lhs.value == rhs.value) && (lhs.id == rhs.id)
+    }
+}
+
+extension RNBOParameter: Identifiable {
+    var id: String { info.paramId }
+}
+
+extension RNBODescription {
+    func getParametersArray() -> [RNBOParameter] {
+        var parameters: [RNBOParameter] = []
+        for i in 0 ..< numParameters {
+            let parameter = self.parameters[i]
+            parameters.append(RNBOParameter(parameter))
+        }
+        return parameters
+    }
+}
+
+extension Double {
+    func clip(from minValue: Double, to maxValue: Double) -> Double {
+        min(maxValue, max(self, minValue))
+    }
+
+    func fromNormalised(minValue: Double, maxValue: Double, factor: Double) -> Double {
+        let exponentiatedValue = pow(self, factor)
+        let scaledValue = minValue + (maxValue - minValue) * exponentiatedValue
+        return scaledValue
+    }
+
+    func toNormalised(minValue: Double, maxValue: Double, factor: Double) -> Double {
+        let normalizedValue = (self - minValue) / (maxValue - minValue)
+        let inverseScaledValue = pow(normalizedValue, 1 / factor)
+        return inverseScaledValue
+    }
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/RNBO/Interface/RNBOAudioUnitHostModel.swift ===
+import Foundation
+
+typealias RNBOContext = RNBOAudioUnitHostModel
+
+extension RNBOAudioUnitHostModel {
+
+    func getAVAudioUnitNode() -> AVAudioUnit? {
+        return audioEngine.getAVAudioUnitNode()
+    }
+}
+
+class RNBOAudioUnitHostModel: ObservableObject {
+    private let audioEngine = RNBOAudioEngine()
+    private let audioUnit: RNBOAudioUnit
+    private let eventHandler = RNBOEventHandler()
+    @Published var parameters: [RNBOParameter]
+    @Published var showDescription: Bool = false
+    let description: RNBODescription?
+
+    init() {
+        do {
+            let url = Bundle.main.url(forResource: "description", withExtension: "json")!
+            let data = try Data(contentsOf: url)
+            description = try JSONDecoder().decode(RNBODescription.self, from: data)
+        } catch {
+            print("Error decoding JSON from URL: \(error)")
+            description = nil
+        }
+
+        audioUnit = audioEngine.getAudioUnit()
+        parameters = description?.getParametersArray() ?? []
+    }
+
+    func playAudioFile() {
+        audioEngine.playAudioFile()
+    }
+    
+    func pauseAudioFile() {
+        audioEngine.pauseAudioFile()
+    }
+
+    func toggleMic(_ on: Bool) {
+        if on {
+            audioEngine.setMicrophoneAmplitude(1.0)
+        } else {
+            audioEngine.setMicrophoneAmplitude(0.0)
+        }
+    }
+
+    func refreshParameterValue(at parameterIndex: Int) {
+        parameters[parameterIndex].value = Double(audioUnit.getParameterValue(parameterIndex))
+    }
+
+    func setParameterValue(to value: Double, at parameterIndex: Int) {
+        audioUnit.setParameterValue(parameterIndex, value: Float(value))
+    }
+
+    func setParameterValueHot(to value: Double, at parameterIndex: Int) {
+        setParameterValue(to: value, at: parameterIndex)
+        refreshParameterValue(at: parameterIndex)
+    }
+
+    func setParameterValueNormalized(to valueNormalized: Double, at parameterIndex: Int) {
+        audioUnit.setParameterValueNormalized(parameterIndex, valueNormalized: Float(valueNormalized))
+    }
+
+    func setParameterValueNormalizedHot(to valueNormalized: Double, at parameterIndex: Int) {
+        setParameterValueNormalized(to: valueNormalized, at: parameterIndex)
+        refreshParameterValue(at: parameterIndex)
+    }
+
+    func sendMessage(_ message: [Double]) {
+        audioUnit.sendMessage("foo", list: message)
+    }
+
+    func sendNoteOn(_ pitch: UInt8, velocity: UInt8 = 127, channel: UInt8 = 0) {
+        audioUnit.sendNoteOnMessage(withPitch: pitch, velocity: velocity, channel: channel)
+    }
+
+    func sendNoteOff(_ pitch: UInt8, releaseVelocity: UInt8 = 0, channel: UInt8 = 0) {
+        audioUnit.sendNoteOffMessage(withPitch: pitch, releaseVelocity: releaseVelocity, channel: channel)
+    }
+
+    func sendAftertouch(_ pitch: UInt8, pressure: UInt8, channel: UInt8 = 0) {
+        audioUnit.sendAftertouchMessage(withPitch: pitch, pressure: pressure, channel: channel)
+    }
+
+    func sendContinuousController(_ number: UInt8, value: UInt8, channel: UInt8 = 0) {
+        audioUnit.sendContinuousController(withNumber: number, value: value, channel: channel)
+    }
+
+    func sendPatchChange(_ program: UInt8, channel: UInt8 = 0) {
+        audioUnit.sendPatchChangeMessage(withProgram: program, channel: channel)
+    }
+
+    func sendChannelPressure(_ pressure: UInt8, channel: UInt8 = 0) {
+        audioUnit.sendChannelPressureMessage(withPressure: pressure, channel: channel)
+    }
+
+    func sendPitchBend(_ value: UInt16, channel: UInt8 = 0) {
+        audioUnit.sendPitchBendMessage(withValue: value, channel: channel)
+    }
+
+    func connectEventHandler() {
+        audioUnit.setEventHandler(eventHandler)
+        eventHandler.rnbo = self
+    }
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/RNBO/Interface/RNBOEventHandler.swift ===
+import Foundation
+
+class RNBOEventHandler: NSObject, RNBOEventHandlerProtocol {
+    var rnbo: RNBOContext?
+
+    func handle(_ event: RNBOParameterEvent) {
+        if let rnbo = rnbo {
+            DispatchQueue.main.async {
+                rnbo.parameters[event.index].value = event.value
+            }
+
+            let p = rnbo.parameters[event.index]
+            print("\(p.info.displayName): \(p.value)")
+        }
+    }
+
+    func handle(_ event: RNBOMidiEvent) {
+        let data = [event.midiData.0, event.midiData.1, event.midiData.2].prefix(event.length)
+        print("Received MIDI: \(data)")
+
+        let statusByte = event.midiData.0
+        let channel = statusByte & 0x0F
+        guard let command = MidiCommand(statusByte: statusByte) else {
+            print("Unknown MIDI Command")
+            return
+        }
+
+        switch command {
+        case .noteOff:
+            let note = event.midiData.1
+            let velocity = event.midiData.2
+            print("Note Off: Note \(note), Velocity \(velocity), Channel \(channel + 1)")
+
+        case .noteOn:
+            let note = event.midiData.1
+            let velocity = event.midiData.2
+            print("Note On: Note \(note), Velocity \(velocity), Channel \(channel + 1)")
+
+        case .polyphonicKeyPressure:
+            let note = event.midiData.1
+            let pressure = event.midiData.2
+            print("Polyphonic Key Pressure: Note \(note), Pressure \(pressure), Channel \(channel + 1)")
+
+        case .controlChange:
+            let controller = event.midiData.1
+            let value = event.midiData.2
+            print("Control Change: Controller \(controller), Value \(value), Channel \(channel + 1)")
+
+        case .programChange:
+            let program = event.midiData.1
+            print("Program Change: Program \(program), Channel \(channel + 1)")
+
+        case .channelPressure:
+            let pressure = event.midiData.1
+            print("Channel Pressure: Pressure \(pressure), Channel \(channel + 1)")
+
+        case .pitchBend:
+            let lsb = event.midiData.1
+            let msb = event.midiData.2
+            let value = (Int(msb) << 7) + Int(lsb)
+            print("Pitch Bend: Value \(value), Channel \(channel + 1)")
+        }
+    }
+
+    func handle(_ event: RNBOMessageEvent) {
+
+
+    }
+
+    func handle(_ event: RNBOPresetEvent) {
+
+    }
+
+    func handle(_ event: RNBOTempoEvent) {
+
+    }
+
+    func handle(_ event: RNBOTransportEvent) {
+
+    }
+
+    func handle(_ event: RNBOBeatTimeEvent) {
+
+    }
+
+    func handle(_ event: RNBOTimeSignatureEvent) {
+
+    }
+
+    func handle(_ event: RNBOStartupEvent) {
+
+    }
+}
+
+// === SwiftRNBO_Example_multiplatfrom_SwiftUI/SwiftRNBO_Example_multiplatfrom_SwiftUI/RNBO/Interface/RNBOAudioEngine.swift ===
+import AVFoundation
+
+extension RNBOAudioEngine {
+
+    func getAVAudioUnitNode() -> AVAudioUnit? {
+        return avAudioUnit
+    }
+}
+
+class RNBOAudioEngine {
+    private let engine = AVAudioEngine()
+    private var avAudioUnit: AVAudioUnit?
+    private let playerNode = AVAudioPlayerNode()
+    private let audioFile: AVAudioFile?
+    private let distortionEffect: AVAudioUnitDistortion
+    private let inputMixer: AVAudioMixerNode
+    private let microphoneVolumeMixer: AVAudioMixerNode
+
+    private func initInput() {
+        let input = engine.inputNode
+
+        let format = avAudioUnit!.inputFormat(forBus: 0)
+
+        if format.channelCount > 0 {
+            if input.outputFormat(forBus: 0).sampleRate == format.sampleRate {
+                engine.connect(input, to: microphoneVolumeMixer, format: format)
+                engine.connect(microphoneVolumeMixer, to: inputMixer, format: format)
+                engine.connect(inputMixer, to: avAudioUnit!, format: format)
+            } else {
+                print("Could not connect input node: sample rate mismatch")
+            }
+        }
+    }
+    
+    func setMicrophoneAmplitude(_ amp: Float) {
+        microphoneVolumeMixer.outputVolume = amp
+    }
+
+    init() {
+        inputMixer = AVAudioMixerNode()
+        microphoneVolumeMixer = AVAudioMixerNode()
+
+        #if os(iOS)
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playAndRecord, options: [.defaultToSpeaker, .allowBluetoothA2DP, .mixWithOthers, .allowAirPlay])
+                try AVAudioSession.sharedInstance().setActive(true)
+            } catch {
+                print("Audio session error: \(error.localizedDescription)")
+            }
+        #endif
+
+        distortionEffect = AVAudioUnitDistortion()
+        distortionEffect.loadFactoryPreset(.multiEcho1)
+
+        if let audioFileURL = Bundle.main.url(forResource: "Synth", withExtension: "aif") {
+            do {
+                audioFile = try AVAudioFile(forReading: audioFileURL)
+            } catch {
+                print("Error initializing audio file: \(error)")
+                audioFile = nil
+            }
+        } else {
+            print("Audio file not found")
+            audioFile = nil
+        }
+
+        let type = kAudioUnitType_Effect
+        let subType: OSType = 0x71717171
+        let manufacturer: OSType = 0x70707070
+
+        let description = AudioComponentDescription(
+            componentType: type,
+            componentSubType: subType,
+            componentManufacturer: manufacturer,
+            componentFlags: 0,
+            componentFlagsMask: 0
+        )
+
+        AUAudioUnit.registerSubclass(RNBOAudioUnit.self, as: description, name: "RNBOAudioUnit", version: 1)
+
+        AVAudioUnit.instantiate(with: description, options: .loadOutOfProcess) { avAudioUnit, error in
+            guard let avAudioUnit = avAudioUnit, error == nil else {
+                print("Error instantiating AVAudioUnit: \(error!.localizedDescription)")
+                return
+            }
+
+            self.avAudioUnit = avAudioUnit
+
+            DispatchQueue.main.async {
+                self.setupAudioChain()
+            }
+        }
+    }
+
+    private func setupAudioChain() {
+        guard let avAudioUnit = avAudioUnit else {
+            print("avAudioUnit not ready!")
+            return
+        }
+
+        engine.attach(inputMixer)
+        engine.attach(microphoneVolumeMixer)
+        engine.attach(playerNode)
+        engine.attach(avAudioUnit)
+
+        microphoneVolumeMixer.outputVolume = 0.0
+
+        let input = engine.inputNode
+        let inputFormat = input.outputFormat(forBus: 0)
+        let audioUnitInputFormat = avAudioUnit.inputFormat(forBus: 0)
+
+        if inputFormat.sampleRate != audioUnitInputFormat.sampleRate {
+            print("Input node sample rate: \(inputFormat.sampleRate)")
+            print("AudioUnit sample rate: \(audioUnitInputFormat.sampleRate)")
+
+            engine.connect(input, to: microphoneVolumeMixer, format: inputFormat)
+            engine.connect(microphoneVolumeMixer, to: inputMixer, format: inputFormat)
+
+            engine.connect(inputMixer, to: avAudioUnit, format: audioUnitInputFormat)
+        } else {
+
+            engine.connect(input, to: microphoneVolumeMixer, format: inputFormat)
+            engine.connect(microphoneVolumeMixer, to: inputMixer, format: inputFormat)
+            engine.connect(inputMixer, to: avAudioUnit, format: inputFormat)
+        }
+
+        if let audioFile = audioFile {
+            let playerFormat = audioFile.processingFormat
+            engine.connect(playerNode, to: inputMixer, format: playerFormat)
+        }
+
+        let audioUnitOutputFormat = avAudioUnit.outputFormat(forBus: 0)
+        engine.connect(avAudioUnit, to: engine.mainMixerNode, format: audioUnitOutputFormat)
+
+        let outputFormat = engine.outputNode.inputFormat(forBus: 0)
+        engine.connect(engine.mainMixerNode, to: engine.outputNode, format: outputFormat)
+
+        engine.prepare()
+
+
+        do {
+            try engine.start()
+            print("Audio Engine started successfully.")
+        } catch {
+            print("Error starting audio engine: \(error.localizedDescription)")
+        }
+    }
+
+
+    func getAudioUnit() -> RNBOAudioUnit {
+        return avAudioUnit!.auAudioUnit as! RNBOAudioUnit
+    }
+
+    func playAudioFile() {
+        playerNode.stop()
+        guard let audioFile = audioFile else {
+            return
+        }
+
+        playerNode.rate = 1
+        playerNode.scheduleFile(audioFile, at: nil) {
+            print("Audio playback finished")
+        }
+
+        playerNode.play()
+    }
+
+    func pauseAudioFile() {
+        playerNode.pause()
+    }
+}
