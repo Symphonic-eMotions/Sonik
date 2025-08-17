@@ -36,56 +36,48 @@ struct DualXYPadsView: View {
             // Pads + pickers
             if presets.indices.contains(selectedPresetIndex) {
                 let preset = presets[selectedPresetIndex]
-                let options = rnbo.visibleParameterConfigs() // [ParameterConfig]
+                let options = rnbo.visibleParameterConfigs()
 
                 ForEach(preset.pads) { pad in
                     VStack(alignment: .leading, spacing: 8) {
-                        
-                        HStack(spacing: 12) {
-                            
-                            HStack() {
-                                Text("Y")
-                                // Y-parameter picker
-                                Picker("", selection: Binding<String>(
-                                    get: { selectedYForPad[pad.id] ?? pad.yParamId },
-                                    set: { newId in
-                                        selectedYForPad[pad.id] = newId
-                                        saveOverrideId(newId, presetId: preset.id, padId: pad.id, axis: "y")
+                        if rnbo.showParameterSelects {
+                            HStack(spacing: 12) {
+                                
+                                HStack() {
+                                    Text("Y")
+                                    Picker("", selection: Binding<String>(
+                                        get: { selectedYForPad[pad.id] ?? pad.yParamId },
+                                        set: { newId in
+                                            selectedYForPad[pad.id] = newId
+                                            saveOverrideId(newId, presetId: preset.id, padId: pad.id, axis: "y")
+                                        }
+                                    )) {
+                                        ForEach(options, id: \.id) { opt in
+                                            Text(opt.displayName).tag(opt.id)
+                                        }
                                     }
-                                )) {
-                                    ForEach(options, id: \.id) { opt in
-                                        Text(opt.displayName).tag(opt.id)
-                                    }
+                                    .pickerStyle(.menu)
                                 }
-                                .pickerStyle(.menu)
-                            }
-                            
-                            HStack() {
-                                Text("X")
-                                // X-parameter picker
-                                Picker("X", selection: Binding<String>(
-                                    get: { selectedXForPad[pad.id] ?? pad.xParamId },
-                                    set: { newId in
-                                        selectedXForPad[pad.id] = newId
-                                        saveOverrideId(newId, presetId: preset.id, padId: pad.id, axis: "x")
+                                
+                                HStack() {
+                                    Text("X")
+                                    Picker("", selection: Binding<String>(
+                                        get: { selectedXForPad[pad.id] ?? pad.xParamId },
+                                        set: { newId in
+                                            selectedXForPad[pad.id] = newId
+                                            saveOverrideId(newId, presetId: preset.id, padId: pad.id, axis: "x")
+                                        }
+                                    )) {
+                                        ForEach(options, id: \.id) { opt in
+                                            Text(opt.displayName).tag(opt.id)
+                                        }
                                     }
-                                )) {
-                                    ForEach(options, id: \.id) { opt in
-                                        Text(opt.displayName).tag(opt.id)
-                                    }
+                                    .pickerStyle(.menu)
                                 }
-                                .pickerStyle(.menu)
                             }
                         }
-                        
-                        HStack( spacing: 12) {
-                            
-                            // Gebruik een pure helper om de aangepaste config te bouwen
-                            XYPad(config: adjustedConfig(for: pad))
-                                .environmentObject(rnbo)
-                            
-                            
-                        }
+                        XYPad(config: adjustedConfig(for: pad))
+                            .environmentObject(rnbo)
                     }
                     .padding(.vertical, 6)
                 }

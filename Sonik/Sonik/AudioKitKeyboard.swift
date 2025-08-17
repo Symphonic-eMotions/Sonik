@@ -15,10 +15,13 @@
         var body: some View {
             VStack {
                 HStack {
+                    Toggle(isOn: $rnbo.showParameterSelects){
+                        Text("Edit")
+                    }
+                    Spacer()
                     Toggle(isOn: $latch) {
                         Text("Latch keys")
                     }
-                    Spacer()
                 }
                 Keyboard(latching: latch) { pitch, point in
                     let pitch = UInt8(pitch.midiNoteNumber)

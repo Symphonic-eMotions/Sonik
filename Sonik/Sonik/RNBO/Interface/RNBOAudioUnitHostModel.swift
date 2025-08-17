@@ -163,6 +163,7 @@ final class RNBOAudioUnitHostModel: ObservableObject {
     private var paramIndexById: [String: Int] = [:]
     @Published var parameters: [RNBOParameter]
     @Published var parameterConfigs: [ParameterConfig]
+    @Published var showParameterSelects: Bool = false
     @Published var showDescription: Bool = false
     @Published var currentOctave: Int = 0
     @Published private(set) var activeMIDINotes: Set<UInt8> = []
