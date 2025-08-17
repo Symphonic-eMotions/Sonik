@@ -6,6 +6,29 @@
         "poly": [
           {
             "__sps": {
+              "osc.analog[1]": {
+                "__sps": {
+                  "jitter[1]": {},
+                  "rect": {},
+                  "smooth[1]": {},
+                  "square": {}
+                },
+                "jitter": {
+                  "value": 0
+                },
+                "lfotype": {
+                  "value": 0
+                },
+                "on": {
+                  "value": 1
+                },
+                "pulsewidth": {
+                  "value": 0.8
+                },
+                "smooth": {
+                  "value": 0
+                }
+              },
               "osc.fm": {},
               "p_obj-18": {
                 "attack": {
@@ -36,6 +59,29 @@
           },
           {
             "__sps": {
+              "osc.analog[1]": {
+                "__sps": {
+                  "jitter[1]": {},
+                  "rect": {},
+                  "smooth[1]": {},
+                  "square": {}
+                },
+                "jitter": {
+                  "value": 0
+                },
+                "lfotype": {
+                  "value": 0
+                },
+                "on": {
+                  "value": 1
+                },
+                "pulsewidth": {
+                  "value": 0.8
+                },
+                "smooth": {
+                  "value": 0
+                }
+              },
               "osc.fm": {},
               "p_obj-18": {
                 "attack": {
@@ -66,6 +112,29 @@
           },
           {
             "__sps": {
+              "osc.analog[1]": {
+                "__sps": {
+                  "jitter[1]": {},
+                  "rect": {},
+                  "smooth[1]": {},
+                  "square": {}
+                },
+                "jitter": {
+                  "value": 0
+                },
+                "lfotype": {
+                  "value": 0
+                },
+                "on": {
+                  "value": 1
+                },
+                "pulsewidth": {
+                  "value": 0.8
+                },
+                "smooth": {
+                  "value": 0
+                }
+              },
               "osc.fm": {},
               "p_obj-18": {
                 "attack": {
@@ -96,6 +165,29 @@
           },
           {
             "__sps": {
+              "osc.analog[1]": {
+                "__sps": {
+                  "jitter[1]": {},
+                  "rect": {},
+                  "smooth[1]": {},
+                  "square": {}
+                },
+                "jitter": {
+                  "value": 0
+                },
+                "lfotype": {
+                  "value": 0
+                },
+                "on": {
+                  "value": 1
+                },
+                "pulsewidth": {
+                  "value": 0.8
+                },
+                "smooth": {
+                  "value": 0
+                }
+              },
               "osc.fm": {},
               "p_obj-18": {
                 "attack": {
@@ -127,13 +219,19 @@
         ]
       },
       "filter": {
-        "value": 10000
+        "value": 12000
       },
       "harmonicity": {
-        "value": 1
+        "value": 1.6
       },
       "mod_index": {
-        "value": 4
+        "value": 0.1
+      },
+      "mod_index_lfo_depth": {
+        "value": 0
+      },
+      "modi_index_lfo_freq": {
+        "value": 5.2
       },
       "q": {
         "value": 1

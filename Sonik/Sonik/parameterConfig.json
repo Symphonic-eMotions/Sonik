@@ -20,6 +20,16 @@
     "visible" : true
   },
   {
+    "displayName" : "Lfo Freq Mod index",
+    "id" : "modi_index_lfo_freq",
+    "visible" : true
+  },
+  {
+    "displayName" : "Lfo Depth Mod index",
+    "id" : "mod_index_lfo_depth",
+    "visible" : true
+  },
+  {
     "displayName" : "harmonicity",
     "id" : "poly\/harmonicity",
     "visible" : false
