@@ -38,46 +38,16 @@ struct DualXYPadsView: View {
                 let preset = presets[selectedPresetIndex]
                 let options = rnbo.visibleParameterConfigs()
 
-                ForEach(preset.pads) { pad in
-                    VStack(alignment: .leading, spacing: 8) {
-                        if rnbo.showParameterSelects {
-                            HStack(spacing: 12) {
-                                
-                                HStack() {
-                                    Text("Y")
-                                    Picker("", selection: Binding<String>(
-                                        get: { selectedYForPad[pad.id] ?? pad.yParamId },
-                                        set: { newId in
-                                            selectedYForPad[pad.id] = newId
-                                            saveOverrideId(newId, presetId: preset.id, padId: pad.id, axis: "y")
-                                        }
-                                    )) {
-                                        ForEach(options, id: \.id) { opt in
-                                            Text(opt.displayName).tag(opt.id)
-                                        }
-                                    }
-                                    .pickerStyle(.menu)
-                                }
-                                
-                                HStack() {
-                                    Text("X")
-                                    Picker("", selection: Binding<String>(
-                                        get: { selectedXForPad[pad.id] ?? pad.xParamId },
-                                        set: { newId in
-                                            selectedXForPad[pad.id] = newId
-                                            saveOverrideId(newId, presetId: preset.id, padId: pad.id, axis: "x")
-                                        }
-                                    )) {
-                                        ForEach(options, id: \.id) { opt in
-                                            Text(opt.displayName).tag(opt.id)
-                                        }
-                                    }
-                                    .pickerStyle(.menu)
-                                }
-                            }
+                let pads = preset.pads
+                ForEach(Array(stride(from: 0, to: pads.count, by: 2)), id: \.self) { i in
+                    HStack(alignment: .top, spacing: 12) {
+                        padCell(pads[i], preset: preset, options: options)
+
+                        if i + 1 < pads.count {
+                            padCell(pads[i + 1], preset: preset, options: options)
+                        } else {
+                            Spacer(minLength: 0) // vul 2e kolom op bij een oneven aantal
                         }
-                        XYPad(config: adjustedConfig(for: pad))
-                            .environmentObject(rnbo)
                     }
                     .padding(.vertical, 6)
                 }
@@ -92,6 +62,52 @@ struct DualXYPadsView: View {
         }
         .padding(.vertical, 6)
     }
+    
+    @ViewBuilder
+    private func padCell(_ pad: XYPadConfig, preset: XYPreset, options: [ParameterConfig]) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            if rnbo.showParameterSelects {
+                VStack {
+                    HStack {
+                        Text("Y")
+                        Picker("", selection: Binding<String>(
+                            get: { selectedYForPad[pad.id] ?? pad.yParamId },
+                            set: { newId in
+                                selectedYForPad[pad.id] = newId
+                                saveOverrideId(newId, presetId: preset.id, padId: pad.id, axis: "y")
+                            }
+                        )) {
+                            ForEach(options, id: \.id) { opt in
+                                Text(opt.displayName).tag(opt.id)
+                            }
+                        }
+                        .pickerStyle(.menu)
+                    }
+
+                    HStack {
+                        Text("X")
+                        Picker("", selection: Binding<String>(
+                            get: { selectedXForPad[pad.id] ?? pad.xParamId },
+                            set: { newId in
+                                selectedXForPad[pad.id] = newId
+                                saveOverrideId(newId, presetId: preset.id, padId: pad.id, axis: "x")
+                            }
+                        )) {
+                            ForEach(options, id: \.id) { opt in
+                                Text(opt.displayName).tag(opt.id)
+                            }
+                        }
+                        .pickerStyle(.menu)
+                    }
+                }
+            }
+
+            XYPad(config: adjustedConfig(for: pad))
+                .environmentObject(rnbo)
+        }
+        .frame(maxWidth: .infinity) // zorgt dat 2 kolommen netjes de breedte delen
+    }
+
 
     // MARK: - View helpers (pure, geen ViewBuilder)
 

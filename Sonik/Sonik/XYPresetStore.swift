@@ -34,8 +34,8 @@ enum XYPresetStore {
                 id: "basic",
                 name: "Basic",
                 pads: [
-                    XYPadConfig(id: "pad1", title: "Pad 1", xParamId: x, yParamId: y),
-                    XYPadConfig(id: "pad2", title: "Pad 2", xParamId: x, yParamId: y, xInvert: true)
+                    XYPadConfig(id: "pad1", xParamId: x, yParamId: y),
+                    XYPadConfig(id: "pad2", xParamId: x, yParamId: y, xInvert: true)
                 ]
             )
         ]

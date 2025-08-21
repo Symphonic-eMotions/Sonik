@@ -8,7 +8,6 @@
 
 struct XYPadConfig: Codable, Identifiable {
     var id: String
-    var title: String
 
     // Koppeling naar RNBO-parameters (paramId uit RNBO description)
     var xParamId: String
