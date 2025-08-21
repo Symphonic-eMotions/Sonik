@@ -22,6 +22,7 @@
 		7C7CB1B92E4E6C7A00569724 /* XYPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7CB1B82E4E6C7A00569724 /* XYPad.swift */; };
 		7C7CB1BB2E4E6C9B00569724 /* DualXYPadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7CB1BA2E4E6C9B00569724 /* DualXYPadsView.swift */; };
 		7C7CB1BD2E4E6CEF00569724 /* xyPresets.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C7CB1BC2E4E6CEB00569724 /* xyPresets.json */; };
+		7C86D93D2E5720C1007574EF /* UserInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86D93C2E5720BF007574EF /* UserInterface.swift */; };
 		AF4B40902B061DDD00FAACBF /* RNBOEventHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = AF4B408E2B061DDD00FAACBF /* RNBOEventHandler.mm */; };
 		AF4B40912B061DDD00FAACBF /* RNBOList.mm in Sources */ = {isa = PBXBuildFile; fileRef = AF4B408F2B061DDD00FAACBF /* RNBOList.mm */; };
 		AF4B40932B06326800FAACBF /* RNBOEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4B40922B06326800FAACBF /* RNBOEventHandler.swift */; };
@@ -64,6 +65,7 @@
 		7C7CB1B82E4E6C7A00569724 /* XYPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XYPad.swift; sourceTree = "<group>"; };
 		7C7CB1BA2E4E6C9B00569724 /* DualXYPadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualXYPadsView.swift; sourceTree = "<group>"; };
 		7C7CB1BC2E4E6CEB00569724 /* xyPresets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = xyPresets.json; sourceTree = "<group>"; };
+		7C86D93C2E5720BF007574EF /* UserInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterface.swift; sourceTree = "<group>"; };
 		AF4B408B2B061DDD00FAACBF /* RNBOEventHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RNBOEventHandler.hpp; sourceTree = "<group>"; };
 		AF4B408C2B061DDD00FAACBF /* RNBOList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNBOList.h; sourceTree = "<group>"; };
 		AF4B408D2B061DDD00FAACBF /* RNBOEventHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNBOEventHandlerProtocol.h; sourceTree = "<group>"; };
@@ -264,6 +266,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C86D9372E571C47007574EF /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				7C86D93C2E5720BF007574EF /* UserInterface.swift */,
+				AFEBC8E32B079C150097D64B /* AudioKitKeyboard.swift */,
+				7C86D9382E571C8E007574EF /* XY */,
+				7C86D9392E571C9D007574EF /* Sliders */,
+				7C86D93A2E571D13007574EF /* Transport */,
+				7C86D93B2E571D53007574EF /* Deprecated */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		7C86D9382E571C8E007574EF /* XY */ = {
+			isa = PBXGroup;
+			children = (
+				7C7CB1BC2E4E6CEB00569724 /* xyPresets.json */,
+				7C7CB1BA2E4E6C9B00569724 /* DualXYPadsView.swift */,
+				7C7CB1B82E4E6C7A00569724 /* XYPad.swift */,
+				7C7CB1B62E4E6C5D00569724 /* XYPresetStore.swift */,
+				7C7CB1B42E4E6BAF00569724 /* XYPadConfig.swift */,
+			);
+			path = XY;
+			sourceTree = "<group>";
+		};
+		7C86D9392E571C9D007574EF /* Sliders */ = {
+			isa = PBXGroup;
+			children = (
+				AFF2B4F729A20A3500068DD0 /* Sliders.swift */,
+				7C32BC8C2E3008EA00DE9F8D /* NativeSlider.swift */,
+				AFFCBE452B09575300800A23 /* SliderView.swift */,
+			);
+			path = Sliders;
+			sourceTree = "<group>";
+		};
+		7C86D93A2E571D13007574EF /* Transport */ = {
+			isa = PBXGroup;
+			children = (
+				7C494EBD2E43B15800CA760B /* OctaafStepperView.swift */,
+			);
+			path = Transport;
+			sourceTree = "<group>";
+		};
+		7C86D93B2E571D53007574EF /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				AFEBC8E12B079BD80097D64B /* Buttons.swift */,
+				AFFCBE432B09079000800A23 /* DescriptionView.swift */,
+			);
+			path = Deprecated;
+			sourceTree = "<group>";
+		};
 		AFF2B41129A2090200068DD0 = {
 			isa = PBXGroup;
 			children = (
@@ -283,28 +337,17 @@
 		AFF2B41C29A2090200068DD0 /* Sonik */ = {
 			isa = PBXGroup;
 			children = (
-				7C7CB1BC2E4E6CEB00569724 /* xyPresets.json */,
-				7C7CB1BA2E4E6C9B00569724 /* DualXYPadsView.swift */,
-				7C7CB1B82E4E6C7A00569724 /* XYPad.swift */,
-				7C7CB1B62E4E6C5D00569724 /* XYPresetStore.swift */,
-				7C7CB1B42E4E6BAF00569724 /* XYPadConfig.swift */,
-				7C35C1802E3837B9008AAD79 /* parameterConfig.json */,
-				7C32BC8C2E3008EA00DE9F8D /* NativeSlider.swift */,
-				7C32BC822E29639B00DE9F8D /* RNBOAudioKitMIDIRouter.swift */,
-				7C32BC7D2E29633200DE9F8D /* MIDISequencer.swift */,
-				7C32BC7B2E29631F00DE9F8D /* AudioKitMIDIManager.swift */,
+				AFF2B42329A2090300068DD0 /* Sonik.entitlements */,
 				AFA214B62B20D01000BCD4E6 /* Sonik-info.plist */,
-				AFF2B42E29A2093F00068DD0 /* RNBO */,
 				AFF2B41D29A2090200068DD0 /* Sonik.swift */,
 				AFF2B41F29A2090200068DD0 /* ContentView.swift */,
-				AFFCBE432B09079000800A23 /* DescriptionView.swift */,
-				7C494EBD2E43B15800CA760B /* OctaafStepperView.swift */,
-				AFF2B4F729A20A3500068DD0 /* Sliders.swift */,
-				AFFCBE452B09575300800A23 /* SliderView.swift */,
-				AFEBC8E12B079BD80097D64B /* Buttons.swift */,
-				AFEBC8E32B079C150097D64B /* AudioKitKeyboard.swift */,
+				7C86D9372E571C47007574EF /* UserInterface */,
+				AFF2B42E29A2093F00068DD0 /* RNBO */,
+				7C35C1802E3837B9008AAD79 /* parameterConfig.json */,
+				7C32BC7B2E29631F00DE9F8D /* AudioKitMIDIManager.swift */,
+				7C32BC822E29639B00DE9F8D /* RNBOAudioKitMIDIRouter.swift */,
+				7C32BC7D2E29633200DE9F8D /* MIDISequencer.swift */,
 				AFF2B42129A2090300068DD0 /* Assets.xcassets */,
-				AFF2B42329A2090300068DD0 /* Sonik.entitlements */,
 				AFF2B42429A2090300068DD0 /* Preview Content */,
 				7C32BC842E2968E400DE9F8D /* midiMelody.mid */,
 				7C6CC7A02E34EBCC00CE52E9 /* midiMelody2.mid */,
@@ -813,6 +856,7 @@
 				AFF2B41E29A2090200068DD0 /* Sonik.swift in Sources */,
 				7C494EBE2E43B15800CA760B /* OctaafStepperView.swift in Sources */,
 				AFFCBE442B09079000800A23 /* DescriptionView.swift in Sources */,
+				7C86D93D2E5720C1007574EF /* UserInterface.swift in Sources */,
 				7C32BC7C2E29631F00DE9F8D /* AudioKitMIDIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

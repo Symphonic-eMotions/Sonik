@@ -5,7 +5,7 @@
         "pads": [
             {
                 "id": "xy1",
-                "xParamId": "q",
+                "xParamId": "poly\/p_obj-18\/decay",
                 "yParamId": "filter",
                 "xMin": 0.0,
                 "xMax": 1.0,
@@ -29,6 +29,17 @@
                 "id": "xy3",
                 "xParamId": "poly\/stereo_delay\/fb",
                 "yParamId": "harmonicity",
+                "xMin": 0.0,
+                "xMax": 1.0,
+                "yMin": 0.0,
+                "yMax": 1.0,
+                "xInvert": false,
+                "yInvert": false
+            },
+            {
+                "id": "xy4",
+                "xParamId": "poly\/stereo_delay\/right_delay",
+                "yParamId": "poly\/stereo_delay\/left_delay",
                 "xMin": 0.0,
                 "xMax": 1.0,
                 "yMin": 0.0,

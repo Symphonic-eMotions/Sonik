@@ -66,7 +66,7 @@ struct DualXYPadsView: View {
     @ViewBuilder
     private func padCell(_ pad: XYPadConfig, preset: XYPreset, options: [ParameterConfig]) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            if rnbo.showParameterSelects {
+            if rnbo.showInterface == .xyEdit {
                 VStack {
                     HStack {
                         Text("Y")

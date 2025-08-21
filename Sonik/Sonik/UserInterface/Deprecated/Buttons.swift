@@ -37,9 +37,6 @@ struct Buttons: View {
             Button("Pause Input") {
                 rnbo.pauseAudioFile()
             }
-            Toggle(isOn: $rnbo.showDescription) {
-                Text("Show description")
-            }
             Toggle(isOn: $enableMic) {
                 Text("Mic")
             }

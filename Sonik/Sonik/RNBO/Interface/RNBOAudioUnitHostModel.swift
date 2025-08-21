@@ -163,8 +163,7 @@ final class RNBOAudioUnitHostModel: ObservableObject {
     private var paramIndexById: [String: Int] = [:]
     @Published var parameters: [RNBOParameter]
     @Published var parameterConfigs: [ParameterConfig]
-    @Published var showParameterSelects: Bool = false
-    @Published var showDescription: Bool = false
+    @Published var showInterface: UserInterface
     @Published var currentOctave: Int = 0
     @Published private(set) var activeMIDINotes: Set<UInt8> = []
 
@@ -184,6 +183,7 @@ final class RNBOAudioUnitHostModel: ObservableObject {
         let localParameters = description?.getParametersArray() ?? []
         self.parameters = localParameters
         self.parameterConfigs = Self.loadParameterConfiguration(from: localParameters)
+        self.showInterface = UserInterface.xy
         rebuildParamIndexMap()
     }
     

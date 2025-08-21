@@ -13,11 +13,14 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            if rnbo.showDescription {
+            if rnbo.showInterface == .description {
                 DescriptionView()
             } else {
-                DualXYPadsView()
-//                Sliders()
+                if [.xy, .xyEdit].contains(rnbo.showInterface) {
+                    DualXYPadsView()
+                } else if rnbo.showInterface == .slider {
+                    Sliders()
+                }
                 AudioKitKeyboard()
                 
                 HStack {

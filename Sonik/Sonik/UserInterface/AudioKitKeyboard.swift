@@ -15,12 +15,17 @@
         var body: some View {
             VStack {
                 HStack {
-                    Toggle(isOn: $rnbo.showParameterSelects){
-                        Text("Edit")
-                    }
+//                    List{
+                        Picker("View", selection: $rnbo.showInterface){
+                            Text("XY").tag(UserInterface.xy)
+                            Text("XY edit").tag(UserInterface.xyEdit)
+                            Text("Sliders").tag(UserInterface.slider)
+                        }.pickerStyle(.segmented)
+//                    }
+                    .padding(0)
                     Spacer()
                     Toggle(isOn: $latch) {
-                        Text("Latch keys")
+                        Text("Latch")
                     }
                 }
                 Keyboard(latching: latch) { pitch, point in
