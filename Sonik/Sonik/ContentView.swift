@@ -15,6 +15,8 @@ struct ContentView: View {
         VStack(spacing: 10) {
             if rnbo.showInterface == .description {
                 DescriptionView()
+            } else if rnbo.showInterface == .arp {
+                ProgressionEditorView()
             } else {
                 if [.xy, .xyEdit].contains(rnbo.showInterface) {
                     DualXYPadsView()
@@ -40,12 +42,13 @@ struct ContentView: View {
                             
                             Button {
                                 rnbo.sendAllNotesOff()
-                                sequencer.generateArpeggioSequence(
-                                    chordNotes: [60, 64, 67],
-                                    pattern: [0, 1, 2, 1],
-                                    octaveRange: 2,
-                                    repeats: 4
-                                )
+                                rnbo.showInterface = .arp
+//                                sequencer.generateArpeggioSequence(
+//                                    chordNotes: [60, 64, 67],
+//                                    pattern: [0, 1, 2, 1],
+//                                    octaveRange: 2,
+//                                    repeats: 4
+//                                )
                             } label: {
                                 Label("", systemImage: "music.note.list")
                             }

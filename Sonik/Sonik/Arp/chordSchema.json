@@ -1,0 +1,46 @@
+{
+  "meta" : {
+    "bars" : 8,
+    "key" : "F diminished",
+    "tempo" : 110,
+    "timeSignature" : "4\/4"
+  },
+  "timeline" : [
+    {
+      "bar" : 1,
+      "chord" : {
+        "quality" : "m7",
+        "root" : "F#"
+      },
+      "id" : "687BCEFA-5A40-46D0-A179-4C7C53EC019C",
+      "lengthBars" : 2
+    },
+    {
+      "bar" : 3,
+      "chord" : {
+        "quality" : "dim7",
+        "root" : "D"
+      },
+      "id" : "6F847B86-2281-4BDD-807A-916D46B9001E",
+      "lengthBars" : 2
+    },
+    {
+      "bar" : 5,
+      "chord" : {
+        "quality" : "m7",
+        "root" : "E"
+      },
+      "id" : "7E59B82C-726A-49BD-B3DD-BAA69C6CA91E",
+      "lengthBars" : 2
+    },
+    {
+      "bar" : 7,
+      "chord" : {
+        "quality" : "m7b5",
+        "root" : "C#"
+      },
+      "id" : "16BEECDD-1866-428E-AF0F-E5E9F340D07D",
+      "lengthBars" : 2
+    }
+  ]
+}

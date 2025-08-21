@@ -11,4 +11,5 @@ enum UserInterface: Hashable {
     case xy
     case xyEdit
     case description
+    case arp
 }

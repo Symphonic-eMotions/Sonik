@@ -169,6 +169,44 @@ final class RNBOAudioUnitHostModel: ObservableObject {
 
     let description: RNBODescription?
     
+    //Arp
+    @Published var progression: Progression = Progression(
+        meta: .init(key: "C major", timeSignature: "4/4", tempo: 120, bars: 8),
+        timeline: [
+            ChordEvent(bar: 1, lengthBars: 2, chord: .init(degree: "I", quality: .maj7)),
+            ChordEvent(bar: 3, lengthBars: 2, chord: .init(degree: "vi", quality: .m7))
+        ]
+    )
+
+    @Published var useRomanGlobal: Bool = true
+
+    private let progressionPlayback = ProgressionPlayback()
+    private var progressionLoadedOnce = false
+
+    func ensureProgressionLoadedFromBundle() {
+        guard !progressionLoadedOnce else { return }
+        do {
+            let p = try ProgressionIO.loadFromBundle(file: "chordSchema")
+            self.progression = p
+            self.progressionLoadedOnce = true
+            print("✅ Loaded default progression from chordSchema.json")
+        } catch {
+            print("⚠️ Using fallback progression. Load error:", error)
+        }
+    }
+
+    func playProgression(baseOctave: Int = 4, velocity: UInt8 = 96, channel: UInt8 = 0) {
+        progressionPlayback.play(prog: progression, via: self, baseOctave: baseOctave, velocity: velocity, channel: channel)
+    }
+
+    func stopProgression() {
+        progressionPlayback.stop(via: self)
+    }
+
+    var isProgressionPlaying: Bool { progressionPlayback.isPlaying }
+    
+    // Einde Arp
+    
     init() {
         do {
             let url = Bundle.main.url(forResource: "description", withExtension: "json")!
@@ -248,12 +286,14 @@ final class RNBOAudioUnitHostModel: ObservableObject {
 
     func sendNoteOn(_ pitch: UInt8, velocity: UInt8 = 127, channel: UInt8 = 0) {
         let transposedPitch = UInt8(Int(pitch) + currentOctave * 12)
+        print("🎹 NOTE ON \(transposedPitch) vel \(velocity) ch \(channel)")
         audioUnit.sendNoteOnMessage(withPitch: transposedPitch, velocity: velocity, channel: channel)
         activeMIDINotes.insert(transposedPitch)
     }
 
     func sendNoteOff(_ pitch: UInt8, releaseVelocity: UInt8 = 0, channel: UInt8 = 0) {
         let transposedPitch = UInt8(Int(pitch) + currentOctave * 12)
+        print("🎹 NOTE OFF \(transposedPitch) ch \(channel)")
         audioUnit.sendNoteOffMessage(withPitch: transposedPitch, releaseVelocity: releaseVelocity, channel: channel)
         activeMIDINotes.remove(transposedPitch)
     }

@@ -15,6 +15,14 @@
 		7C32BC8B2E30015700DE9F8D /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7C32BC8A2E30015700DE9F8D /* AudioKitUI */; };
 		7C32BC8D2E3008EA00DE9F8D /* NativeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32BC8C2E3008EA00DE9F8D /* NativeSlider.swift */; };
 		7C35C1812E3837B9008AAD79 /* parameterConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C35C1802E3837B9008AAD79 /* parameterConfig.json */; };
+		7C446AAB2E57D122008622EA /* ProgressionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C446AAA2E57CF32008622EA /* ProgressionEditorView.swift */; };
+		7C446AAC2E57D12A008622EA /* ChordPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C446AA92E57CEDB008622EA /* ChordPicker.swift */; };
+		7C446AAD2E57D130008622EA /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C446AA82E57CE85008622EA /* Extension.swift */; };
+		7C446AAE2E57D137008622EA /* Progression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C446AA72E57CE3D008622EA /* Progression.swift */; };
+		7C446AAF2E57D13D008622EA /* chordSchema.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C446AA62E57CE0A008622EA /* chordSchema.json */; };
+		7C446AB12E57DDFC008622EA /* ProgressionIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C446AB02E57DDFC008622EA /* ProgressionIO.swift */; };
+		7C446AB32E57DE1F008622EA /* ProgressionTheory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C446AB22E57DE1F008622EA /* ProgressionTheory.swift */; };
+		7C446AB52E57E41E008622EA /* ProgressionPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C446AB42E57E41E008622EA /* ProgressionPlayback.swift */; };
 		7C494EBE2E43B15800CA760B /* OctaafStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C494EBD2E43B15800CA760B /* OctaafStepperView.swift */; };
 		7C6CC7A12E34EBCC00CE52E9 /* midiMelody2.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C6CC7A02E34EBCC00CE52E9 /* midiMelody2.mid */; };
 		7C7CB1B52E4E6BAF00569724 /* XYPadConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7CB1B42E4E6BAF00569724 /* XYPadConfig.swift */; };
@@ -58,6 +66,14 @@
 		7C32BC842E2968E400DE9F8D /* midiMelody.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = midiMelody.mid; sourceTree = "<group>"; };
 		7C32BC8C2E3008EA00DE9F8D /* NativeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSlider.swift; sourceTree = "<group>"; };
 		7C35C1802E3837B9008AAD79 /* parameterConfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = parameterConfig.json; sourceTree = "<group>"; };
+		7C446AA62E57CE0A008622EA /* chordSchema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chordSchema.json; sourceTree = "<group>"; };
+		7C446AA72E57CE3D008622EA /* Progression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progression.swift; sourceTree = "<group>"; };
+		7C446AA82E57CE85008622EA /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		7C446AA92E57CEDB008622EA /* ChordPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordPicker.swift; sourceTree = "<group>"; };
+		7C446AAA2E57CF32008622EA /* ProgressionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionEditorView.swift; sourceTree = "<group>"; };
+		7C446AB02E57DDFC008622EA /* ProgressionIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionIO.swift; sourceTree = "<group>"; };
+		7C446AB22E57DE1F008622EA /* ProgressionTheory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionTheory.swift; sourceTree = "<group>"; };
+		7C446AB42E57E41E008622EA /* ProgressionPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionPlayback.swift; sourceTree = "<group>"; };
 		7C494EBD2E43B15800CA760B /* OctaafStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctaafStepperView.swift; sourceTree = "<group>"; };
 		7C6CC7A02E34EBCC00CE52E9 /* midiMelody2.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = midiMelody2.mid; sourceTree = "<group>"; };
 		7C7CB1B42E4E6BAF00569724 /* XYPadConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XYPadConfig.swift; sourceTree = "<group>"; };
@@ -266,6 +282,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C446AA52E57CDE4008622EA /* Arp */ = {
+			isa = PBXGroup;
+			children = (
+				7C446AB42E57E41E008622EA /* ProgressionPlayback.swift */,
+				7C446AB22E57DE1F008622EA /* ProgressionTheory.swift */,
+				7C446AB02E57DDFC008622EA /* ProgressionIO.swift */,
+				7C446AAA2E57CF32008622EA /* ProgressionEditorView.swift */,
+				7C446AA92E57CEDB008622EA /* ChordPicker.swift */,
+				7C446AA82E57CE85008622EA /* Extension.swift */,
+				7C446AA72E57CE3D008622EA /* Progression.swift */,
+				7C446AA62E57CE0A008622EA /* chordSchema.json */,
+			);
+			path = Arp;
+			sourceTree = "<group>";
+		};
 		7C86D9372E571C47007574EF /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +378,7 @@
 				7C32BC7B2E29631F00DE9F8D /* AudioKitMIDIManager.swift */,
 				7C32BC822E29639B00DE9F8D /* RNBOAudioKitMIDIRouter.swift */,
 				7C32BC7D2E29633200DE9F8D /* MIDISequencer.swift */,
+				7C446AA52E57CDE4008622EA /* Arp */,
 				AFF2B42129A2090300068DD0 /* Assets.xcassets */,
 				AFF2B42429A2090300068DD0 /* Preview Content */,
 				7C32BC842E2968E400DE9F8D /* midiMelody.mid */,
@@ -814,6 +846,7 @@
 				7C6CC7A12E34EBCC00CE52E9 /* midiMelody2.mid in Resources */,
 				7C7CB1BD2E4E6CEF00569724 /* xyPresets.json in Resources */,
 				AFF2B42629A2090300068DD0 /* Preview Assets.xcassets in Resources */,
+				7C446AAF2E57D13D008622EA /* chordSchema.json in Resources */,
 				AFF4B5222A006A8200087CB8 /* Synth.aif in Resources */,
 				7C32BC852E2968E400DE9F8D /* midiMelody.mid in Resources */,
 				AFF2B4F129A2094D00068DD0 /* description.json in Resources */,
@@ -837,11 +870,16 @@
 				AF865DE82B0A381B0019FB28 /* MIDIHelpers.swift in Sources */,
 				AF4B40902B061DDD00FAACBF /* RNBOEventHandler.mm in Sources */,
 				7C32BC7E2E29633200DE9F8D /* MIDISequencer.swift in Sources */,
+				7C446AAE2E57D137008622EA /* Progression.swift in Sources */,
+				7C446AAD2E57D130008622EA /* Extension.swift in Sources */,
 				AFEBC8E22B079BD80097D64B /* Buttons.swift in Sources */,
 				AFF2B4F229A2094D00068DD0 /* rnbo_source.cpp in Sources */,
 				AF4B40932B06326800FAACBF /* RNBOEventHandler.swift in Sources */,
+				7C446AB32E57DE1F008622EA /* ProgressionTheory.swift in Sources */,
+				7C446AAC2E57D12A008622EA /* ChordPicker.swift in Sources */,
 				7C7CB1B52E4E6BAF00569724 /* XYPadConfig.swift in Sources */,
 				AFEBC8E42B079C150097D64B /* AudioKitKeyboard.swift in Sources */,
+				7C446AB12E57DDFC008622EA /* ProgressionIO.swift in Sources */,
 				AFFCBE462B09575300800A23 /* SliderView.swift in Sources */,
 				AFF2B4F329A2095300068DD0 /* RNBO.cpp in Sources */,
 				AFF2B4EE29A2094900068DD0 /* RNBOAudioUnit.mm in Sources */,
@@ -851,7 +889,9 @@
 				AF4B40912B061DDD00FAACBF /* RNBOList.mm in Sources */,
 				AFFCBE422B09019A00800A23 /* RNBODescription.swift in Sources */,
 				AFF2B42029A2090200068DD0 /* ContentView.swift in Sources */,
+				7C446AAB2E57D122008622EA /* ProgressionEditorView.swift in Sources */,
 				AFF2B4EB29A2094600068DD0 /* RNBOAudioEngine.swift in Sources */,
+				7C446AB52E57E41E008622EA /* ProgressionPlayback.swift in Sources */,
 				7C32BC832E29639B00DE9F8D /* RNBOAudioKitMIDIRouter.swift in Sources */,
 				AFF2B41E29A2090200068DD0 /* Sonik.swift in Sources */,
 				7C494EBE2E43B15800CA760B /* OctaafStepperView.swift in Sources */,
