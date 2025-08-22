@@ -17,48 +17,56 @@ final class ProgressionPlayback {
               via rnbo: RNBOAudioUnitHostModel,
               baseOctave: Int = 4,
               velocity: UInt8 = 96,
-              channel: UInt8 = 0) {
-        stop(via: rnbo) // safety: eerst alles uit
-
+              channel: UInt8 = 0,
+              repeatCount: Int = 8) {
+        stop(via: rnbo) // safety
+        
         let (beatsPerBar, _) = parseTimeSignature(prog.meta.timeSignature) ?? (4, 4)
         let secPerBeat = 60.0 / max(1.0, prog.meta.tempo)
-        let secPerBar = Double(beatsPerBar) * secPerBeat
-
-        // Timeline op volgorde
-        let events = prog.timeline.sorted { $0.bar < $1.bar }
-
+        let secPerBar  = Double(beatsPerBar) * secPerBeat
+        
+        let baseEvents = prog.timeline.sorted { $0.bar < $1.bar }
+        
+        // ⬇️ Bepaal effectieve patroonlengte (in maten)
+        let maxEndFromEvents = baseEvents.map { $0.bar + $0.lengthBars - 1 }.max() ?? 0
+        let patternBars = max(maxEndFromEvents, prog.meta.bars)
+        let safePatternBars = max(1, patternBars)
+        
         let startAnchor = DispatchTime.now()
         isPlaying = true
-
-        for ev in events {
-            let startOffset = max(0, ev.bar - 1)
-            let startSec = Double(startOffset) * secPerBar
-            let durSec = Double(max(1, ev.lengthBars)) * secPerBar
-            let gate = max(0.05, durSec * 0.92) // iets korter dan volle duur
-
-            // Resolve chord → MIDI pitches
-            let midiNotes = resolveToMIDINotes(spec: ev.chord,
-                                               keyString: prog.meta.key,
-                                               baseOctave: baseOctave)
-
-            // NOTE ON
-            let onTask = DispatchWorkItem { [weak rnbo] in
-                guard let rnbo = rnbo, self.isPlaying else { return }
-                // Root iets lager voor body (optioneel voicing)
-                let voiced = self.voice(midiNotes, lowerRoot: false)
-                for n in voiced { rnbo.sendNoteOn(n, velocity: velocity, channel: channel) }
+        
+        // Plan 8 (repeatCount) herhalingen achter elkaar
+        for rep in 0..<repeatCount {
+            let barOffset = rep * safePatternBars
+            
+            for ev in baseEvents {
+                let startBar = max(1, ev.bar + barOffset)
+                let startSec = Double(startBar - 1) * secPerBar
+                let durSec   = Double(max(1, ev.lengthBars)) * secPerBar
+                let gate     = max(0.05, durSec * 0.92)
+                
+                let midiNotes = resolveToMIDINotes(spec: ev.chord,
+                                                   keyString: prog.meta.key,
+                                                   baseOctave: baseOctave)
+                
+                // NOTE ON
+                let onTask = DispatchWorkItem { [weak rnbo] in
+                    guard let rnbo = rnbo, self.isPlaying else { return }
+                    let voiced = self.voice(midiNotes, lowerRoot: false)
+                    for n in voiced { rnbo.sendNoteOn(n, velocity: velocity, channel: channel) }
+                }
+                scheduled.append(onTask)
+                DispatchQueue.main.asyncAfter(deadline: startAnchor + startSec, execute: onTask)
+                
+                // NOTE OFF
+                let offTask = DispatchWorkItem { [weak rnbo] in
+                    guard let rnbo = rnbo else { return }
+                    let voiced = self.voice(midiNotes, lowerRoot: false)
+                    for n in voiced { rnbo.sendNoteOff(n, releaseVelocity: 0, channel: channel) }
+                }
+                scheduled.append(offTask)
+                DispatchQueue.main.asyncAfter(deadline: startAnchor + startSec + gate, execute: offTask)
             }
-            scheduled.append(onTask)
-            DispatchQueue.main.asyncAfter(deadline: startAnchor + startSec, execute: onTask)
-
-            // NOTE OFF
-            let offTask = DispatchWorkItem { [weak rnbo] in
-                guard let rnbo = rnbo else { return }
-                let voiced = self.voice(midiNotes, lowerRoot: false)
-                for n in voiced { rnbo.sendNoteOff(n, releaseVelocity: 0, channel: channel) }
-            }
-            scheduled.append(offTask)
-            DispatchQueue.main.asyncAfter(deadline: startAnchor + startSec + gate, execute: offTask)
         }
     }
 
