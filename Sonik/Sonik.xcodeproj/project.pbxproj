@@ -22,7 +22,6 @@
 		7C446AAF2E57D13D008622EA /* chordSchema.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C446AA62E57CE0A008622EA /* chordSchema.json */; };
 		7C446AB12E57DDFC008622EA /* ProgressionIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C446AB02E57DDFC008622EA /* ProgressionIO.swift */; };
 		7C446AB32E57DE1F008622EA /* ProgressionTheory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C446AB22E57DE1F008622EA /* ProgressionTheory.swift */; };
-		7C446AB52E57E41E008622EA /* ProgressionPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C446AB42E57E41E008622EA /* ProgressionPlayback.swift */; };
 		7C494EBE2E43B15800CA760B /* OctaafStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C494EBD2E43B15800CA760B /* OctaafStepperView.swift */; };
 		7C68D25B2E5B3535003C3F89 /* ParameterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C68D25A2E5B3510003C3F89 /* ParameterConfig.swift */; };
 		7C6CC7A12E34EBCC00CE52E9 /* midiMelody2.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C6CC7A02E34EBCC00CE52E9 /* midiMelody2.mid */; };
@@ -74,7 +73,6 @@
 		7C446AAA2E57CF32008622EA /* ProgressionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionEditorView.swift; sourceTree = "<group>"; };
 		7C446AB02E57DDFC008622EA /* ProgressionIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionIO.swift; sourceTree = "<group>"; };
 		7C446AB22E57DE1F008622EA /* ProgressionTheory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionTheory.swift; sourceTree = "<group>"; };
-		7C446AB42E57E41E008622EA /* ProgressionPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionPlayback.swift; sourceTree = "<group>"; };
 		7C494EBD2E43B15800CA760B /* OctaafStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctaafStepperView.swift; sourceTree = "<group>"; };
 		7C68D25A2E5B3510003C3F89 /* ParameterConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterConfig.swift; sourceTree = "<group>"; };
 		7C6CC7A02E34EBCC00CE52E9 /* midiMelody2.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = midiMelody2.mid; sourceTree = "<group>"; };
@@ -287,7 +285,6 @@
 		7C446AA52E57CDE4008622EA /* Arp */ = {
 			isa = PBXGroup;
 			children = (
-				7C446AB42E57E41E008622EA /* ProgressionPlayback.swift */,
 				7C446AB22E57DE1F008622EA /* ProgressionTheory.swift */,
 				7C446AB02E57DDFC008622EA /* ProgressionIO.swift */,
 				7C446AAA2E57CF32008622EA /* ProgressionEditorView.swift */,
@@ -895,7 +892,6 @@
 				AFF2B42029A2090200068DD0 /* ContentView.swift in Sources */,
 				7C446AAB2E57D122008622EA /* ProgressionEditorView.swift in Sources */,
 				AFF2B4EB29A2094600068DD0 /* RNBOAudioEngine.swift in Sources */,
-				7C446AB52E57E41E008622EA /* ProgressionPlayback.swift in Sources */,
 				7C32BC832E29639B00DE9F8D /* RNBOAudioKitMIDIRouter.swift in Sources */,
 				AFF2B41E29A2090200068DD0 /* Sonik.swift in Sources */,
 				7C494EBE2E43B15800CA760B /* OctaafStepperView.swift in Sources */,

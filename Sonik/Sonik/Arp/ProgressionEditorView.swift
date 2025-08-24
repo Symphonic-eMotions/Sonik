@@ -82,15 +82,23 @@ struct ProgressionEditorView: View {
 
                 Section {
                     Button {
-                        rnbo.playProgression(baseOctave: 4, velocity: 96, channel: 0)
+                        rnbo.loadProgressionIntoSequencerAsChords(baseOctave: 4, velocity: 100)
                     } label: {
-                        Label(rnbo.isProgressionPlaying ? "Restart" : "Play (blokakkoorden)", systemImage: "play.fill")
+                        Label("Load → Sequencer", systemImage: "tray.and.arrow.down.fill")
                     }
+                    
                     Button {
-                        rnbo.stopProgression()
+                        rnbo.playSequencer()
+                    } label: {
+                        Label("Play (sequencer)", systemImage: "play.fill")
+                    }
+                    
+                    Button {
+                        rnbo.stopSequencer()
                     } label: {
                         Label("Stop", systemImage: "stop.fill")
-                    }                    
+                    }
+                    
                     Button("Normaliseer (opruimen overlaps)") {
                         rnbo.progression.timeline = rnbo.progression.timeline.normalized(maxBars: rnbo.progression.meta.bars)
                     }

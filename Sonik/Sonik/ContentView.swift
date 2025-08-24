@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var rnbo: RNBOAudioUnitHostModel
-    @EnvironmentObject var sequencer: MIDISequencer
 
     var body: some View {
         VStack(spacing: 10) {
@@ -35,7 +34,7 @@ struct ContentView: View {
                         HStack(spacing: 15) {
                             Button {
                                 rnbo.currentOctave = 0
-                                sequencer.loadMIDIFile(named: "midiMelody2")
+                                rnbo.midiSequencer.loadMIDIFile(named: "midiMelody2")
                             } label: {
                                 Label("", systemImage: "folder.fill")
                             }
@@ -43,18 +42,12 @@ struct ContentView: View {
                             Button {
                                 rnbo.sendAllNotesOff()
                                 rnbo.showInterface = .arp
-//                                sequencer.generateArpeggioSequence(
-//                                    chordNotes: [60, 64, 67],
-//                                    pattern: [0, 1, 2, 1],
-//                                    octaveRange: 2,
-//                                    repeats: 4
-//                                )
                             } label: {
                                 Label("", systemImage: "music.note.list")
                             }
                             
                             Button {
-                                sequencer.clearAllTracks()
+                                rnbo.midiSequencer.clearAllTracks()
                             } label: {
                                 Label("", systemImage: "trash.fill")
                             }
@@ -63,13 +56,13 @@ struct ContentView: View {
                         
                         HStack(spacing: 15) {
                             Button {
-                                sequencer.play()
+                                rnbo.midiSequencer.play()
                             } label: {
                                 Label("Play", systemImage: "play.circle.fill")
                             }
                             
                             Button {
-                                sequencer.stop()
+                                rnbo.midiSequencer.stop()
                             } label: {
                                 Label("Stop", systemImage: "stop.circle.fill")
                             }

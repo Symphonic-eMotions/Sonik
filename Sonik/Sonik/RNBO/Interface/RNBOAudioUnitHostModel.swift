@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AudioKit
 
 typealias RNBOContext = RNBOAudioUnitHostModel
 
@@ -155,6 +156,7 @@ final class RNBOAudioUnitHostModel: ObservableObject {
     public var audioUnit: RNBOAudioUnit { _audioUnit }
     private let eventHandler = RNBOEventHandler()
     private var paramIndexById: [String: Int] = [:]
+
     @Published var parameters: [RNBOParameter]
     @Published var parameterConfigs: [ParameterConfig]
     @Published var showInterface: UserInterface
@@ -162,8 +164,8 @@ final class RNBOAudioUnitHostModel: ObservableObject {
     @Published private(set) var activeMIDINotes: Set<UInt8> = []
 
     let description: RNBODescription?
-    
-    //Arp
+
+    // MARK: - Progression (structuur blijft leidend)
     @Published var progression: Progression = Progression(
         meta: .init(key: "C major", timeSignature: "4/4", tempo: 120, bars: 8),
         timeline: [
@@ -173,9 +175,57 @@ final class RNBOAudioUnitHostModel: ObservableObject {
     )
 
     @Published var useRomanGlobal: Bool = true
+    @Published var isWarmedUp: Bool = false
 
-    private let progressionPlayback = ProgressionPlayback()
     private var progressionLoadedOnce = false
+
+    // MARK: - Sequencer bridged playback (nieuw)
+    lazy var midiSequencer: MIDISequencer = { MIDISequencer(rnbo: self) }()
+
+    /// Zet de huidige progression in de sequencer als blokakkoorden (nog geen ARP).
+    func loadProgressionIntoSequencerAsChords(
+        baseOctave: Int = 4,
+        velocity: MIDIVelocity = 100,
+        gate: Double = 0.92,
+        channel: MIDIChannel = 0
+    ) {
+        midiSequencer.loadProgressionAsBlockChords(
+            progression,
+            baseOctave: baseOctave,
+            velocity: velocity,
+            gate: gate,
+            channel: channel
+        )
+    }
+
+    func playSequencer() {
+        midiSequencer.play()
+    }
+
+    func stopSequencer() {
+        midiSequencer.stop()
+        sendAllNotesOff()
+    }
+
+    // MARK: - Lifecycle / init
+
+    init() {
+        do {
+            let url = Bundle.main.url(forResource: "description", withExtension: "json")!
+            let data = try Data(contentsOf: url)
+            description = try JSONDecoder().decode(RNBODescription.self, from: data)
+        } catch {
+            print("Error decoding JSON from URL: \(error)")
+            description = nil
+        }
+
+        _audioUnit = audioEngine.getAudioUnit()
+        let localParameters = description?.getParametersArray() ?? []
+        self.parameters = localParameters
+        self.parameterConfigs = Self.loadParameterConfiguration(from: localParameters)
+        self.showInterface = UserInterface.xy
+        rebuildParamIndexMap()
+    }
 
     func ensureProgressionLoadedFromBundle() {
         guard !progressionLoadedOnce else { return }
@@ -189,67 +239,27 @@ final class RNBOAudioUnitHostModel: ObservableObject {
         }
     }
 
-    func playProgression(baseOctave: Int = 4, velocity: UInt8 = 96, channel: UInt8 = 0) {
-        progressionPlayback.play(prog: progression, via: self, baseOctave: baseOctave, velocity: velocity, channel: channel)
-    }
-
-    func stopProgression() {
-        progressionPlayback.stop(via: self)
-    }
-
-    var isProgressionPlaying: Bool { progressionPlayback.isPlaying }
-    
-    // Einde Arp
-    
-    init() {
-        do {
-            let url = Bundle.main.url(forResource: "description", withExtension: "json")!
-            let data = try Data(contentsOf: url)
-            description = try JSONDecoder().decode(RNBODescription.self, from: data)
-        } catch {
-            print("Error decoding JSON from URL: \(error)")
-            description = nil
-        }
-        
-        _audioUnit = audioEngine.getAudioUnit()
-        let localParameters = description?.getParametersArray() ?? []
-        self.parameters = localParameters
-        self.parameterConfigs = Self.loadParameterConfiguration(from: localParameters)
-        self.showInterface = UserInterface.xy
-        rebuildParamIndexMap()
-    }
-    
     private func rebuildParamIndexMap() {
         self.paramIndexById = Dictionary(uniqueKeysWithValues:
             self.parameters.enumerated().map { ($1.id, $0) }
         )
     }
-    
-    // Toon alleen zichtbare parameters uit parameterConfig.json voor UI-keuze
+
+    // MARK: - UI helpers
     func visibleParameterConfigs() -> [ParameterConfig] {
         parameterConfigs.filter { $0.visible }
     }
 
-    // UI-naam (displayName) voor een paramId; valt terug op id als niet gevonden
     func parameterDisplayName(for id: String) -> String {
         parameterConfigs.first(where: { $0.id == id })?.displayName ?? id
     }
 
-
-    func playAudioFile() {
-        audioEngine.playAudioFile()
-    }
-    
-    func pauseAudioFile() {
-        audioEngine.pauseAudioFile()
-    }
+    // MARK: - Engine helpers (ongewijzigd)
+    func playAudioFile() { audioEngine.playAudioFile() }
+    func pauseAudioFile() { audioEngine.pauseAudioFile() }
 
     func toggleMic(_ on: Bool) {
-        if on {
-            audioEngine.setMicrophoneAmplitude(1.0)
-        } else {
-            audioEngine.setMicrophoneAmplitude(0.0)
-        }
+        audioEngine.setMicrophoneAmplitude(on ? 1.0 : 0.0)
     }
 
     func refreshParameterValue(at parameterIndex: Int) {
@@ -274,6 +284,7 @@ final class RNBOAudioUnitHostModel: ObservableObject {
         refreshParameterValue(at: parameterIndex)
     }
 
+    // MARK: - RNBO MIDI (ongewijzigd + logging)
     func sendMessage(_ message: [Double]) {
         audioUnit.sendMessage("foo", list: message)
     }
@@ -291,7 +302,7 @@ final class RNBOAudioUnitHostModel: ObservableObject {
         audioUnit.sendNoteOffMessage(withPitch: transposedPitch, releaseVelocity: releaseVelocity, channel: channel)
         activeMIDINotes.remove(transposedPitch)
     }
-    
+
     func sendAllNotesOff(channel: UInt8 = 0) {
         for pitch in activeMIDINotes {
             audioUnit.sendNoteOffMessage(withPitch: pitch, releaseVelocity: 0, channel: channel)
@@ -323,15 +334,15 @@ final class RNBOAudioUnitHostModel: ObservableObject {
         audioUnit.setEventHandler(eventHandler)
         eventHandler.rnbo = self
     }
-    
+
     func temporarilyMuteSynth(for seconds: TimeInterval, fade: TimeInterval = 0.02) {
         audioEngine.temporarilyMuteRNBO(for: seconds, fade: fade)
     }
-    
+
     func setSynthMuted(_ muted: Bool) {
         audioEngine.setRNBOMute(muted)
     }
-    
+
     func rampSynthVolume(to target: Float, over duration: TimeInterval = 0.08) {
         audioEngine.rampRNBOOutputVolume(to: target, over: duration)
     }
