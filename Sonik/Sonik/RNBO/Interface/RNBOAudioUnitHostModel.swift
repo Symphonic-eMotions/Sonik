@@ -7,12 +7,6 @@
 
 import Foundation
 
-struct ParameterConfig: Codable {
-    let id: String
-    var displayName: String
-    var visible: Bool
-}
-
 typealias RNBOContext = RNBOAudioUnitHostModel
 
 extension RNBOAudioUnitHostModel {
