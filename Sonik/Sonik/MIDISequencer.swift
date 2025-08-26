@@ -114,7 +114,7 @@ extension MIDISequencer {
 
         let normalized = degree.replacingOccurrences(of: "°", with: "")
         let map: [String:Int] = ["I":0,"ii":1,"iii":2,"IV":3,"V":4,"vi":5,"vii":6,
-                                 "i":0,"ii":1,"III":2,"iv":3,"v":4,"VI":5,"VII":6]
+                                 "i":0,"III":2,"iv":3,"v":4,"VI":5,"VII":6]
 
         let idx = map[normalized] ?? 0
         let steps = (mode == .major) ? majorSteps : minorSteps
