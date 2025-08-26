@@ -166,7 +166,7 @@ class MIDISequencer: ObservableObject {
     @Published private(set) var noteEvents: [MIDINoteData] = []
     @Published var loopBeatsPerBar: Double = 4.0
     @Published var loopSmallOverlapThresholdBeats: Double = 0.25
-    @Published var loopAutoPlay: Bool = true
+    @Published var loopAutoPlay: Bool = false
     private var sequenceLength: TimeInterval = 0
     private var isPlaying = false
     private weak var rnbo: RNBOAudioUnitHostModel?
