@@ -88,6 +88,21 @@ struct ProgressionEditorView: View {
                     }
                     
                     Button {
+                        rnbo.loadProgressionIntoSequencerAsArpeggio(
+                            baseOctave: 4,
+                            velocity: 100,
+                            channel: 0,
+                            pattern: [0,1,2,1],     // experimenteer!
+                            octaveRange: 2,
+                            gridResolutionBeats: 0.25,
+                            noteLengthFactor: 0.9,
+                            swapAtLoopBoundary: true
+                        )
+                    } label: {
+                        Label("ARP → Sequencer (hot swap)", systemImage: "sparkles")
+                    }
+                    
+                    Button {
                         rnbo.playSequencer()
                     } label: {
                         Label("Play (sequencer)", systemImage: "play.fill")

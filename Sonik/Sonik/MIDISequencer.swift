@@ -76,7 +76,7 @@ extension MIDISequencer {
         print("🎼 Progression geladen in sequencer: \(noteEvents.count) events")
     }
 
-    // MARK: - Helpers (copie van je schedulerresolver, licht ingekort)
+    // MARK: - Helpers
 
     private func parseTimeSignature(_ ts: String) -> (Int, Int)? {
         let parts = ts.split(separator: "/")
@@ -152,6 +152,177 @@ extension MIDISequencer {
         case .dim7:  return [0,3,6,9]
         case .sus2:  return [0,2,7]
         case .sus4:  return [0,5,7]
+        }
+    }
+}
+
+// MARK: - Progression → Sequencer (ARP, hot-swap)
+extension MIDISequencer {
+
+    /// Genereer ARP‑events voor de volledige progression.
+    /// - pattern: indexen in chordNotes (bv. [0,1,2,1])
+    /// - gridResolutionBeats: stapgrootte in beats (bv. 0.25 = zestienden)
+    /// - noteLengthFactor: fractie vd grid voor gate (0.9 = iets korter dan stap)
+    func loadProgressionAsArpeggio(
+        _ prog: Progression,
+        baseOctave: Int = 4,
+        velocity: MIDIVelocity = 100,
+        channel: MIDIChannel = 0,
+        pattern: [Int] = [0, 1, 2, 1],
+        octaveRange: Int = 1,
+        gridResolutionBeats: Double = 0.25,
+        noteLengthFactor: Double = 0.92,
+        swapAtLoopBoundary: Bool = true
+    ) {
+        // Bouw de events
+        let events = buildArpeggioEvents(
+            prog,
+            baseOctave: baseOctave,
+            velocity: velocity,
+            channel: channel,
+            pattern: pattern,
+            octaveRange: octaveRange,
+            grid: gridResolutionBeats,
+            gateFactor: noteLengthFactor
+        )
+
+        // Hot‑swap in de sequencer (zonder playback te stoppen)
+        hotSwapActiveTrack(with: events, swapAtLoopBoundary: swapAtLoopBoundary)
+    }
+
+    // MARK: Builder
+
+    private func buildArpeggioEvents(
+        _ prog: Progression,
+        baseOctave: Int,
+        velocity: MIDIVelocity,
+        channel: MIDIChannel,
+        pattern: [Int],
+        octaveRange: Int,
+        grid: Double,
+        gateFactor: Double
+    ) -> [MIDINoteData] {
+
+        sequencer.setTempo(prog.meta.tempo)
+
+        let (beatsPerBar, _) = parseTimeSignature(prog.meta.timeSignature) ?? (4, 4)
+        let sorted = prog.timeline.sorted { $0.bar < $1.bar }
+
+        var out: [MIDINoteData] = []
+
+        for ev in sorted {
+            let startBeats = Double(ev.bar - 1) * Double(beatsPerBar)
+            let endBeats   = startBeats + Double(max(1, ev.lengthBars)) * Double(beatsPerBar)
+
+            // Chord → basisnotenset
+            let chordNotes = resolveChordToMIDINotes(
+                spec: ev.chord,
+                keyString: prog.meta.key,
+                baseOctave: baseOctave
+            )
+            guard !chordNotes.isEmpty, !pattern.isEmpty else { continue }
+
+            // Loop door tijdvak [start, end) in grid‑stappen
+            var cursor = startBeats
+            var stepIx = 0
+
+            while cursor < endBeats {
+                // voor elk patroon‑element + octaaflaag
+                for oct in 0..<octaveRange {
+                    let idx = pattern[stepIx % pattern.count]
+                    let base = chordNotes[idx % chordNotes.count]
+                    let note = MIDINoteNumber(Int(base) + (oct * 12))
+
+                    let qStart = (cursor / grid).rounded(.toNearestOrEven) * grid
+                    if qStart >= endBeats { break }
+
+                    // gate binnen deze grid‑cel
+                    let stepEnd = min(qStart + grid, endBeats)
+                    let dur = max(0.01, (stepEnd - qStart) * gateFactor)
+
+                    out.append(
+                        MIDINoteData(
+                            noteNumber: note,
+                            velocity: velocity,
+                            channel: channel,
+                            duration: Duration(beats: dur),
+                            position: Duration(beats: qStart)
+                        )
+                    )
+                }
+                stepIx += 1
+                cursor += grid
+            }
+        }
+
+        return out.sorted { a, b in
+            let ta = a.position.beats, tb = b.position.beats
+            return (ta, a.noteNumber) < (tb, b.noteNumber)
+        }
+    }
+
+    // MARK: Hot-swap
+
+    /// Vervang de actieve track door een nieuwe met de aangeleverde events, optioneel precies op de volgende loopgrens.
+    private func hotSwapActiveTrack(
+        with events: [MIDINoteData],
+        swapAtLoopBoundary: Bool
+    ) {
+        // 1) Maak een nieuwe track met events
+        guard let newTrack = sequencer.newTrack() else {
+            print("❌ Kon geen nieuwe track aanmaken (ARP)")
+            return
+        }
+        newTrack.setMIDIOutput(callbackInstrument.midiIn)
+        newTrack.clear()
+        for e in events { newTrack.add(midiNoteData: e) }
+
+        // 2) Lengte op content kwantiseren & loop activeren
+        //    (we hergebruiken je eigen helper flow)
+        //    NB: we zetten tijdelijk 'newTrack' als enige zodat helpers op 'first track' werken.
+        //    -> Alternatief: we doen de length/loop hieronder zelf:
+
+        let lastEnd = events.map { $0.position.beats + $0.duration.beats }.max() ?? 0.0
+        let beatsPerBar = loopBeatsPerBar
+        let fullBars = floor(lastEnd / beatsPerBar)
+        let remainder = lastEnd - fullBars * beatsPerBar
+        let quantizedBeats = (remainder <= loopSmallOverlapThresholdBeats)
+            ? max(fullBars * beatsPerBar, beatsPerBar)
+            : (fullBars + 1) * beatsPerBar
+
+        sequencer.setLength(Duration(beats: quantizedBeats))
+        sequencer.setLoopInfo(Duration(beats: quantizedBeats), loopCount: 0)
+        sequencer.enableLooping()
+
+        // 3) Bepaal wanneer we swappen
+        let performSwap = { [weak self] in
+            guard let self = self else { return }
+            // mute & verwijder oude tracks
+            for idx in self.sequencer.tracks.indices.dropLast().reversed() {
+                self.sequencer.tracks[idx].clear()
+                self.sequencer.deleteTrack(trackIndex: idx)
+            }
+            // 'newTrack' is nu de enige over, update state
+            self.noteEvents = newTrack.getMIDINoteData()
+            self.sourceTrackEvents = self.noteEvents
+            print("♻️ Hot‑swap complete (\(self.noteEvents.count) events)")
+        }
+
+        if swapAtLoopBoundary {
+            let posBeats = sequencer.currentPosition.beats   // altijd beschikbaar
+            let loopLen = quantizedBeats
+            let offsetInLoop = posBeats.truncatingRemainder(dividingBy: loopLen)
+            let beatsUntilSwap = loopLen - offsetInLoop
+            let secondsPerBeat = 60.0 / max(1.0, sequencer.tempo)
+            let delay = beatsUntilSwap * secondsPerBeat
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                performSwap()
+            }
+            print("⏳ Hot-swap gepland over \(String(format: "%.2f", beatsUntilSwap)) beats")
+        } else {
+            // direct, kan een mini-dubbeling geven binnen lopende maat
+            performSwap()
         }
     }
 }

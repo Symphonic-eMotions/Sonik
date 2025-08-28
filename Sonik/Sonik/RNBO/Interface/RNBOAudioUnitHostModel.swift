@@ -346,4 +346,28 @@ final class RNBOAudioUnitHostModel: ObservableObject {
     func rampSynthVolume(to target: Float, over duration: TimeInterval = 0.08) {
         audioEngine.rampRNBOOutputVolume(to: target, over: duration)
     }
+    
+    func loadProgressionIntoSequencerAsArpeggio(
+        baseOctave: Int = 4,
+        velocity: MIDIVelocity = 100,
+        channel: MIDIChannel = 0,
+        pattern: [Int] = [0,1,2,1],
+        octaveRange: Int = 1,
+        gridResolutionBeats: Double = 0.25,
+        noteLengthFactor: Double = 0.92,
+        swapAtLoopBoundary: Bool = true
+    ) {
+        midiSequencer.loadProgressionAsArpeggio(
+            progression,
+            baseOctave: baseOctave,
+            velocity: velocity,
+            channel: channel,
+            pattern: pattern,
+            octaveRange: octaveRange,
+            gridResolutionBeats: gridResolutionBeats,
+            noteLengthFactor: noteLengthFactor,
+            swapAtLoopBoundary: swapAtLoopBoundary
+        )
+    }
+
 }
