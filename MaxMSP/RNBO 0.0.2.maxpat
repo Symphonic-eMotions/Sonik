@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 119.0, 108.0, 946.0, 716.0 ],
+		"rect" : [ 83.0, 131.0, 1097.0, 727.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,216 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-86",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 457.0, 176.0, 49.0, 22.0 ],
+					"text" : "start $1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-83",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 456.0, 112.0, 90.0, 22.0 ],
+					"text" : "loadmess 1024"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-81",
+					"maxclass" : "number",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "bang" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 456.0, 145.0, 50.0, 22.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-75",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 512.0, 176.0, 22.0, 22.0 ],
+					"text" : "t b"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-60",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"patching_rect" : [ 535.0, 290.0, 62.0, 22.0 ],
+					"text" : "midiflush"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-56",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 584.0, 253.0, 49.0, 22.0 ],
+					"text" : "read $1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-50",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 640.0, 39.0, 77.0, 22.0 ],
+					"text" : "loadmess 10"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontsize" : 20.0,
+					"id" : "obj-39",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 644.0, 191.0, 271.0, 29.0 ],
+					"presentation_linecount" : 2,
+					"style" : "helpfile_label",
+					"text" : "drag and drop a file here..."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-41",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 640.0, 115.0, 61.0, 23.0 ],
+					"text" : "types $1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-44",
+					"items" : [ "AIFF", ",", "APPL", "(application)", ",", "BMP", ",", "DATA", ",", "FLAC", ",", "fold", ",", "GIFf", ",", "JPEG", ",", "JSON", ",", "MPEG", ",", "Midi", ",", "MooV", ",", "PICT", ",", "PNG", ",", "TEXT", ",", "TIFF", ",", "VfW", "(AVI", "file)", ",", "WAVE", ",", "aPcs", "(audio", "plugin)", ",", "iLaF", "(Max", "external", "-", "Mac)", ",", "iLaX", "(Max", "external", "-", "Win)" ],
+					"maxclass" : "umenu",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "int", "", "" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 640.0, 75.0, 145.0, 23.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-45",
+					"linecount" : 3,
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 640.0, 268.0, 278.5, 52.0 ],
+					"presentation_linecount" : 3,
+					"text" : "\"Storage:/Active/GitHub/Sonik Project/Sonik/Sonik/midiFiles/strauss-blue-danube.mid\""
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-49",
+					"maxclass" : "dropfile",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 640.0, 149.0, 275.0, 103.0 ],
+					"types" : "Midi"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-24",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 540.0, 175.0, 59.0, 23.0 ],
+					"text" : "stop"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-28",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 540.0, 145.0, 66.0, 23.0 ],
+					"text" : "start 1024"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-35",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "int", "bang", "" ],
+					"patching_rect" : [ 535.0, 252.0, 40.0, 23.0 ],
+					"text" : "seq"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"patching_rect" : [ 47.0, 336.0, 32.0, 22.0 ],
+					"text" : "+ 24"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"attr" : "mod_index_lfo_depth",
 					"id" : "obj-10",
 					"maxclass" : "attrui",
@@ -47,18 +257,8 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 714.0, 206.0, 191.0, 22.0 ],
+					"patching_rect" : [ 497.0, 446.0, 191.0, 22.0 ],
 					"text_width" : 138.0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-9",
-					"maxclass" : "scope~",
-					"numinlets" : 2,
-					"numoutlets" : 0,
-					"patching_rect" : [ 117.0, 460.0, 177.0, 215.0 ]
 				}
 
 			}
@@ -71,7 +271,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 510.0, 206.0, 191.0, 22.0 ],
+					"patching_rect" : [ 497.0, 418.0, 191.0, 22.0 ],
 					"text_width" : 138.0
 				}
 
@@ -83,7 +283,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 562.0, 421.0, 35.0, 22.0 ],
+					"patching_rect" : [ 549.0, 633.0, 35.0, 22.0 ],
 					"text" : "1000"
 				}
 
@@ -95,7 +295,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 521.0, 421.0, 29.5, 22.0 ],
+					"patching_rect" : [ 508.0, 633.0, 29.5, 22.0 ],
 					"text" : "100"
 				}
 
@@ -107,7 +307,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 60.0, 36.0, 34.0, 22.0 ],
+					"patching_rect" : [ 47.0, 214.0, 34.0, 22.0 ],
 					"text" : "flush"
 				}
 
@@ -121,7 +321,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 308.0, 460.0, 187.0, 22.0 ]
+					"patching_rect" : [ 295.0, 672.0, 187.0, 22.0 ]
 				}
 
 			}
@@ -134,7 +334,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 308.0, 434.0, 191.0, 22.0 ],
+					"patching_rect" : [ 295.0, 646.0, 191.0, 22.0 ],
 					"text_width" : 131.0
 				}
 
@@ -148,7 +348,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 308.0, 335.0, 191.0, 22.0 ],
+					"patching_rect" : [ 295.0, 547.0, 191.0, 22.0 ],
 					"text_width" : 144.0
 				}
 
@@ -162,7 +362,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 308.0, 309.0, 191.0, 22.0 ],
+					"patching_rect" : [ 295.0, 521.0, 191.0, 22.0 ],
 					"text_width" : 140.0
 				}
 
@@ -176,7 +376,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 308.0, 283.0, 191.0, 22.0 ],
+					"patching_rect" : [ 295.0, 495.0, 191.0, 22.0 ],
 					"text_width" : 138.0
 				}
 
@@ -190,7 +390,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 308.0, 257.0, 191.0, 22.0 ],
+					"patching_rect" : [ 295.0, 469.0, 191.0, 22.0 ],
 					"text_width" : 144.0
 				}
 
@@ -204,7 +404,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 308.0, 408.0, 191.0, 22.0 ],
+					"patching_rect" : [ 295.0, 620.0, 191.0, 22.0 ],
 					"text_width" : 144.0
 				}
 
@@ -218,7 +418,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 308.0, 382.0, 191.0, 22.0 ],
+					"patching_rect" : [ 295.0, 594.0, 191.0, 22.0 ],
 					"text_width" : 140.0
 				}
 
@@ -232,7 +432,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 308.0, 206.0, 191.0, 22.0 ],
+					"patching_rect" : [ 295.0, 418.0, 191.0, 22.0 ],
 					"text_width" : 138.0
 				}
 
@@ -246,7 +446,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 308.0, 174.0, 191.0, 22.0 ],
+					"patching_rect" : [ 295.0, 386.0, 191.0, 22.0 ],
 					"text_width" : 144.0
 				}
 
@@ -258,7 +458,7 @@
 					"numinlets" : 7,
 					"numoutlets" : 2,
 					"outlettype" : [ "int", "" ],
-					"patching_rect" : [ 60.0, 251.0, 82.0, 22.0 ],
+					"patching_rect" : [ 47.0, 456.0, 82.0, 22.0 ],
 					"text" : "midiformat"
 				}
 
@@ -270,7 +470,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 60.0, 211.0, 54.0, 22.0 ],
+					"patching_rect" : [ 47.0, 423.0, 54.0, 22.0 ],
 					"text" : "pack 0 0"
 				}
 
@@ -288,7 +488,7 @@
 					"orientation" : 1,
 					"outlettype" : [ "signal", "signal", "", "float", "list" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 60.0, 340.0, 170.0, 47.0 ],
+					"patching_rect" : [ 47.0, 552.0, 170.0, 47.0 ],
 					"saved_attribute_attributes" : 					{
 						"focusbordercolor" : 						{
 							"expression" : ""
@@ -348,7 +548,7 @@
 					"maxclass" : "ezdac~",
 					"numinlets" : 2,
 					"numoutlets" : 0,
-					"patching_rect" : [ 60.0, 405.0, 45.0, 45.0 ]
+					"patching_rect" : [ 47.0, 617.0, 45.0, 45.0 ]
 				}
 
 			}
@@ -478,19 +678,19 @@
 									"patching_rect" : [ 614.0, 417.0, 308.0, 23.0 ],
 									"rnbo_classname" : "param",
 									"rnbo_extra_attributes" : 									{
-										"displayname" : "",
-										"preset" : 1,
+										"fromnormalized" : "",
 										"exponent" : 1.0,
-										"unit" : "",
-										"sendinit" : 1,
-										"meta" : "",
-										"ctlin" : -1.0,
-										"displayorder" : "-",
-										"steps" : 0.0,
-										"tonormalized" : "",
+										"displayname" : "",
 										"enum" : "",
+										"meta" : "",
+										"preset" : 1,
+										"sendinit" : 1,
+										"unit" : "",
+										"steps" : 0.0,
 										"order" : "0",
-										"fromnormalized" : ""
+										"displayorder" : "-",
+										"ctlin" : -1.0,
+										"tonormalized" : ""
 									}
 ,
 									"rnbo_serial" : 1,
@@ -951,8 +1151,8 @@
 									"patching_rect" : [ 383.5, 305.0, 43.0, 23.0 ],
 									"rnbo_classname" : "out~",
 									"rnbo_extra_attributes" : 									{
-										"comment" : "",
-										"meta" : ""
+										"meta" : "",
+										"comment" : ""
 									}
 ,
 									"rnbo_serial" : 1,
@@ -1067,22 +1267,22 @@
 									"patching_rect" : [ 627.0, 135.0, 306.0, 23.0 ],
 									"rnbo_classname" : "param",
 									"rnbo_extra_attributes" : 									{
-										"displayname" : "",
-										"preset" : 1,
+										"fromnormalized" : "",
 										"exponent" : 1.0,
-										"unit" : "",
-										"sendinit" : 1,
-										"meta" : "",
-										"ctlin" : -1.0,
-										"displayorder" : "-",
-										"steps" : 0.0,
-										"tonormalized" : "",
+										"displayname" : "",
 										"enum" : "",
+										"meta" : "",
+										"preset" : 1,
+										"sendinit" : 1,
+										"unit" : "",
+										"steps" : 0.0,
 										"order" : "0",
-										"fromnormalized" : ""
+										"displayorder" : "-",
+										"ctlin" : -1.0,
+										"tonormalized" : ""
 									}
 ,
-									"rnbo_serial" : 7,
+									"rnbo_serial" : 2,
 									"rnbo_uniqueid" : "modi_index_lfo_freq",
 									"rnboinfo" : 									{
 										"needsInstanceInfo" : 1,
@@ -1536,8 +1736,8 @@
 									"patching_rect" : [ 868.0, 266.0, 50.0, 23.0 ],
 									"rnbo_classname" : "number",
 									"rnbo_extra_attributes" : 									{
-										"maximum" : 1000.0,
 										"minimum" : 0.0,
+										"maximum" : 1000.0,
 										"preset" : 0,
 										"initialFormat" : "float",
 										"order" : ""
@@ -1561,8 +1761,8 @@
 									"patching_rect" : [ 781.0, 266.0, 50.0, 23.0 ],
 									"rnbo_classname" : "number",
 									"rnbo_extra_attributes" : 									{
-										"maximum" : 100.0,
 										"minimum" : 0.0,
+										"maximum" : 100.0,
 										"preset" : 0,
 										"initialFormat" : "float",
 										"order" : ""
@@ -1714,8 +1914,8 @@
 									"patching_rect" : [ 964.0, 266.0, 50.0, 23.0 ],
 									"rnbo_classname" : "number",
 									"rnbo_extra_attributes" : 									{
-										"maximum" : 1.0,
 										"minimum" : 0.0,
+										"maximum" : 1.0,
 										"preset" : 0,
 										"initialFormat" : "float",
 										"order" : ""
@@ -1797,8 +1997,8 @@
 									"patching_rect" : [ 701.0, 266.0, 50.0, 23.0 ],
 									"rnbo_classname" : "number",
 									"rnbo_extra_attributes" : 									{
-										"maximum" : 4.0,
 										"minimum" : 0.0,
+										"maximum" : 4.0,
 										"preset" : 0,
 										"initialFormat" : "float",
 										"order" : ""
@@ -1908,13 +2108,13 @@
 									"patching_rect" : [ 594.0, 386.0, 127.0, 23.0 ],
 									"rnbo_classname" : "p",
 									"rnbo_extra_attributes" : 									{
-										"polyphony" : -1.0,
 										"args" : [  ],
 										"receivemode" : "local",
-										"exposevoiceparams" : 0,
+										"polyphony" : -1.0,
 										"uidstyle" : "auto",
-										"notecontroller" : 0,
-										"voicecontrol" : "MIDI"
+										"voicecontrol" : "MIDI",
+										"exposevoiceparams" : 0,
+										"notecontroller" : 0
 									}
 ,
 									"rnbo_serial" : 1,
@@ -2328,19 +2528,19 @@
 									"patching_rect" : [ 179.0, 389.0, 202.0, 23.0 ],
 									"rnbo_classname" : "param",
 									"rnbo_extra_attributes" : 									{
-										"displayname" : "",
-										"preset" : 1,
+										"fromnormalized" : "",
 										"exponent" : 1.0,
-										"unit" : "",
-										"sendinit" : 1,
-										"meta" : "",
-										"ctlin" : 0.0,
-										"displayorder" : "-",
-										"steps" : 0.0,
-										"tonormalized" : "",
+										"displayname" : "",
 										"enum" : "",
+										"meta" : "",
+										"preset" : 1,
+										"sendinit" : 1,
+										"unit" : "",
+										"steps" : 0.0,
 										"order" : "0",
-										"fromnormalized" : ""
+										"displayorder" : "-",
+										"ctlin" : 0.0,
+										"tonormalized" : ""
 									}
 ,
 									"rnbo_serial" : 3,
@@ -3026,18 +3226,18 @@
 									"patching_rect" : [ 95.0, 345.0, 463.0, 23.0 ],
 									"rnbo_classname" : "param",
 									"rnbo_extra_attributes" : 									{
-										"displayname" : "",
-										"preset" : 1,
+										"fromnormalized" : "",
 										"exponent" : 1.0,
-										"unit" : "",
-										"sendinit" : 1,
-										"meta" : "",
-										"ctlin" : 0.0,
-										"displayorder" : "-",
-										"steps" : 0.0,
+										"displayname" : "",
 										"enum" : "",
+										"meta" : "",
+										"preset" : 1,
+										"sendinit" : 1,
+										"unit" : "",
+										"steps" : 0.0,
 										"order" : "0",
-										"fromnormalized" : ""
+										"displayorder" : "-",
+										"ctlin" : 0.0
 									}
 ,
 									"rnbo_serial" : 4,
@@ -3484,19 +3684,19 @@
 									"patching_rect" : [ 91.5, 136.0, 262.0, 23.0 ],
 									"rnbo_classname" : "param",
 									"rnbo_extra_attributes" : 									{
-										"displayname" : "",
-										"preset" : 1,
+										"fromnormalized" : "",
 										"exponent" : 1.0,
-										"unit" : "",
-										"sendinit" : 1,
-										"meta" : "",
-										"ctlin" : 0.0,
-										"displayorder" : "-",
-										"steps" : 0.0,
-										"tonormalized" : "",
+										"displayname" : "",
 										"enum" : "",
+										"meta" : "",
+										"preset" : 1,
+										"sendinit" : 1,
+										"unit" : "",
+										"steps" : 0.0,
 										"order" : "0",
-										"fromnormalized" : ""
+										"displayorder" : "-",
+										"ctlin" : 0.0,
+										"tonormalized" : ""
 									}
 ,
 									"rnbo_serial" : 5,
@@ -3943,19 +4143,19 @@
 									"patching_rect" : [ 362.0, 135.0, 257.0, 23.0 ],
 									"rnbo_classname" : "param",
 									"rnbo_extra_attributes" : 									{
-										"displayname" : "",
-										"preset" : 1,
+										"fromnormalized" : "",
 										"exponent" : 1.0,
-										"unit" : "",
-										"sendinit" : 1,
-										"meta" : "",
-										"ctlin" : 0.0,
-										"displayorder" : "-",
-										"steps" : 0.0,
-										"tonormalized" : "",
+										"displayname" : "",
 										"enum" : "",
+										"meta" : "",
+										"preset" : 1,
+										"sendinit" : 1,
+										"unit" : "",
+										"steps" : 0.0,
 										"order" : "0",
-										"fromnormalized" : ""
+										"displayorder" : "-",
+										"ctlin" : 0.0,
+										"tonormalized" : ""
 									}
 ,
 									"rnbo_serial" : 6,
@@ -4386,8 +4586,8 @@
 									"patching_rect" : [ 123.0, 689.0, 43.0, 23.0 ],
 									"rnbo_classname" : "out~",
 									"rnbo_extra_attributes" : 									{
-										"comment" : "",
-										"meta" : ""
+										"meta" : "",
+										"comment" : ""
 									}
 ,
 									"rnbo_serial" : 2,
@@ -4486,8 +4686,8 @@
 									"patching_rect" : [ 57.0, 689.0, 43.0, 23.0 ],
 									"rnbo_classname" : "out~",
 									"rnbo_extra_attributes" : 									{
-										"comment" : "",
-										"meta" : ""
+										"meta" : "",
+										"comment" : ""
 									}
 ,
 									"rnbo_serial" : 3,
@@ -4691,19 +4891,19 @@
 													"patching_rect" : [ 59.0, 111.916870000000017, 164.0, 37.0 ],
 													"rnbo_classname" : "param",
 													"rnbo_extra_attributes" : 													{
-														"displayname" : "",
-														"preset" : 1,
+														"fromnormalized" : "",
 														"exponent" : 1.0,
-														"unit" : "",
-														"sendinit" : 1,
-														"meta" : "",
-														"ctlin" : 0.0,
-														"displayorder" : "-",
-														"steps" : 0.0,
-														"tonormalized" : "",
+														"displayname" : "",
 														"enum" : "",
+														"meta" : "",
+														"preset" : 1,
+														"sendinit" : 1,
+														"unit" : "",
+														"steps" : 0.0,
 														"order" : "0",
-														"fromnormalized" : ""
+														"displayorder" : "-",
+														"ctlin" : 0.0,
+														"tonormalized" : ""
 													}
 ,
 													"rnbo_serial" : 1,
@@ -5136,19 +5336,19 @@
 													"patching_rect" : [ 282.0, 18.0, 133.0, 37.0 ],
 													"rnbo_classname" : "param",
 													"rnbo_extra_attributes" : 													{
-														"displayname" : "",
-														"preset" : 1,
+														"fromnormalized" : "",
 														"exponent" : 1.0,
-														"unit" : "",
-														"sendinit" : 1,
-														"meta" : "",
-														"ctlin" : 0.0,
-														"displayorder" : "-",
-														"steps" : 0.0,
-														"tonormalized" : "",
+														"displayname" : "",
 														"enum" : "",
+														"meta" : "",
+														"preset" : 1,
+														"sendinit" : 1,
+														"unit" : "",
+														"steps" : 0.0,
 														"order" : "0",
-														"fromnormalized" : ""
+														"displayorder" : "-",
+														"ctlin" : 0.0,
+														"tonormalized" : ""
 													}
 ,
 													"rnbo_serial" : 2,
@@ -5581,19 +5781,19 @@
 													"patching_rect" : [ 358.0, 111.916870000000017, 174.438874000000055, 37.0 ],
 													"rnbo_classname" : "param",
 													"rnbo_extra_attributes" : 													{
-														"displayname" : "",
-														"preset" : 1,
+														"fromnormalized" : "",
 														"exponent" : 1.0,
-														"unit" : "",
-														"sendinit" : 1,
-														"meta" : "",
-														"ctlin" : 0.0,
-														"displayorder" : "-",
-														"steps" : 0.0,
-														"tonormalized" : "",
+														"displayname" : "",
 														"enum" : "",
+														"meta" : "",
+														"preset" : 1,
+														"sendinit" : 1,
+														"unit" : "",
+														"steps" : 0.0,
 														"order" : "0",
-														"fromnormalized" : ""
+														"displayorder" : "-",
+														"ctlin" : 0.0,
+														"tonormalized" : ""
 													}
 ,
 													"rnbo_serial" : 3,
@@ -6063,8 +6263,8 @@
 													"patching_rect" : [ 501.0, 167.916870000000017, 35.0, 23.0 ],
 													"rnbo_classname" : "in~",
 													"rnbo_extra_attributes" : 													{
-														"comment" : "",
-														"meta" : ""
+														"meta" : "",
+														"comment" : ""
 													}
 ,
 													"rnbo_serial" : 1,
@@ -6262,9 +6462,9 @@
 													"patching_rect" : [ 358.0, 238.458435000000009, 104.0, 23.0 ],
 													"rnbo_classname" : "delay~",
 													"rnbo_extra_attributes" : 													{
-														"ramp" : 50.0,
 														"interp" : "linear",
-														"maxdelayms" : 0.0
+														"maxdelayms" : 0.0,
+														"ramp" : 50.0
 													}
 ,
 													"rnbo_serial" : 1,
@@ -6282,8 +6482,8 @@
 													"patching_rect" : [ 499.0, 285.958435000000009, 43.0, 23.0 ],
 													"rnbo_classname" : "out~",
 													"rnbo_extra_attributes" : 													{
-														"comment" : "",
-														"meta" : ""
+														"meta" : "",
+														"comment" : ""
 													}
 ,
 													"rnbo_serial" : 1,
@@ -6482,9 +6682,9 @@
 													"patching_rect" : [ 45.0, 243.5, 104.0, 23.0 ],
 													"rnbo_classname" : "delay~",
 													"rnbo_extra_attributes" : 													{
-														"ramp" : 50.0,
 														"interp" : "linear",
-														"maxdelayms" : 0.0
+														"maxdelayms" : 0.0,
+														"ramp" : 50.0
 													}
 ,
 													"rnbo_serial" : 2,
@@ -6502,8 +6702,8 @@
 													"patching_rect" : [ 186.0, 285.0, 43.0, 23.0 ],
 													"rnbo_classname" : "out~",
 													"rnbo_extra_attributes" : 													{
-														"comment" : "",
-														"meta" : ""
+														"meta" : "",
+														"comment" : ""
 													}
 ,
 													"rnbo_serial" : 2,
@@ -6603,8 +6803,8 @@
 													"patching_rect" : [ 188.0, 155.0, 35.0, 23.0 ],
 													"rnbo_classname" : "in~",
 													"rnbo_extra_attributes" : 													{
-														"comment" : "",
-														"meta" : ""
+														"meta" : "",
+														"comment" : ""
 													}
 ,
 													"rnbo_serial" : 2,
@@ -6857,13 +7057,13 @@
 									"patching_rect" : [ 58.0, 640.0, 85.0, 23.0 ],
 									"rnbo_classname" : "p",
 									"rnbo_extra_attributes" : 									{
-										"polyphony" : -1.0,
 										"args" : [  ],
 										"receivemode" : "local",
-										"exposevoiceparams" : 0,
+										"polyphony" : -1.0,
 										"uidstyle" : "auto",
-										"notecontroller" : 0,
-										"voicecontrol" : "simple"
+										"voicecontrol" : "simple",
+										"exposevoiceparams" : 0,
+										"notecontroller" : 0
 									}
 ,
 									"rnbo_serial" : 2,
@@ -7230,13 +7430,13 @@
 									"patching_rect" : [ 40.0, 304.0, 162.0, 23.0 ],
 									"rnbo_classname" : "p",
 									"rnbo_extra_attributes" : 									{
-										"polyphony" : -1.0,
 										"args" : [  ],
 										"receivemode" : "local",
-										"exposevoiceparams" : 0,
+										"polyphony" : -1.0,
 										"uidstyle" : "auto",
-										"notecontroller" : 0,
-										"voicecontrol" : "simple"
+										"voicecontrol" : "simple",
+										"exposevoiceparams" : 0,
+										"notecontroller" : 0
 									}
 ,
 									"rnbo_serial" : 3,
@@ -7572,13 +7772,13 @@
 									"patching_rect" : [ 40.0, 267.0, 122.0, 23.0 ],
 									"rnbo_classname" : "p",
 									"rnbo_extra_attributes" : 									{
-										"polyphony" : -1.0,
 										"args" : [  ],
 										"receivemode" : "local",
-										"exposevoiceparams" : 0,
+										"polyphony" : -1.0,
 										"uidstyle" : "auto",
-										"notecontroller" : 0,
-										"voicecontrol" : "MIDI"
+										"voicecontrol" : "MIDI",
+										"exposevoiceparams" : 0,
+										"notecontroller" : 0
 									}
 ,
 									"rnbo_serial" : 4,
@@ -7918,8 +8118,8 @@
 									"patching_rect" : [ 40.0, 65.0, 40.0, 23.0 ],
 									"rnbo_classname" : "mtof~",
 									"rnbo_extra_attributes" : 									{
-										"filter" : 1.0,
-										"scalename" : ""
+										"scalename" : "",
+										"filter" : 1.0
 									}
 ,
 									"rnbo_serial" : 1,
@@ -8448,10 +8648,58 @@
 
 					}
 ,
-					"patching_rect" : [ 60.0, 297.0, 120.0, 22.0 ],
+					"patching_rect" : [ 47.0, 511.0, 126.0, 22.0 ],
 					"rnboattrcache" : 					{
-						"poly/osc.analog[1]/smooth" : 						{
-							"label" : "smooth",
+						"poly/p_obj-18/attack" : 						{
+							"label" : "attack",
+							"isEnum" : 0,
+							"parsestring" : ""
+						}
+,
+						"poly/stereo_delay/fb" : 						{
+							"label" : "fb",
+							"isEnum" : 0,
+							"parsestring" : ""
+						}
+,
+						"poly/osc.analog[1]/jitter" : 						{
+							"label" : "jitter",
+							"isEnum" : 0,
+							"parsestring" : ""
+						}
+,
+						"poly/p_obj-18/decay" : 						{
+							"label" : "decay",
+							"isEnum" : 0,
+							"parsestring" : ""
+						}
+,
+						"modi_index_lfo_freq" : 						{
+							"label" : "modi_index_lfo_freq",
+							"isEnum" : 0,
+							"parsestring" : ""
+						}
+,
+						"poly/p_obj-18/sustain" : 						{
+							"label" : "sustain",
+							"isEnum" : 0,
+							"parsestring" : ""
+						}
+,
+						"mod_index" : 						{
+							"label" : "mod_index",
+							"isEnum" : 0,
+							"parsestring" : ""
+						}
+,
+						"poly/stereo_delay/right_delay" : 						{
+							"label" : "right_delay",
+							"isEnum" : 0,
+							"parsestring" : ""
+						}
+,
+						"poly/osc.analog[1]/pulsewidth" : 						{
+							"label" : "pulsewidth",
 							"isEnum" : 0,
 							"parsestring" : ""
 						}
@@ -8468,14 +8716,14 @@
 							"parsestring" : ""
 						}
 ,
-						"filter" : 						{
-							"label" : "filter",
+						"mod_index_lfo_depth" : 						{
+							"label" : "mod_index_lfo_depth",
 							"isEnum" : 0,
 							"parsestring" : ""
 						}
 ,
-						"mod_index_lfo_depth" : 						{
-							"label" : "mod_index_lfo_depth",
+						"filter" : 						{
+							"label" : "filter",
 							"isEnum" : 0,
 							"parsestring" : ""
 						}
@@ -8486,62 +8734,14 @@
 							"parsestring" : ""
 						}
 ,
-						"poly/osc.analog[1]/pulsewidth" : 						{
-							"label" : "pulsewidth",
-							"isEnum" : 0,
-							"parsestring" : ""
-						}
-,
-						"poly/p_obj-18/attack" : 						{
-							"label" : "attack",
-							"isEnum" : 0,
-							"parsestring" : ""
-						}
-,
 						"q" : 						{
 							"label" : "q",
 							"isEnum" : 0,
 							"parsestring" : ""
 						}
 ,
-						"poly/stereo_delay/fb" : 						{
-							"label" : "fb",
-							"isEnum" : 0,
-							"parsestring" : ""
-						}
-,
-						"modi_index_lfo_freq" : 						{
-							"label" : "modi_index_lfo_freq",
-							"isEnum" : 0,
-							"parsestring" : ""
-						}
-,
-						"poly/p_obj-18/decay" : 						{
-							"label" : "decay",
-							"isEnum" : 0,
-							"parsestring" : ""
-						}
-,
-						"poly/p_obj-18/sustain" : 						{
-							"label" : "sustain",
-							"isEnum" : 0,
-							"parsestring" : ""
-						}
-,
-						"poly/osc.analog[1]/jitter" : 						{
-							"label" : "jitter",
-							"isEnum" : 0,
-							"parsestring" : ""
-						}
-,
-						"mod_index" : 						{
-							"label" : "mod_index",
-							"isEnum" : 0,
-							"parsestring" : ""
-						}
-,
-						"poly/stereo_delay/right_delay" : 						{
-							"label" : "right_delay",
+						"poly/osc.analog[1]/smooth" : 						{
+							"label" : "smooth",
 							"isEnum" : 0,
 							"parsestring" : ""
 						}
@@ -8575,7 +8775,7 @@
 					"saved_object_attributes" : 					{
 						"optimization" : "O1",
 						"parameter_enable" : 1,
-						"polyphony" : 4,
+						"polyphony" : 12,
 						"uuid" : "9ee37473-ba62-11eb-b473-a683e7612c99"
 					}
 ,
@@ -8602,15 +8802,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 400.0
+													"value" : 503.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.25
+													"value" : 0.4
 												}
 ,
 												"left_delay" : 												{
-													"value" : 300.0
+													"value" : 619.0
 												}
 
 											}
@@ -8663,19 +8863,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 300.0
+													"value" : 402.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 0.4
+													"value" : 0.02
 												}
 ,
 												"decay" : 												{
-													"value" : 200.0
+													"value" : 88.0
 												}
 ,
 												"attack" : 												{
-													"value" : 45.966383854923876
+													"value" : 0.776
 												}
 
 											}
@@ -8687,15 +8887,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 400.0
+													"value" : 503.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.25
+													"value" : 0.4
 												}
 ,
 												"left_delay" : 												{
-													"value" : 300.0
+													"value" : 619.0
 												}
 
 											}
@@ -8748,19 +8948,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 300.0
+													"value" : 402.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 0.4
+													"value" : 0.02
 												}
 ,
 												"decay" : 												{
-													"value" : 200.0
+													"value" : 88.0
 												}
 ,
 												"attack" : 												{
-													"value" : 45.966383854923876
+													"value" : 0.776
 												}
 
 											}
@@ -8772,15 +8972,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 400.0
+													"value" : 503.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.25
+													"value" : 0.4
 												}
 ,
 												"left_delay" : 												{
-													"value" : 300.0
+													"value" : 619.0
 												}
 
 											}
@@ -8833,19 +9033,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 300.0
+													"value" : 402.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 0.4
+													"value" : 0.02
 												}
 ,
 												"decay" : 												{
-													"value" : 200.0
+													"value" : 88.0
 												}
 ,
 												"attack" : 												{
-													"value" : 45.966383854923876
+													"value" : 0.776
 												}
 
 											}
@@ -8857,15 +9057,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 400.0
+													"value" : 503.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.25
+													"value" : 0.4
 												}
 ,
 												"left_delay" : 												{
-													"value" : 300.0
+													"value" : 619.0
 												}
 
 											}
@@ -8918,19 +9118,699 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 300.0
+													"value" : 402.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 0.4
+													"value" : 0.02
 												}
 ,
 												"decay" : 												{
-													"value" : 200.0
+													"value" : 88.0
 												}
 ,
 												"attack" : 												{
-													"value" : 45.966383854923876
+													"value" : 0.776
+												}
+
+											}
+
+										}
+
+									}
+, 									{
+										"__sps" : 										{
+											"stereo_delay" : 											{
+												"right_delay" : 												{
+													"value" : 503.0
+												}
+,
+												"fb" : 												{
+													"value" : 0.4
+												}
+,
+												"left_delay" : 												{
+													"value" : 619.0
+												}
+
+											}
+,
+											"osc.fm" : 											{
+
+											}
+,
+											"osc.analog[1]" : 											{
+												"__sps" : 												{
+													"rect" : 													{
+
+													}
+,
+													"square" : 													{
+
+													}
+,
+													"jitter[1]" : 													{
+
+													}
+,
+													"smooth[1]" : 													{
+
+													}
+
+												}
+,
+												"pulsewidth" : 												{
+													"value" : 0.8
+												}
+,
+												"jitter" : 												{
+													"value" : 0.0
+												}
+,
+												"smooth" : 												{
+													"value" : 0.0
+												}
+,
+												"on" : 												{
+													"value" : 1.0
+												}
+,
+												"lfotype" : 												{
+													"value" : 0.0
+												}
+
+											}
+,
+											"p_obj-18" : 											{
+												"release" : 												{
+													"value" : 402.0
+												}
+,
+												"sustain" : 												{
+													"value" : 0.02
+												}
+,
+												"decay" : 												{
+													"value" : 88.0
+												}
+,
+												"attack" : 												{
+													"value" : 0.776
+												}
+
+											}
+
+										}
+
+									}
+, 									{
+										"__sps" : 										{
+											"stereo_delay" : 											{
+												"right_delay" : 												{
+													"value" : 503.0
+												}
+,
+												"fb" : 												{
+													"value" : 0.4
+												}
+,
+												"left_delay" : 												{
+													"value" : 619.0
+												}
+
+											}
+,
+											"osc.fm" : 											{
+
+											}
+,
+											"osc.analog[1]" : 											{
+												"__sps" : 												{
+													"rect" : 													{
+
+													}
+,
+													"square" : 													{
+
+													}
+,
+													"jitter[1]" : 													{
+
+													}
+,
+													"smooth[1]" : 													{
+
+													}
+
+												}
+,
+												"pulsewidth" : 												{
+													"value" : 0.8
+												}
+,
+												"jitter" : 												{
+													"value" : 0.0
+												}
+,
+												"smooth" : 												{
+													"value" : 0.0
+												}
+,
+												"on" : 												{
+													"value" : 1.0
+												}
+,
+												"lfotype" : 												{
+													"value" : 0.0
+												}
+
+											}
+,
+											"p_obj-18" : 											{
+												"release" : 												{
+													"value" : 402.0
+												}
+,
+												"sustain" : 												{
+													"value" : 0.02
+												}
+,
+												"decay" : 												{
+													"value" : 88.0
+												}
+,
+												"attack" : 												{
+													"value" : 0.776
+												}
+
+											}
+
+										}
+
+									}
+, 									{
+										"__sps" : 										{
+											"stereo_delay" : 											{
+												"right_delay" : 												{
+													"value" : 503.0
+												}
+,
+												"fb" : 												{
+													"value" : 0.4
+												}
+,
+												"left_delay" : 												{
+													"value" : 619.0
+												}
+
+											}
+,
+											"osc.fm" : 											{
+
+											}
+,
+											"osc.analog[1]" : 											{
+												"__sps" : 												{
+													"rect" : 													{
+
+													}
+,
+													"square" : 													{
+
+													}
+,
+													"jitter[1]" : 													{
+
+													}
+,
+													"smooth[1]" : 													{
+
+													}
+
+												}
+,
+												"pulsewidth" : 												{
+													"value" : 0.8
+												}
+,
+												"jitter" : 												{
+													"value" : 0.0
+												}
+,
+												"smooth" : 												{
+													"value" : 0.0
+												}
+,
+												"on" : 												{
+													"value" : 1.0
+												}
+,
+												"lfotype" : 												{
+													"value" : 0.0
+												}
+
+											}
+,
+											"p_obj-18" : 											{
+												"release" : 												{
+													"value" : 402.0
+												}
+,
+												"sustain" : 												{
+													"value" : 0.02
+												}
+,
+												"decay" : 												{
+													"value" : 88.0
+												}
+,
+												"attack" : 												{
+													"value" : 0.776
+												}
+
+											}
+
+										}
+
+									}
+, 									{
+										"__sps" : 										{
+											"stereo_delay" : 											{
+												"right_delay" : 												{
+													"value" : 503.0
+												}
+,
+												"fb" : 												{
+													"value" : 0.4
+												}
+,
+												"left_delay" : 												{
+													"value" : 619.0
+												}
+
+											}
+,
+											"osc.fm" : 											{
+
+											}
+,
+											"osc.analog[1]" : 											{
+												"__sps" : 												{
+													"rect" : 													{
+
+													}
+,
+													"square" : 													{
+
+													}
+,
+													"jitter[1]" : 													{
+
+													}
+,
+													"smooth[1]" : 													{
+
+													}
+
+												}
+,
+												"pulsewidth" : 												{
+													"value" : 0.8
+												}
+,
+												"jitter" : 												{
+													"value" : 0.0
+												}
+,
+												"smooth" : 												{
+													"value" : 0.0
+												}
+,
+												"on" : 												{
+													"value" : 1.0
+												}
+,
+												"lfotype" : 												{
+													"value" : 0.0
+												}
+
+											}
+,
+											"p_obj-18" : 											{
+												"release" : 												{
+													"value" : 402.0
+												}
+,
+												"sustain" : 												{
+													"value" : 0.02
+												}
+,
+												"decay" : 												{
+													"value" : 88.0
+												}
+,
+												"attack" : 												{
+													"value" : 0.776
+												}
+
+											}
+
+										}
+
+									}
+, 									{
+										"__sps" : 										{
+											"stereo_delay" : 											{
+												"right_delay" : 												{
+													"value" : 503.0
+												}
+,
+												"fb" : 												{
+													"value" : 0.4
+												}
+,
+												"left_delay" : 												{
+													"value" : 619.0
+												}
+
+											}
+,
+											"osc.fm" : 											{
+
+											}
+,
+											"osc.analog[1]" : 											{
+												"__sps" : 												{
+													"rect" : 													{
+
+													}
+,
+													"square" : 													{
+
+													}
+,
+													"jitter[1]" : 													{
+
+													}
+,
+													"smooth[1]" : 													{
+
+													}
+
+												}
+,
+												"pulsewidth" : 												{
+													"value" : 0.8
+												}
+,
+												"jitter" : 												{
+													"value" : 0.0
+												}
+,
+												"smooth" : 												{
+													"value" : 0.0
+												}
+,
+												"on" : 												{
+													"value" : 1.0
+												}
+,
+												"lfotype" : 												{
+													"value" : 0.0
+												}
+
+											}
+,
+											"p_obj-18" : 											{
+												"release" : 												{
+													"value" : 402.0
+												}
+,
+												"sustain" : 												{
+													"value" : 0.02
+												}
+,
+												"decay" : 												{
+													"value" : 88.0
+												}
+,
+												"attack" : 												{
+													"value" : 0.776
+												}
+
+											}
+
+										}
+
+									}
+, 									{
+										"__sps" : 										{
+											"stereo_delay" : 											{
+												"right_delay" : 												{
+													"value" : 503.0
+												}
+,
+												"fb" : 												{
+													"value" : 0.4
+												}
+,
+												"left_delay" : 												{
+													"value" : 619.0
+												}
+
+											}
+,
+											"osc.fm" : 											{
+
+											}
+,
+											"osc.analog[1]" : 											{
+												"__sps" : 												{
+													"rect" : 													{
+
+													}
+,
+													"square" : 													{
+
+													}
+,
+													"jitter[1]" : 													{
+
+													}
+,
+													"smooth[1]" : 													{
+
+													}
+
+												}
+,
+												"pulsewidth" : 												{
+													"value" : 0.8
+												}
+,
+												"jitter" : 												{
+													"value" : 0.0
+												}
+,
+												"smooth" : 												{
+													"value" : 0.0
+												}
+,
+												"on" : 												{
+													"value" : 1.0
+												}
+,
+												"lfotype" : 												{
+													"value" : 0.0
+												}
+
+											}
+,
+											"p_obj-18" : 											{
+												"release" : 												{
+													"value" : 402.0
+												}
+,
+												"sustain" : 												{
+													"value" : 0.02
+												}
+,
+												"decay" : 												{
+													"value" : 88.0
+												}
+,
+												"attack" : 												{
+													"value" : 0.776
+												}
+
+											}
+
+										}
+
+									}
+, 									{
+										"__sps" : 										{
+											"stereo_delay" : 											{
+												"right_delay" : 												{
+													"value" : 503.0
+												}
+,
+												"fb" : 												{
+													"value" : 0.4
+												}
+,
+												"left_delay" : 												{
+													"value" : 619.0
+												}
+
+											}
+,
+											"osc.fm" : 											{
+
+											}
+,
+											"osc.analog[1]" : 											{
+												"__sps" : 												{
+													"rect" : 													{
+
+													}
+,
+													"square" : 													{
+
+													}
+,
+													"jitter[1]" : 													{
+
+													}
+,
+													"smooth[1]" : 													{
+
+													}
+
+												}
+,
+												"pulsewidth" : 												{
+													"value" : 0.8
+												}
+,
+												"jitter" : 												{
+													"value" : 0.0
+												}
+,
+												"smooth" : 												{
+													"value" : 0.0
+												}
+,
+												"on" : 												{
+													"value" : 1.0
+												}
+,
+												"lfotype" : 												{
+													"value" : 0.0
+												}
+
+											}
+,
+											"p_obj-18" : 											{
+												"release" : 												{
+													"value" : 402.0
+												}
+,
+												"sustain" : 												{
+													"value" : 0.02
+												}
+,
+												"decay" : 												{
+													"value" : 88.0
+												}
+,
+												"attack" : 												{
+													"value" : 0.776
+												}
+
+											}
+
+										}
+
+									}
+, 									{
+										"__sps" : 										{
+											"stereo_delay" : 											{
+												"right_delay" : 												{
+													"value" : 503.0
+												}
+,
+												"fb" : 												{
+													"value" : 0.4
+												}
+,
+												"left_delay" : 												{
+													"value" : 619.0
+												}
+
+											}
+,
+											"osc.fm" : 											{
+
+											}
+,
+											"osc.analog[1]" : 											{
+												"__sps" : 												{
+													"rect" : 													{
+
+													}
+,
+													"square" : 													{
+
+													}
+,
+													"jitter[1]" : 													{
+
+													}
+,
+													"smooth[1]" : 													{
+
+													}
+
+												}
+,
+												"pulsewidth" : 												{
+													"value" : 0.8
+												}
+,
+												"jitter" : 												{
+													"value" : 0.0
+												}
+,
+												"smooth" : 												{
+													"value" : 0.0
+												}
+,
+												"on" : 												{
+													"value" : 1.0
+												}
+,
+												"lfotype" : 												{
+													"value" : 0.0
+												}
+
+											}
+,
+											"p_obj-18" : 											{
+												"release" : 												{
+													"value" : 402.0
+												}
+,
+												"sustain" : 												{
+													"value" : 0.02
+												}
+,
+												"decay" : 												{
+													"value" : 88.0
+												}
+,
+												"attack" : 												{
+													"value" : 0.776
 												}
 
 											}
@@ -8946,15 +9826,15 @@
 							}
 ,
 							"harmonicity" : 							{
-								"value" : 1.6
+								"value" : 1.0
 							}
 ,
 							"modi_index_lfo_freq" : 							{
-								"value" : 5.2
+								"value" : 0.156
 							}
 ,
 							"mod_index" : 							{
-								"value" : 0.1
+								"value" : 6.660000000000001
 							}
 ,
 							"__presetid" : "9ee37473-ba62-11eb-b473-a683e7612c99"
@@ -8985,15 +9865,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 400.0
+																"value" : 503.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.25
+																"value" : 0.4
 															}
 ,
 															"left_delay" : 															{
-																"value" : 300.0
+																"value" : 619.0
 															}
 
 														}
@@ -9046,19 +9926,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 300.0
+																"value" : 402.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 0.4
+																"value" : 0.02
 															}
 ,
 															"decay" : 															{
-																"value" : 200.0
+																"value" : 88.0
 															}
 ,
 															"attack" : 															{
-																"value" : 45.966383854923876
+																"value" : 0.776
 															}
 
 														}
@@ -9070,15 +9950,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 400.0
+																"value" : 503.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.25
+																"value" : 0.4
 															}
 ,
 															"left_delay" : 															{
-																"value" : 300.0
+																"value" : 619.0
 															}
 
 														}
@@ -9131,19 +10011,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 300.0
+																"value" : 402.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 0.4
+																"value" : 0.02
 															}
 ,
 															"decay" : 															{
-																"value" : 200.0
+																"value" : 88.0
 															}
 ,
 															"attack" : 															{
-																"value" : 45.966383854923876
+																"value" : 0.776
 															}
 
 														}
@@ -9155,15 +10035,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 400.0
+																"value" : 503.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.25
+																"value" : 0.4
 															}
 ,
 															"left_delay" : 															{
-																"value" : 300.0
+																"value" : 619.0
 															}
 
 														}
@@ -9216,19 +10096,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 300.0
+																"value" : 402.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 0.4
+																"value" : 0.02
 															}
 ,
 															"decay" : 															{
-																"value" : 200.0
+																"value" : 88.0
 															}
 ,
 															"attack" : 															{
-																"value" : 45.966383854923876
+																"value" : 0.776
 															}
 
 														}
@@ -9240,15 +10120,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 400.0
+																"value" : 503.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.25
+																"value" : 0.4
 															}
 ,
 															"left_delay" : 															{
-																"value" : 300.0
+																"value" : 619.0
 															}
 
 														}
@@ -9301,19 +10181,699 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 300.0
+																"value" : 402.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 0.4
+																"value" : 0.02
 															}
 ,
 															"decay" : 															{
-																"value" : 200.0
+																"value" : 88.0
 															}
 ,
 															"attack" : 															{
-																"value" : 45.966383854923876
+																"value" : 0.776
+															}
+
+														}
+
+													}
+
+												}
+, 												{
+													"__sps" : 													{
+														"stereo_delay" : 														{
+															"right_delay" : 															{
+																"value" : 503.0
+															}
+,
+															"fb" : 															{
+																"value" : 0.4
+															}
+,
+															"left_delay" : 															{
+																"value" : 619.0
+															}
+
+														}
+,
+														"osc.fm" : 														{
+
+														}
+,
+														"osc.analog[1]" : 														{
+															"__sps" : 															{
+																"rect" : 																{
+
+																}
+,
+																"square" : 																{
+
+																}
+,
+																"jitter[1]" : 																{
+
+																}
+,
+																"smooth[1]" : 																{
+
+																}
+
+															}
+,
+															"pulsewidth" : 															{
+																"value" : 0.8
+															}
+,
+															"jitter" : 															{
+																"value" : 0.0
+															}
+,
+															"smooth" : 															{
+																"value" : 0.0
+															}
+,
+															"on" : 															{
+																"value" : 1.0
+															}
+,
+															"lfotype" : 															{
+																"value" : 0.0
+															}
+
+														}
+,
+														"p_obj-18" : 														{
+															"release" : 															{
+																"value" : 402.0
+															}
+,
+															"sustain" : 															{
+																"value" : 0.02
+															}
+,
+															"decay" : 															{
+																"value" : 88.0
+															}
+,
+															"attack" : 															{
+																"value" : 0.776
+															}
+
+														}
+
+													}
+
+												}
+, 												{
+													"__sps" : 													{
+														"stereo_delay" : 														{
+															"right_delay" : 															{
+																"value" : 503.0
+															}
+,
+															"fb" : 															{
+																"value" : 0.4
+															}
+,
+															"left_delay" : 															{
+																"value" : 619.0
+															}
+
+														}
+,
+														"osc.fm" : 														{
+
+														}
+,
+														"osc.analog[1]" : 														{
+															"__sps" : 															{
+																"rect" : 																{
+
+																}
+,
+																"square" : 																{
+
+																}
+,
+																"jitter[1]" : 																{
+
+																}
+,
+																"smooth[1]" : 																{
+
+																}
+
+															}
+,
+															"pulsewidth" : 															{
+																"value" : 0.8
+															}
+,
+															"jitter" : 															{
+																"value" : 0.0
+															}
+,
+															"smooth" : 															{
+																"value" : 0.0
+															}
+,
+															"on" : 															{
+																"value" : 1.0
+															}
+,
+															"lfotype" : 															{
+																"value" : 0.0
+															}
+
+														}
+,
+														"p_obj-18" : 														{
+															"release" : 															{
+																"value" : 402.0
+															}
+,
+															"sustain" : 															{
+																"value" : 0.02
+															}
+,
+															"decay" : 															{
+																"value" : 88.0
+															}
+,
+															"attack" : 															{
+																"value" : 0.776
+															}
+
+														}
+
+													}
+
+												}
+, 												{
+													"__sps" : 													{
+														"stereo_delay" : 														{
+															"right_delay" : 															{
+																"value" : 503.0
+															}
+,
+															"fb" : 															{
+																"value" : 0.4
+															}
+,
+															"left_delay" : 															{
+																"value" : 619.0
+															}
+
+														}
+,
+														"osc.fm" : 														{
+
+														}
+,
+														"osc.analog[1]" : 														{
+															"__sps" : 															{
+																"rect" : 																{
+
+																}
+,
+																"square" : 																{
+
+																}
+,
+																"jitter[1]" : 																{
+
+																}
+,
+																"smooth[1]" : 																{
+
+																}
+
+															}
+,
+															"pulsewidth" : 															{
+																"value" : 0.8
+															}
+,
+															"jitter" : 															{
+																"value" : 0.0
+															}
+,
+															"smooth" : 															{
+																"value" : 0.0
+															}
+,
+															"on" : 															{
+																"value" : 1.0
+															}
+,
+															"lfotype" : 															{
+																"value" : 0.0
+															}
+
+														}
+,
+														"p_obj-18" : 														{
+															"release" : 															{
+																"value" : 402.0
+															}
+,
+															"sustain" : 															{
+																"value" : 0.02
+															}
+,
+															"decay" : 															{
+																"value" : 88.0
+															}
+,
+															"attack" : 															{
+																"value" : 0.776
+															}
+
+														}
+
+													}
+
+												}
+, 												{
+													"__sps" : 													{
+														"stereo_delay" : 														{
+															"right_delay" : 															{
+																"value" : 503.0
+															}
+,
+															"fb" : 															{
+																"value" : 0.4
+															}
+,
+															"left_delay" : 															{
+																"value" : 619.0
+															}
+
+														}
+,
+														"osc.fm" : 														{
+
+														}
+,
+														"osc.analog[1]" : 														{
+															"__sps" : 															{
+																"rect" : 																{
+
+																}
+,
+																"square" : 																{
+
+																}
+,
+																"jitter[1]" : 																{
+
+																}
+,
+																"smooth[1]" : 																{
+
+																}
+
+															}
+,
+															"pulsewidth" : 															{
+																"value" : 0.8
+															}
+,
+															"jitter" : 															{
+																"value" : 0.0
+															}
+,
+															"smooth" : 															{
+																"value" : 0.0
+															}
+,
+															"on" : 															{
+																"value" : 1.0
+															}
+,
+															"lfotype" : 															{
+																"value" : 0.0
+															}
+
+														}
+,
+														"p_obj-18" : 														{
+															"release" : 															{
+																"value" : 402.0
+															}
+,
+															"sustain" : 															{
+																"value" : 0.02
+															}
+,
+															"decay" : 															{
+																"value" : 88.0
+															}
+,
+															"attack" : 															{
+																"value" : 0.776
+															}
+
+														}
+
+													}
+
+												}
+, 												{
+													"__sps" : 													{
+														"stereo_delay" : 														{
+															"right_delay" : 															{
+																"value" : 503.0
+															}
+,
+															"fb" : 															{
+																"value" : 0.4
+															}
+,
+															"left_delay" : 															{
+																"value" : 619.0
+															}
+
+														}
+,
+														"osc.fm" : 														{
+
+														}
+,
+														"osc.analog[1]" : 														{
+															"__sps" : 															{
+																"rect" : 																{
+
+																}
+,
+																"square" : 																{
+
+																}
+,
+																"jitter[1]" : 																{
+
+																}
+,
+																"smooth[1]" : 																{
+
+																}
+
+															}
+,
+															"pulsewidth" : 															{
+																"value" : 0.8
+															}
+,
+															"jitter" : 															{
+																"value" : 0.0
+															}
+,
+															"smooth" : 															{
+																"value" : 0.0
+															}
+,
+															"on" : 															{
+																"value" : 1.0
+															}
+,
+															"lfotype" : 															{
+																"value" : 0.0
+															}
+
+														}
+,
+														"p_obj-18" : 														{
+															"release" : 															{
+																"value" : 402.0
+															}
+,
+															"sustain" : 															{
+																"value" : 0.02
+															}
+,
+															"decay" : 															{
+																"value" : 88.0
+															}
+,
+															"attack" : 															{
+																"value" : 0.776
+															}
+
+														}
+
+													}
+
+												}
+, 												{
+													"__sps" : 													{
+														"stereo_delay" : 														{
+															"right_delay" : 															{
+																"value" : 503.0
+															}
+,
+															"fb" : 															{
+																"value" : 0.4
+															}
+,
+															"left_delay" : 															{
+																"value" : 619.0
+															}
+
+														}
+,
+														"osc.fm" : 														{
+
+														}
+,
+														"osc.analog[1]" : 														{
+															"__sps" : 															{
+																"rect" : 																{
+
+																}
+,
+																"square" : 																{
+
+																}
+,
+																"jitter[1]" : 																{
+
+																}
+,
+																"smooth[1]" : 																{
+
+																}
+
+															}
+,
+															"pulsewidth" : 															{
+																"value" : 0.8
+															}
+,
+															"jitter" : 															{
+																"value" : 0.0
+															}
+,
+															"smooth" : 															{
+																"value" : 0.0
+															}
+,
+															"on" : 															{
+																"value" : 1.0
+															}
+,
+															"lfotype" : 															{
+																"value" : 0.0
+															}
+
+														}
+,
+														"p_obj-18" : 														{
+															"release" : 															{
+																"value" : 402.0
+															}
+,
+															"sustain" : 															{
+																"value" : 0.02
+															}
+,
+															"decay" : 															{
+																"value" : 88.0
+															}
+,
+															"attack" : 															{
+																"value" : 0.776
+															}
+
+														}
+
+													}
+
+												}
+, 												{
+													"__sps" : 													{
+														"stereo_delay" : 														{
+															"right_delay" : 															{
+																"value" : 503.0
+															}
+,
+															"fb" : 															{
+																"value" : 0.4
+															}
+,
+															"left_delay" : 															{
+																"value" : 619.0
+															}
+
+														}
+,
+														"osc.fm" : 														{
+
+														}
+,
+														"osc.analog[1]" : 														{
+															"__sps" : 															{
+																"rect" : 																{
+
+																}
+,
+																"square" : 																{
+
+																}
+,
+																"jitter[1]" : 																{
+
+																}
+,
+																"smooth[1]" : 																{
+
+																}
+
+															}
+,
+															"pulsewidth" : 															{
+																"value" : 0.8
+															}
+,
+															"jitter" : 															{
+																"value" : 0.0
+															}
+,
+															"smooth" : 															{
+																"value" : 0.0
+															}
+,
+															"on" : 															{
+																"value" : 1.0
+															}
+,
+															"lfotype" : 															{
+																"value" : 0.0
+															}
+
+														}
+,
+														"p_obj-18" : 														{
+															"release" : 															{
+																"value" : 402.0
+															}
+,
+															"sustain" : 															{
+																"value" : 0.02
+															}
+,
+															"decay" : 															{
+																"value" : 88.0
+															}
+,
+															"attack" : 															{
+																"value" : 0.776
+															}
+
+														}
+
+													}
+
+												}
+, 												{
+													"__sps" : 													{
+														"stereo_delay" : 														{
+															"right_delay" : 															{
+																"value" : 503.0
+															}
+,
+															"fb" : 															{
+																"value" : 0.4
+															}
+,
+															"left_delay" : 															{
+																"value" : 619.0
+															}
+
+														}
+,
+														"osc.fm" : 														{
+
+														}
+,
+														"osc.analog[1]" : 														{
+															"__sps" : 															{
+																"rect" : 																{
+
+																}
+,
+																"square" : 																{
+
+																}
+,
+																"jitter[1]" : 																{
+
+																}
+,
+																"smooth[1]" : 																{
+
+																}
+
+															}
+,
+															"pulsewidth" : 															{
+																"value" : 0.8
+															}
+,
+															"jitter" : 															{
+																"value" : 0.0
+															}
+,
+															"smooth" : 															{
+																"value" : 0.0
+															}
+,
+															"on" : 															{
+																"value" : 1.0
+															}
+,
+															"lfotype" : 															{
+																"value" : 0.0
+															}
+
+														}
+,
+														"p_obj-18" : 														{
+															"release" : 															{
+																"value" : 402.0
+															}
+,
+															"sustain" : 															{
+																"value" : 0.02
+															}
+,
+															"decay" : 															{
+																"value" : 88.0
+															}
+,
+															"attack" : 															{
+																"value" : 0.776
 															}
 
 														}
@@ -9329,15 +10889,15 @@
 										}
 ,
 										"harmonicity" : 										{
-											"value" : 1.6
+											"value" : 1.0
 										}
 ,
 										"modi_index_lfo_freq" : 										{
-											"value" : 5.2
+											"value" : 0.156
 										}
 ,
 										"mod_index" : 										{
-											"value" : 0.1
+											"value" : 6.660000000000001
 										}
 ,
 										"__presetid" : "9ee37473-ba62-11eb-b473-a683e7612c99"
@@ -9348,7 +10908,7 @@
 										"filename" : "untitled.maxsnap",
 										"filepath" : "~/Documents/Max 9/Snapshots",
 										"filepos" : -1,
-										"snapshotfileid" : "8e51c74ffa017a7e4a82a23db9fd966b"
+										"snapshotfileid" : "4fddb01a67766732057393339a45eabc"
 									}
 
 								}
@@ -9357,7 +10917,7 @@
 
 					}
 ,
-					"text" : "rnbo~ @polyphony 4",
+					"text" : "rnbo~ @polyphony 12",
 					"varname" : "rnbo~"
 				}
 
@@ -9370,7 +10930,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 110.0, 165.0, 40.0, 21.0 ],
+					"patching_rect" : [ 97.0, 377.0, 40.0, 21.0 ],
 					"style" : "helpfile_label",
 					"text" : "Pitch"
 				}
@@ -9385,7 +10945,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "int", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 60.0, 70.0, 476.0, 72.0 ]
+					"patching_rect" : [ 47.0, 248.0, 476.0, 72.0 ]
 				}
 
 			}
@@ -9397,7 +10957,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 203.0, 165.0, 57.0, 21.0 ],
+					"patching_rect" : [ 190.0, 377.0, 57.0, 21.0 ],
 					"style" : "helpfile_label",
 					"text" : "Velocity"
 				}
@@ -9413,7 +10973,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 60.0, 165.0, 53.0, 23.0 ]
+					"patching_rect" : [ 47.0, 377.0, 53.0, 23.0 ]
 				}
 
 			}
@@ -9427,7 +10987,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 150.0, 165.0, 53.0, 23.0 ]
+					"patching_rect" : [ 137.0, 377.0, 53.0, 23.0 ]
 				}
 
 			}
@@ -9443,13 +11003,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-82", 0 ],
 					"source" : [ "obj-1", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-9", 0 ],
-					"source" : [ "obj-1", 2 ]
 				}
 
 			}
@@ -9518,6 +11071,22 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-35", 0 ],
+					"order" : 0,
+					"source" : [ "obj-24", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-75", 0 ],
+					"order" : 1,
+					"source" : [ "obj-24", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-25", 0 ]
 				}
@@ -9527,6 +11096,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-26", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-35", 0 ],
+					"source" : [ "obj-28", 0 ]
 				}
 
 			}
@@ -9553,6 +11129,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-60", 0 ],
+					"source" : [ "obj-35", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-36", 0 ]
 				}
@@ -9560,8 +11143,29 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"source" : [ "obj-4", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-49", 0 ],
+					"source" : [ "obj-41", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-78", 0 ],
 					"source" : [ "obj-42", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-41", 0 ],
+					"source" : [ "obj-44", 1 ]
 				}
 
 			}
@@ -9581,6 +11185,44 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-45", 1 ],
+					"midpoints" : [ 649.5, 262.0, 909.0, 262.0 ],
+					"order" : 0,
+					"source" : [ "obj-49", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-56", 0 ],
+					"order" : 1,
+					"source" : [ "obj-49", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-44", 0 ],
+					"source" : [ "obj-50", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-35", 0 ],
+					"source" : [ "obj-56", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 1 ],
+					"source" : [ "obj-60", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-7", 0 ]
 				}
@@ -9588,8 +11230,8 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
-					"source" : [ "obj-78", 0 ]
+					"destination" : [ "obj-60", 0 ],
+					"source" : [ "obj-75", 0 ]
 				}
 
 			}
@@ -9597,6 +11239,20 @@
 				"patchline" : 				{
 					"destination" : [ "obj-18", 0 ],
 					"source" : [ "obj-78", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-78", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-86", 0 ],
+					"source" : [ "obj-81", 0 ]
 				}
 
 			}
@@ -9611,6 +11267,20 @@
 				"patchline" : 				{
 					"destination" : [ "obj-72", 0 ],
 					"source" : [ "obj-82", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-81", 0 ],
+					"source" : [ "obj-83", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-35", 0 ],
+					"source" : [ "obj-86", 0 ]
 				}
 
 			}
