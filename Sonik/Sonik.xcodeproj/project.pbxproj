@@ -31,6 +31,8 @@
 		7C7CB1BB2E4E6C9B00569724 /* DualXYPadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7CB1BA2E4E6C9B00569724 /* DualXYPadsView.swift */; };
 		7C7CB1BD2E4E6CEF00569724 /* xyPresets.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C7CB1BC2E4E6CEB00569724 /* xyPresets.json */; };
 		7C86D93D2E5720C1007574EF /* UserInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86D93C2E5720BF007574EF /* UserInterface.swift */; };
+		7CF226572E6078F100103A6A /* ArpAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF226562E6078F100103A6A /* ArpAppView.swift */; };
+		7CF226592E60791300103A6A /* ArpEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF226582E60791300103A6A /* ArpEditorView.swift */; };
 		AF4B40902B061DDD00FAACBF /* RNBOEventHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = AF4B408E2B061DDD00FAACBF /* RNBOEventHandler.mm */; };
 		AF4B40912B061DDD00FAACBF /* RNBOList.mm in Sources */ = {isa = PBXBuildFile; fileRef = AF4B408F2B061DDD00FAACBF /* RNBOList.mm */; };
 		AF4B40932B06326800FAACBF /* RNBOEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4B40922B06326800FAACBF /* RNBOEventHandler.swift */; };
@@ -82,6 +84,8 @@
 		7C7CB1BA2E4E6C9B00569724 /* DualXYPadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualXYPadsView.swift; sourceTree = "<group>"; };
 		7C7CB1BC2E4E6CEB00569724 /* xyPresets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = xyPresets.json; sourceTree = "<group>"; };
 		7C86D93C2E5720BF007574EF /* UserInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterface.swift; sourceTree = "<group>"; };
+		7CF226562E6078F100103A6A /* ArpAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArpAppView.swift; sourceTree = "<group>"; };
+		7CF226582E60791300103A6A /* ArpEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArpEditorView.swift; sourceTree = "<group>"; };
 		AF4B408B2B061DDD00FAACBF /* RNBOEventHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RNBOEventHandler.hpp; sourceTree = "<group>"; };
 		AF4B408C2B061DDD00FAACBF /* RNBOList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNBOList.h; sourceTree = "<group>"; };
 		AF4B408D2B061DDD00FAACBF /* RNBOEventHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNBOEventHandlerProtocol.h; sourceTree = "<group>"; };
@@ -285,6 +289,8 @@
 		7C446AA52E57CDE4008622EA /* Arp */ = {
 			isa = PBXGroup;
 			children = (
+				7CF226562E6078F100103A6A /* ArpAppView.swift */,
+				7CF226582E60791300103A6A /* ArpEditorView.swift */,
 				7C446AB22E57DE1F008622EA /* ProgressionTheory.swift */,
 				7C446AB02E57DDFC008622EA /* ProgressionIO.swift */,
 				7C446AAA2E57CF32008622EA /* ProgressionEditorView.swift */,
@@ -873,7 +879,9 @@
 				7C32BC7E2E29633200DE9F8D /* MIDISequencer.swift in Sources */,
 				7C446AAE2E57D137008622EA /* Progression.swift in Sources */,
 				7C446AAD2E57D130008622EA /* Extension.swift in Sources */,
+				7CF226572E6078F100103A6A /* ArpAppView.swift in Sources */,
 				AFEBC8E22B079BD80097D64B /* Buttons.swift in Sources */,
+				7CF226592E60791300103A6A /* ArpEditorView.swift in Sources */,
 				AFF2B4F229A2094D00068DD0 /* rnbo_source.cpp in Sources */,
 				AF4B40932B06326800FAACBF /* RNBOEventHandler.swift in Sources */,
 				7C446AB32E57DE1F008622EA /* ProgressionTheory.swift in Sources */,

@@ -15,7 +15,7 @@ struct ContentView: View {
             if rnbo.showInterface == .description {
                 DescriptionView()
             } else if rnbo.showInterface == .arp {
-                ProgressionEditorView()
+                ArpAppView()
             } else {
                 if [.xy, .xyEdit].contains(rnbo.showInterface) {
                     DualXYPadsView()
