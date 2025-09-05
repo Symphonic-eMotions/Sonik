@@ -379,27 +379,35 @@ class MIDISequencer: ObservableObject {
         stop()
     }
 
-    /// Laad een `.mid` uit de bundle (zonder extensie meegeven).
-    func loadMIDIFile(named fileName: String) {
+    func loadMIDIFile(named fileName: String, subdirectory: String? = nil) {
         clearAllTracks()
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: "mid") else {
-            print("❌ MIDI \(fileName).mid niet gevonden in bundle.")
+
+        let url: URL? = {
+            if let sub = subdirectory,
+               let u = Bundle.main.url(forResource: fileName, withExtension: "mid", subdirectory: sub) {
+                return u
+            }
+            return Bundle.main.url(forResource: fileName, withExtension: "mid")
+        }()
+
+        guard let url else {
+            print("❌ MIDI \(fileName).mid niet gevonden (subdir: \(subdirectory ?? "—")).")
             return
         }
-        
+
         sequencer.loadMIDIFile(fromURL: url)
-        // We pakken de eerste track
+
         if let track = sequencer.tracks.first {
             noteEvents = track.getMIDINoteData()
             sourceTrackEvents = noteEvents
             sequenceLength = sequencer.length.seconds
             track.setMIDIOutput(callbackInstrument.midiIn)
             sequencer.setLength(sequencer.length)
-            // Na inladen en output-koppeling:
             quantizeLoopToContent()
             print("✅ MIDI geladen: \(noteEvents.count) events, lengte \(sequenceLength)s")
         }
     }
+
     
     /// Herschrijf de actieve track met een octaafversie van de originele brondata
     func applyOctaveShiftToSource() {

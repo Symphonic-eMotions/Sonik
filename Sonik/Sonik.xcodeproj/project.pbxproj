@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C087DD62E6B88FA002F60F2 /* MIDILibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C087DD52E6B88FA002F60F2 /* MIDILibrary.swift */; };
+		7C087DE22E6B892D002F60F2 /* strauss-blue-danube.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C087DDD2E6B892D002F60F2 /* strauss-blue-danube.mid */; };
+		7C087DE32E6B892D002F60F2 /* tchaikovsky-waltz-flowers.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C087DDE2E6B892D002F60F2 /* tchaikovsky-waltz-flowers.mid */; };
+		7C087DE42E6B892D002F60F2 /* rodgers-edelweiss2.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C087DDB2E6B892D002F60F2 /* rodgers-edelweiss2.mid */; };
+		7C087DE52E6B892D002F60F2 /* beethoven-ode-to-joy.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C087DD72E6B892D002F60F2 /* beethoven-ode-to-joy.mid */; };
+		7C087DE62E6B892D002F60F2 /* presley-love-me-tender.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C087DD92E6B892D002F60F2 /* presley-love-me-tender.mid */; };
+		7C087DE72E6B892D002F60F2 /* traditional-greensleeves2.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C087DE02E6B892D002F60F2 /* traditional-greensleeves2.mid */; };
+		7C087DE82E6B892D002F60F2 /* schubert-ave-maria.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C087DDC2E6B892D002F60F2 /* schubert-ave-maria.mid */; };
+		7C087DE92E6B892D002F60F2 /* rodgers-edelweiss.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C087DDA2E6B892D002F60F2 /* rodgers-edelweiss.mid */; };
+		7C087DEA2E6B892D002F60F2 /* traditional-greensleeves.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C087DDF2E6B892D002F60F2 /* traditional-greensleeves.mid */; };
+		7C087DEB2E6B892D002F60F2 /* mancini-moon-river.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C087DD82E6B892D002F60F2 /* mancini-moon-river.mid */; };
 		7C32BC7C2E29631F00DE9F8D /* AudioKitMIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32BC7B2E29631F00DE9F8D /* AudioKitMIDIManager.swift */; };
 		7C32BC7E2E29633200DE9F8D /* MIDISequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32BC7D2E29633200DE9F8D /* MIDISequencer.swift */; };
 		7C32BC812E29636400DE9F8D /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C32BC802E29636400DE9F8D /* AudioKit */; };
@@ -62,6 +73,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C087DD52E6B88FA002F60F2 /* MIDILibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDILibrary.swift; sourceTree = "<group>"; };
+		7C087DD72E6B892D002F60F2 /* beethoven-ode-to-joy.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "beethoven-ode-to-joy.mid"; sourceTree = "<group>"; };
+		7C087DD82E6B892D002F60F2 /* mancini-moon-river.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "mancini-moon-river.mid"; sourceTree = "<group>"; };
+		7C087DD92E6B892D002F60F2 /* presley-love-me-tender.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "presley-love-me-tender.mid"; sourceTree = "<group>"; };
+		7C087DDA2E6B892D002F60F2 /* rodgers-edelweiss.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "rodgers-edelweiss.mid"; sourceTree = "<group>"; };
+		7C087DDB2E6B892D002F60F2 /* rodgers-edelweiss2.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "rodgers-edelweiss2.mid"; sourceTree = "<group>"; };
+		7C087DDC2E6B892D002F60F2 /* schubert-ave-maria.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "schubert-ave-maria.mid"; sourceTree = "<group>"; };
+		7C087DDD2E6B892D002F60F2 /* strauss-blue-danube.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "strauss-blue-danube.mid"; sourceTree = "<group>"; };
+		7C087DDE2E6B892D002F60F2 /* tchaikovsky-waltz-flowers.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "tchaikovsky-waltz-flowers.mid"; sourceTree = "<group>"; };
+		7C087DDF2E6B892D002F60F2 /* traditional-greensleeves.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "traditional-greensleeves.mid"; sourceTree = "<group>"; };
+		7C087DE02E6B892D002F60F2 /* traditional-greensleeves2.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "traditional-greensleeves2.mid"; sourceTree = "<group>"; };
 		7C32BC7B2E29631F00DE9F8D /* AudioKitMIDIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioKitMIDIManager.swift; sourceTree = "<group>"; };
 		7C32BC7D2E29633200DE9F8D /* MIDISequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDISequencer.swift; sourceTree = "<group>"; };
 		7C32BC822E29639B00DE9F8D /* RNBOAudioKitMIDIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNBOAudioKitMIDIRouter.swift; sourceTree = "<group>"; };
@@ -286,6 +308,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C087DD42E6B88E8002F60F2 /* Speeldoos */ = {
+			isa = PBXGroup;
+			children = (
+				7C087DD52E6B88FA002F60F2 /* MIDILibrary.swift */,
+			);
+			path = Speeldoos;
+			sourceTree = "<group>";
+		};
+		7C087DE12E6B892D002F60F2 /* midiFiles */ = {
+			isa = PBXGroup;
+			children = (
+				7C087DD72E6B892D002F60F2 /* beethoven-ode-to-joy.mid */,
+				7C087DD82E6B892D002F60F2 /* mancini-moon-river.mid */,
+				7C087DD92E6B892D002F60F2 /* presley-love-me-tender.mid */,
+				7C087DDA2E6B892D002F60F2 /* rodgers-edelweiss.mid */,
+				7C087DDB2E6B892D002F60F2 /* rodgers-edelweiss2.mid */,
+				7C087DDC2E6B892D002F60F2 /* schubert-ave-maria.mid */,
+				7C087DDD2E6B892D002F60F2 /* strauss-blue-danube.mid */,
+				7C087DDE2E6B892D002F60F2 /* tchaikovsky-waltz-flowers.mid */,
+				7C087DDF2E6B892D002F60F2 /* traditional-greensleeves.mid */,
+				7C087DE02E6B892D002F60F2 /* traditional-greensleeves2.mid */,
+			);
+			path = midiFiles;
+			sourceTree = "<group>";
+		};
 		7C446AA52E57CDE4008622EA /* Arp */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,11 +426,13 @@
 				AFF2B41F29A2090200068DD0 /* ContentView.swift */,
 				7C86D9372E571C47007574EF /* UserInterface */,
 				AFF2B42E29A2093F00068DD0 /* RNBO */,
+				7C446AA52E57CDE4008622EA /* Arp */,
+				7C087DD42E6B88E8002F60F2 /* Speeldoos */,
+				7C087DE12E6B892D002F60F2 /* midiFiles */,
 				7C35C1802E3837B9008AAD79 /* parameterConfig.json */,
 				7C32BC7B2E29631F00DE9F8D /* AudioKitMIDIManager.swift */,
 				7C32BC822E29639B00DE9F8D /* RNBOAudioKitMIDIRouter.swift */,
 				7C32BC7D2E29633200DE9F8D /* MIDISequencer.swift */,
-				7C446AA52E57CDE4008622EA /* Arp */,
 				AFF2B42129A2090300068DD0 /* Assets.xcassets */,
 				AFF2B42429A2090300068DD0 /* Preview Content */,
 				7C32BC842E2968E400DE9F8D /* midiMelody.mid */,
@@ -859,6 +908,16 @@
 				AFF2B4F529A2097600068DD0 /* media in Resources */,
 				AFF2B4F029A2094D00068DD0 /* presets.json in Resources */,
 				AFF2B42229A2090300068DD0 /* Assets.xcassets in Resources */,
+				7C087DE22E6B892D002F60F2 /* strauss-blue-danube.mid in Resources */,
+				7C087DE32E6B892D002F60F2 /* tchaikovsky-waltz-flowers.mid in Resources */,
+				7C087DE42E6B892D002F60F2 /* rodgers-edelweiss2.mid in Resources */,
+				7C087DE52E6B892D002F60F2 /* beethoven-ode-to-joy.mid in Resources */,
+				7C087DE62E6B892D002F60F2 /* presley-love-me-tender.mid in Resources */,
+				7C087DE72E6B892D002F60F2 /* traditional-greensleeves2.mid in Resources */,
+				7C087DE82E6B892D002F60F2 /* schubert-ave-maria.mid in Resources */,
+				7C087DE92E6B892D002F60F2 /* rodgers-edelweiss.mid in Resources */,
+				7C087DEA2E6B892D002F60F2 /* traditional-greensleeves.mid in Resources */,
+				7C087DEB2E6B892D002F60F2 /* mancini-moon-river.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,6 +944,7 @@
 				AFF2B4F229A2094D00068DD0 /* rnbo_source.cpp in Sources */,
 				AF4B40932B06326800FAACBF /* RNBOEventHandler.swift in Sources */,
 				7C446AB32E57DE1F008622EA /* ProgressionTheory.swift in Sources */,
+				7C087DD62E6B88FA002F60F2 /* MIDILibrary.swift in Sources */,
 				7C446AAC2E57D12A008622EA /* ChordPicker.swift in Sources */,
 				7C7CB1B52E4E6BAF00569724 /* XYPadConfig.swift in Sources */,
 				AFEBC8E42B079C150097D64B /* AudioKitKeyboard.swift in Sources */,

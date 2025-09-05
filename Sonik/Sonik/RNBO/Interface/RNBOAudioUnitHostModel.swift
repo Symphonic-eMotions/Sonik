@@ -369,5 +369,4 @@ final class RNBOAudioUnitHostModel: ObservableObject {
             swapAtLoopBoundary: swapAtLoopBoundary
         )
     }
-
 }
