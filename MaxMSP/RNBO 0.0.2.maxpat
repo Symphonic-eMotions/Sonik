@@ -3918,9 +3918,9 @@
 									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 91.5, 168.0, 101.0, 23.0 ],
 									"rnbo_classname" : "slide~",
-									"rnbo_serial" : 14,
+									"rnbo_serial" : 17,
 									"rnbo_uniqueid" : "slide~_obj-11",
-									"text" : "slide~ 2700 2700"
+									"text" : "slide~ 5000 5000"
 								}
 
 							}
@@ -7658,7 +7658,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 183.0, 102.0, 30.0, 23.0 ],
+									"patching_rect" : [ 183.0, 99.0, 30.0, 23.0 ],
 									"rnbo_classname" : "sig~",
 									"rnbo_extra_attributes" : 									{
 										"unit" : "ms"
@@ -8898,7 +8898,7 @@
 
 					}
 ,
-					"patching_rect" : [ 99.0, 536.0, 126.0, 22.0 ],
+					"patching_rect" : [ 100.0, 536.0, 126.0, 22.0 ],
 					"rnboattrcache" : 					{
 						"poly/p_obj-18/attack" : 						{
 							"label" : "attack",
@@ -9040,7 +9040,7 @@
 						"embed" : 1,
 						"snapshot" : 						{
 							"mod_index_lfo_depth" : 							{
-								"value" : 7.020000000000001
+								"value" : 0.0
 							}
 ,
 							"q" : 							{
@@ -9052,15 +9052,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 200.0
+													"value" : 400.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.483
+													"value" : 0.25
 												}
 ,
 												"left_delay" : 												{
-													"value" : 400.0
+													"value" : 300.0
 												}
 
 											}
@@ -9113,19 +9113,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 264.0
+													"value" : 300.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 1.0
+													"value" : 0.5
 												}
 ,
 												"decay" : 												{
-													"value" : 222.0
+													"value" : 200.0
 												}
 ,
 												"attack" : 												{
-													"value" : 0.776
+													"value" : 30.0
 												}
 
 											}
@@ -9137,15 +9137,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 200.0
+													"value" : 400.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.483
+													"value" : 0.25
 												}
 ,
 												"left_delay" : 												{
-													"value" : 400.0
+													"value" : 300.0
 												}
 
 											}
@@ -9198,19 +9198,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 264.0
+													"value" : 300.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 1.0
+													"value" : 0.5
 												}
 ,
 												"decay" : 												{
-													"value" : 222.0
+													"value" : 200.0
 												}
 ,
 												"attack" : 												{
-													"value" : 0.776
+													"value" : 30.0
 												}
 
 											}
@@ -9222,15 +9222,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 200.0
+													"value" : 400.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.483
+													"value" : 0.25
 												}
 ,
 												"left_delay" : 												{
-													"value" : 400.0
+													"value" : 300.0
 												}
 
 											}
@@ -9283,19 +9283,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 264.0
+													"value" : 300.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 1.0
+													"value" : 0.5
 												}
 ,
 												"decay" : 												{
-													"value" : 222.0
+													"value" : 200.0
 												}
 ,
 												"attack" : 												{
-													"value" : 0.776
+													"value" : 30.0
 												}
 
 											}
@@ -9307,15 +9307,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 200.0
+													"value" : 400.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.483
+													"value" : 0.25
 												}
 ,
 												"left_delay" : 												{
-													"value" : 400.0
+													"value" : 300.0
 												}
 
 											}
@@ -9368,19 +9368,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 264.0
+													"value" : 300.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 1.0
+													"value" : 0.5
 												}
 ,
 												"decay" : 												{
-													"value" : 222.0
+													"value" : 200.0
 												}
 ,
 												"attack" : 												{
-													"value" : 0.776
+													"value" : 30.0
 												}
 
 											}
@@ -9392,15 +9392,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 200.0
+													"value" : 400.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.483
+													"value" : 0.25
 												}
 ,
 												"left_delay" : 												{
-													"value" : 400.0
+													"value" : 300.0
 												}
 
 											}
@@ -9453,19 +9453,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 264.0
+													"value" : 300.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 1.0
+													"value" : 0.5
 												}
 ,
 												"decay" : 												{
-													"value" : 222.0
+													"value" : 200.0
 												}
 ,
 												"attack" : 												{
-													"value" : 0.776
+													"value" : 30.0
 												}
 
 											}
@@ -9477,15 +9477,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 200.0
+													"value" : 400.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.483
+													"value" : 0.25
 												}
 ,
 												"left_delay" : 												{
-													"value" : 400.0
+													"value" : 300.0
 												}
 
 											}
@@ -9538,19 +9538,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 264.0
+													"value" : 300.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 1.0
+													"value" : 0.5
 												}
 ,
 												"decay" : 												{
-													"value" : 222.0
+													"value" : 200.0
 												}
 ,
 												"attack" : 												{
-													"value" : 0.776
+													"value" : 30.0
 												}
 
 											}
@@ -9562,15 +9562,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 200.0
+													"value" : 400.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.483
+													"value" : 0.25
 												}
 ,
 												"left_delay" : 												{
-													"value" : 400.0
+													"value" : 300.0
 												}
 
 											}
@@ -9623,19 +9623,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 264.0
+													"value" : 300.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 1.0
+													"value" : 0.5
 												}
 ,
 												"decay" : 												{
-													"value" : 222.0
+													"value" : 200.0
 												}
 ,
 												"attack" : 												{
-													"value" : 0.776
+													"value" : 30.0
 												}
 
 											}
@@ -9647,15 +9647,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 200.0
+													"value" : 400.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.483
+													"value" : 0.25
 												}
 ,
 												"left_delay" : 												{
-													"value" : 400.0
+													"value" : 300.0
 												}
 
 											}
@@ -9708,19 +9708,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 264.0
+													"value" : 300.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 1.0
+													"value" : 0.5
 												}
 ,
 												"decay" : 												{
-													"value" : 222.0
+													"value" : 200.0
 												}
 ,
 												"attack" : 												{
-													"value" : 0.776
+													"value" : 30.0
 												}
 
 											}
@@ -9732,15 +9732,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 200.0
+													"value" : 400.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.483
+													"value" : 0.25
 												}
 ,
 												"left_delay" : 												{
-													"value" : 400.0
+													"value" : 300.0
 												}
 
 											}
@@ -9793,19 +9793,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 264.0
+													"value" : 300.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 1.0
+													"value" : 0.5
 												}
 ,
 												"decay" : 												{
-													"value" : 222.0
+													"value" : 200.0
 												}
 ,
 												"attack" : 												{
-													"value" : 0.776
+													"value" : 30.0
 												}
 
 											}
@@ -9817,15 +9817,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 200.0
+													"value" : 400.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.483
+													"value" : 0.25
 												}
 ,
 												"left_delay" : 												{
-													"value" : 400.0
+													"value" : 300.0
 												}
 
 											}
@@ -9878,19 +9878,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 264.0
+													"value" : 300.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 1.0
+													"value" : 0.5
 												}
 ,
 												"decay" : 												{
-													"value" : 222.0
+													"value" : 200.0
 												}
 ,
 												"attack" : 												{
-													"value" : 0.776
+													"value" : 30.0
 												}
 
 											}
@@ -9902,15 +9902,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 200.0
+													"value" : 400.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.483
+													"value" : 0.25
 												}
 ,
 												"left_delay" : 												{
-													"value" : 400.0
+													"value" : 300.0
 												}
 
 											}
@@ -9963,19 +9963,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 264.0
+													"value" : 300.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 1.0
+													"value" : 0.5
 												}
 ,
 												"decay" : 												{
-													"value" : 222.0
+													"value" : 200.0
 												}
 ,
 												"attack" : 												{
-													"value" : 0.776
+													"value" : 30.0
 												}
 
 											}
@@ -9987,15 +9987,15 @@
 										"__sps" : 										{
 											"stereo_delay" : 											{
 												"right_delay" : 												{
-													"value" : 200.0
+													"value" : 400.0
 												}
 ,
 												"fb" : 												{
-													"value" : 0.483
+													"value" : 0.25
 												}
 ,
 												"left_delay" : 												{
-													"value" : 400.0
+													"value" : 300.0
 												}
 
 											}
@@ -10048,19 +10048,19 @@
 ,
 											"p_obj-18" : 											{
 												"release" : 												{
-													"value" : 264.0
+													"value" : 300.0
 												}
 ,
 												"sustain" : 												{
-													"value" : 1.0
+													"value" : 0.5
 												}
 ,
 												"decay" : 												{
-													"value" : 222.0
+													"value" : 200.0
 												}
 ,
 												"attack" : 												{
-													"value" : 0.776
+													"value" : 30.0
 												}
 
 											}
@@ -10080,11 +10080,11 @@
 							}
 ,
 							"modi_index_lfo_freq" : 							{
-								"value" : 0.699
+								"value" : 0.2
 							}
 ,
 							"mod_index" : 							{
-								"value" : 1.79
+								"value" : 1.0
 							}
 ,
 							"__presetid" : "9ee37473-ba62-11eb-b473-a683e7612c99"
@@ -10103,7 +10103,7 @@
 									"embed" : 1,
 									"snapshot" : 									{
 										"mod_index_lfo_depth" : 										{
-											"value" : 7.020000000000001
+											"value" : 0.0
 										}
 ,
 										"q" : 										{
@@ -10115,15 +10115,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 200.0
+																"value" : 400.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.483
+																"value" : 0.25
 															}
 ,
 															"left_delay" : 															{
-																"value" : 400.0
+																"value" : 300.0
 															}
 
 														}
@@ -10176,19 +10176,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 264.0
+																"value" : 300.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 1.0
+																"value" : 0.5
 															}
 ,
 															"decay" : 															{
-																"value" : 222.0
+																"value" : 200.0
 															}
 ,
 															"attack" : 															{
-																"value" : 0.776
+																"value" : 30.0
 															}
 
 														}
@@ -10200,15 +10200,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 200.0
+																"value" : 400.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.483
+																"value" : 0.25
 															}
 ,
 															"left_delay" : 															{
-																"value" : 400.0
+																"value" : 300.0
 															}
 
 														}
@@ -10261,19 +10261,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 264.0
+																"value" : 300.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 1.0
+																"value" : 0.5
 															}
 ,
 															"decay" : 															{
-																"value" : 222.0
+																"value" : 200.0
 															}
 ,
 															"attack" : 															{
-																"value" : 0.776
+																"value" : 30.0
 															}
 
 														}
@@ -10285,15 +10285,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 200.0
+																"value" : 400.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.483
+																"value" : 0.25
 															}
 ,
 															"left_delay" : 															{
-																"value" : 400.0
+																"value" : 300.0
 															}
 
 														}
@@ -10346,19 +10346,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 264.0
+																"value" : 300.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 1.0
+																"value" : 0.5
 															}
 ,
 															"decay" : 															{
-																"value" : 222.0
+																"value" : 200.0
 															}
 ,
 															"attack" : 															{
-																"value" : 0.776
+																"value" : 30.0
 															}
 
 														}
@@ -10370,15 +10370,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 200.0
+																"value" : 400.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.483
+																"value" : 0.25
 															}
 ,
 															"left_delay" : 															{
-																"value" : 400.0
+																"value" : 300.0
 															}
 
 														}
@@ -10431,19 +10431,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 264.0
+																"value" : 300.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 1.0
+																"value" : 0.5
 															}
 ,
 															"decay" : 															{
-																"value" : 222.0
+																"value" : 200.0
 															}
 ,
 															"attack" : 															{
-																"value" : 0.776
+																"value" : 30.0
 															}
 
 														}
@@ -10455,15 +10455,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 200.0
+																"value" : 400.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.483
+																"value" : 0.25
 															}
 ,
 															"left_delay" : 															{
-																"value" : 400.0
+																"value" : 300.0
 															}
 
 														}
@@ -10516,19 +10516,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 264.0
+																"value" : 300.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 1.0
+																"value" : 0.5
 															}
 ,
 															"decay" : 															{
-																"value" : 222.0
+																"value" : 200.0
 															}
 ,
 															"attack" : 															{
-																"value" : 0.776
+																"value" : 30.0
 															}
 
 														}
@@ -10540,15 +10540,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 200.0
+																"value" : 400.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.483
+																"value" : 0.25
 															}
 ,
 															"left_delay" : 															{
-																"value" : 400.0
+																"value" : 300.0
 															}
 
 														}
@@ -10601,19 +10601,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 264.0
+																"value" : 300.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 1.0
+																"value" : 0.5
 															}
 ,
 															"decay" : 															{
-																"value" : 222.0
+																"value" : 200.0
 															}
 ,
 															"attack" : 															{
-																"value" : 0.776
+																"value" : 30.0
 															}
 
 														}
@@ -10625,15 +10625,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 200.0
+																"value" : 400.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.483
+																"value" : 0.25
 															}
 ,
 															"left_delay" : 															{
-																"value" : 400.0
+																"value" : 300.0
 															}
 
 														}
@@ -10686,19 +10686,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 264.0
+																"value" : 300.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 1.0
+																"value" : 0.5
 															}
 ,
 															"decay" : 															{
-																"value" : 222.0
+																"value" : 200.0
 															}
 ,
 															"attack" : 															{
-																"value" : 0.776
+																"value" : 30.0
 															}
 
 														}
@@ -10710,15 +10710,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 200.0
+																"value" : 400.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.483
+																"value" : 0.25
 															}
 ,
 															"left_delay" : 															{
-																"value" : 400.0
+																"value" : 300.0
 															}
 
 														}
@@ -10771,19 +10771,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 264.0
+																"value" : 300.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 1.0
+																"value" : 0.5
 															}
 ,
 															"decay" : 															{
-																"value" : 222.0
+																"value" : 200.0
 															}
 ,
 															"attack" : 															{
-																"value" : 0.776
+																"value" : 30.0
 															}
 
 														}
@@ -10795,15 +10795,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 200.0
+																"value" : 400.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.483
+																"value" : 0.25
 															}
 ,
 															"left_delay" : 															{
-																"value" : 400.0
+																"value" : 300.0
 															}
 
 														}
@@ -10856,19 +10856,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 264.0
+																"value" : 300.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 1.0
+																"value" : 0.5
 															}
 ,
 															"decay" : 															{
-																"value" : 222.0
+																"value" : 200.0
 															}
 ,
 															"attack" : 															{
-																"value" : 0.776
+																"value" : 30.0
 															}
 
 														}
@@ -10880,15 +10880,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 200.0
+																"value" : 400.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.483
+																"value" : 0.25
 															}
 ,
 															"left_delay" : 															{
-																"value" : 400.0
+																"value" : 300.0
 															}
 
 														}
@@ -10941,19 +10941,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 264.0
+																"value" : 300.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 1.0
+																"value" : 0.5
 															}
 ,
 															"decay" : 															{
-																"value" : 222.0
+																"value" : 200.0
 															}
 ,
 															"attack" : 															{
-																"value" : 0.776
+																"value" : 30.0
 															}
 
 														}
@@ -10965,15 +10965,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 200.0
+																"value" : 400.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.483
+																"value" : 0.25
 															}
 ,
 															"left_delay" : 															{
-																"value" : 400.0
+																"value" : 300.0
 															}
 
 														}
@@ -11026,19 +11026,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 264.0
+																"value" : 300.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 1.0
+																"value" : 0.5
 															}
 ,
 															"decay" : 															{
-																"value" : 222.0
+																"value" : 200.0
 															}
 ,
 															"attack" : 															{
-																"value" : 0.776
+																"value" : 30.0
 															}
 
 														}
@@ -11050,15 +11050,15 @@
 													"__sps" : 													{
 														"stereo_delay" : 														{
 															"right_delay" : 															{
-																"value" : 200.0
+																"value" : 400.0
 															}
 ,
 															"fb" : 															{
-																"value" : 0.483
+																"value" : 0.25
 															}
 ,
 															"left_delay" : 															{
-																"value" : 400.0
+																"value" : 300.0
 															}
 
 														}
@@ -11111,19 +11111,19 @@
 ,
 														"p_obj-18" : 														{
 															"release" : 															{
-																"value" : 264.0
+																"value" : 300.0
 															}
 ,
 															"sustain" : 															{
-																"value" : 1.0
+																"value" : 0.5
 															}
 ,
 															"decay" : 															{
-																"value" : 222.0
+																"value" : 200.0
 															}
 ,
 															"attack" : 															{
-																"value" : 0.776
+																"value" : 30.0
 															}
 
 														}
@@ -11143,11 +11143,11 @@
 										}
 ,
 										"modi_index_lfo_freq" : 										{
-											"value" : 0.699
+											"value" : 0.2
 										}
 ,
 										"mod_index" : 										{
-											"value" : 1.79
+											"value" : 1.0
 										}
 ,
 										"__presetid" : "9ee37473-ba62-11eb-b473-a683e7612c99"

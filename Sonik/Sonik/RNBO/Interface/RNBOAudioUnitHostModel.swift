@@ -162,7 +162,26 @@ final class RNBOAudioUnitHostModel: ObservableObject {
     @Published var showInterface: UserInterface
     @Published var currentOctave: Int = 0
     @Published private(set) var activeMIDINotes: Set<UInt8> = []
+    
+    // MARK: Harmonicity state
+    @Published var harmonicityScaleName: String = HarmonicityScale.names.first ?? "Equal (12-TET)"
+    @Published var harmonicityIndex: Int = 0
 
+    // Laad de schalen één keer
+    lazy var harmonicityScales: [String: [Double]] = HarmonicityScale.parse()
+
+    // Hulpfunctie: actuele collectie + waarde
+    var currentHarmonicityValues: [Double] {
+        harmonicityScales[harmonicityScaleName] ?? []
+    }
+
+    var currentHarmonicityValue: Double? {
+        let vals = currentHarmonicityValues
+        guard !vals.isEmpty else { return nil }
+        let i = max(0, min(harmonicityIndex, vals.count - 1))
+        return vals[i]
+    }
+    
     let description: RNBODescription?
 
     // MARK: - Progression (structuur blijft leidend)
@@ -181,7 +200,67 @@ final class RNBOAudioUnitHostModel: ObservableObject {
 
     // MARK: - Sequencer bridged playback (nieuw)
     lazy var midiSequencer: MIDISequencer = { MIDISequencer(rnbo: self) }()
+    
+    private func parameterIndex(for id: String) -> Int? {
+        if let idx = paramIndexById[id] { return idx }
+        // fallback: herbouw mapping 1x en probeer nogmaals
+        rebuildParamIndexMap()
+        return paramIndexById[id]
+    }
 
+    // Zet ruwe waarde voor param-id
+    func setParameterValue(id: String, value: Double) {
+        guard let idx = parameterIndex(for: id) else {
+            print("⚠️ setParameterValue: onbekende id '\(id)'")
+            return
+        }
+        setParameterValue(to: value, at: idx)
+    }
+
+    // Zet ruwe waarde + refresh (zoals je Hot-variant op index)
+    func setParameterValueHot(id: String, value: Double) {
+        guard let idx = parameterIndex(for: id) else {
+            print("⚠️ setParameterValueHot: onbekende id '\(id)'")
+            return
+        }
+        setParameterValueHot(to: value, at: idx)
+    }
+
+    // Zet genormaliseerd (0...1) op id
+    func setParameterValueNormalized(id: String, valueNormalized: Double) {
+        guard let idx = parameterIndex(for: id) else {
+            print("⚠️ setParameterValueNormalized: onbekende id '\(id)'")
+            return
+        }
+        setParameterValueNormalized(to: valueNormalized, at: idx)
+    }
+
+    func setParameterValueNormalizedHot(id: String, valueNormalized: Double) {
+        guard let idx = parameterIndex(for: id) else {
+            print("⚠️ setParameterValueNormalizedHot: onbekende id '\(id)'")
+            return
+        }
+        setParameterValueNormalizedHot(to: valueNormalized, at: idx)
+    }
+
+    // Als de schaal wijzigt, clamp index en push waarde
+    func changeHarmonicityScale(to name: String) {
+        harmonicityScaleName = name
+        let maxIdx = max(0, (currentHarmonicityValues.count - 1))
+        harmonicityIndex = min(harmonicityIndex, maxIdx)
+        applyHarmonicity()
+    }
+    
+    func applyHarmonicity(index: Int? = nil) {
+        if let idx = index { harmonicityIndex = idx }
+        if let v = currentHarmonicityValue {
+            // v is al de DOELWAARDE (bijv. 1.33484) → NIET afronden naar Int
+            setParameterValueHot(id: "harmonicity", value: v)
+        } else {
+            print("⚠️ applyHarmonicity: geen waarde in huidige collectie")
+        }
+    }
+    
     /// Zet de huidige progression in de sequencer als blokakkoorden (nog geen ARP).
     func loadProgressionIntoSequencerAsChords(
         baseOctave: Int = 4,

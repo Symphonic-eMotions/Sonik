@@ -16,6 +16,11 @@ struct Sliders: View {
                 ForEach($rnbo.parameters) { $parameter in
                     if let config = rnbo.parameterConfigs.first(where: { $0.id == parameter.id }),
                        config.visible {
+                        
+                        if parameter.id == "harmonicity" {
+                            HarmonicityControl()
+                        }
+                        
                         SliderView(parameter: $parameter, displayName: config.displayName)
                     }
                 }
