@@ -150,6 +150,14 @@ extension RNBOAudioUnitHostModel {
     }
 }
 
+extension RNBOAudioUnitHostModel {
+    func indexForParameter(id: String) -> Int? {
+        if let i = paramIndexById[id] { return i }
+        rebuildParamIndexMap()
+        return paramIndexById[id]
+    }
+}
+
 final class RNBOAudioUnitHostModel: ObservableObject {
     private let audioEngine = RNBOAudioEngine()
     private var _audioUnit: RNBOAudioUnit!

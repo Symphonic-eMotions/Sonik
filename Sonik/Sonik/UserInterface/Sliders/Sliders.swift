@@ -12,16 +12,23 @@ struct Sliders: View {
 
     var body: some View {
         ScrollView {
-            VStack {
-                ForEach($rnbo.parameters) { $parameter in
-                    if let config = rnbo.parameterConfigs.first(where: { $0.id == parameter.id }),
-                       config.visible {
-                        
-                        if parameter.id == "harmonicity" {
-                            HarmonicityControl()
+            VStack(spacing: 12) {
+                ForEach(rnbo.visibleParameterConfigs(), id: \.id) { config in
+                    switch config.id {
+                    case "sequencer/tempo":
+                        SequencerTempoControl(displayName: config.displayName)
+
+                    case "harmonicity":
+                        HarmonicityControl()
+
+                    default:
+                        if let idx = rnbo.indexForParameter(id: config.id) {
+                            SliderView(parameter: $rnbo.parameters[idx],
+                                       displayName: config.displayName)
+                        } else {
+                            // Optioneel: waarschuwing of fallback UI
+                            EmptyView()
                         }
-                        
-                        SliderView(parameter: $parameter, displayName: config.displayName)
                     }
                 }
             }

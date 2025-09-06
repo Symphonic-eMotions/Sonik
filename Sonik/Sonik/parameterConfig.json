@@ -1,87 +1,92 @@
 [
-  {
-    "displayName" : "Harmonics",
-    "id" : "harmonicity",
-    "visible" : true
-  },
-  {
-    "displayName" : "Harmonic Glisando",
-    "id" : "harmonicGlis",
-    "visible" : true
-  },
-  {
-    "displayName" : "Filter",
-    "id" : "filter",
-    "visible" : true
-  },
-  {
-    "displayName" : "Q",
-    "id" : "q",
-    "visible" : true
-  },
-  {
-    "displayName" : "Mod index",
-    "id" : "mod_index",
-    "visible" : true
-  },
-  {
-    "displayName" : "Lfo Freq Mod index",
-    "id" : "modi_index_lfo_freq",
-    "visible" : true
-  },
-  {
-    "displayName" : "Lfo Depth Mod index",
-    "id" : "mod_index_lfo_depth",
-    "visible" : true
-  },
-  {
-    "displayName" : "harmonicity",
-    "id" : "poly\/harmonicity",
-    "visible" : false
-  },
-  {
-    "displayName" : "filter",
-    "id" : "poly\/filter",
-    "visible" : false
-  },
-  {
-    "displayName" : "mod_index",
-    "id" : "poly\/mod_index",
-    "visible" : false
-  },
-  {
-    "displayName" : "Left delay",
-    "id" : "poly\/stereo_delay\/left_delay",
-    "visible" : true
-  },
-  {
-    "displayName" : "Feedback",
-    "id" : "poly\/stereo_delay\/fb",
-    "visible" : true
-  },
-  {
-    "displayName" : "Right delay",
-    "id" : "poly\/stereo_delay\/right_delay",
-    "visible" : true
-  },
-  {
-    "displayName" : "Attack",
-    "id" : "poly\/p_obj-18\/attack",
-    "visible" : true
-  },
-  {
-    "displayName" : "Decay",
-    "id" : "poly\/p_obj-18\/decay",
-    "visible" : true
-  },
-  {
-    "displayName" : "Sustain",
-    "id" : "poly\/p_obj-18\/sustain",
-    "visible" : true
-  },
-  {
-    "displayName" : "Release",
-    "id" : "poly\/p_obj-18\/release",
-    "visible" : true
-  }
+    {
+        "displayName": "Tempo",
+        "id": "sequencer/tempo",
+        "visible": true
+    },
+    {
+        "displayName" : "Harmonics",
+        "id" : "harmonicity",
+        "visible" : true
+    },
+    {
+        "displayName" : "Harmonic Glisando",
+        "id" : "harmonicGlis",
+        "visible" : true
+    },
+    {
+        "displayName" : "Filter",
+        "id" : "filter",
+        "visible" : true
+    },
+    {
+        "displayName" : "Q",
+        "id" : "q",
+        "visible" : true
+    },
+    {
+        "displayName" : "Mod index",
+        "id" : "mod_index",
+        "visible" : true
+    },
+    {
+        "displayName" : "Lfo Freq Mod index",
+        "id" : "modi_index_lfo_freq",
+        "visible" : true
+    },
+    {
+        "displayName" : "Lfo Depth Mod index",
+        "id" : "mod_index_lfo_depth",
+        "visible" : true
+    },
+    {
+        "displayName" : "harmonicity",
+        "id" : "poly\/harmonicity",
+        "visible" : false
+    },
+    {
+        "displayName" : "filter",
+        "id" : "poly\/filter",
+        "visible" : false
+    },
+    {
+        "displayName" : "mod_index",
+        "id" : "poly\/mod_index",
+        "visible" : false
+    },
+    {
+        "displayName" : "Left delay",
+        "id" : "poly\/stereo_delay\/left_delay",
+        "visible" : true
+    },
+    {
+        "displayName" : "Feedback",
+        "id" : "poly\/stereo_delay\/fb",
+        "visible" : true
+    },
+    {
+        "displayName" : "Right delay",
+        "id" : "poly\/stereo_delay\/right_delay",
+        "visible" : true
+    },
+    {
+        "displayName" : "Attack",
+        "id" : "poly\/p_obj-18\/attack",
+        "visible" : true
+    },
+    {
+        "displayName" : "Decay",
+        "id" : "poly\/p_obj-18\/decay",
+        "visible" : true
+    },
+    {
+        "displayName" : "Sustain",
+        "id" : "poly\/p_obj-18\/sustain",
+        "visible" : true
+    },
+    {
+        "displayName" : "Release",
+        "id" : "poly\/p_obj-18\/release",
+        "visible" : true
+    }
 ]

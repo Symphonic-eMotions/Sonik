@@ -338,6 +338,7 @@ class MIDISequencer: ObservableObject {
     @Published var loopBeatsPerBar: Double = 4.0
     @Published var loopSmallOverlapThresholdBeats: Double = 0.25
     @Published var loopAutoPlay: Bool = false
+    @Published var tempoBPM: Double = 120
     private var sequenceLength: TimeInterval = 0
     private var isPlaying = false
     private weak var rnbo: RNBOAudioUnitHostModel?
@@ -365,6 +366,17 @@ class MIDISequencer: ObservableObject {
             }
         }
         sequencer.enableLooping()
+        let startTempo = rnbo.progression.meta.tempo
+        let clamped = max(20, min(startTempo, 300))
+        sequencer.setTempo(clamped)
+        tempoBPM = clamped
+    }
+    
+    func setTempo(_ bpm: Double) {
+        let clamped = max(40, min(bpm, 300))
+        if sequencer.tempo != clamped { sequencer.setTempo(clamped) }
+        if tempoBPM != clamped { tempoBPM = clamped }
+        rnbo?.progression.meta.tempo = clamped // ok buiten init / buiten render tick
     }
 
     /// Ruim alle tracks en geplande events op.

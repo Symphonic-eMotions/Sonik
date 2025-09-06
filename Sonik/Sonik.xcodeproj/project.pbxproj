@@ -20,6 +20,7 @@
 		7C087DEB2E6B892D002F60F2 /* mancini-moon-river.mid in Resources */ = {isa = PBXBuildFile; fileRef = 7C087DD82E6B892D002F60F2 /* mancini-moon-river.mid */; };
 		7C1B5F372E6C257800028CDC /* HarmonicityScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B5F362E6C257800028CDC /* HarmonicityScale.swift */; };
 		7C1B5F392E6C2BB800028CDC /* HarmonicityControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B5F382E6C2BB800028CDC /* HarmonicityControl.swift */; };
+		7C1B5F3B2E6C530400028CDC /* SequencerTempoControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B5F3A2E6C530400028CDC /* SequencerTempoControl.swift */; };
 		7C32BC7C2E29631F00DE9F8D /* AudioKitMIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32BC7B2E29631F00DE9F8D /* AudioKitMIDIManager.swift */; };
 		7C32BC7E2E29633200DE9F8D /* MIDISequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32BC7D2E29633200DE9F8D /* MIDISequencer.swift */; };
 		7C32BC812E29636400DE9F8D /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C32BC802E29636400DE9F8D /* AudioKit */; };
@@ -88,6 +89,7 @@
 		7C087DE02E6B892D002F60F2 /* traditional-greensleeves2.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "traditional-greensleeves2.mid"; sourceTree = "<group>"; };
 		7C1B5F362E6C257800028CDC /* HarmonicityScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonicityScale.swift; sourceTree = "<group>"; };
 		7C1B5F382E6C2BB800028CDC /* HarmonicityControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonicityControl.swift; sourceTree = "<group>"; };
+		7C1B5F3A2E6C530400028CDC /* SequencerTempoControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequencerTempoControl.swift; sourceTree = "<group>"; };
 		7C32BC7B2E29631F00DE9F8D /* AudioKitMIDIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioKitMIDIManager.swift; sourceTree = "<group>"; };
 		7C32BC7D2E29633200DE9F8D /* MIDISequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDISequencer.swift; sourceTree = "<group>"; };
 		7C32BC822E29639B00DE9F8D /* RNBOAudioKitMIDIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNBOAudioKitMIDIRouter.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 		7C86D9392E571C9D007574EF /* Sliders */ = {
 			isa = PBXGroup;
 			children = (
+				7C1B5F3A2E6C530400028CDC /* SequencerTempoControl.swift */,
 				7C1B5F352E6C256C00028CDC /* Harmonicity */,
 				AFF2B4F729A20A3500068DD0 /* Sliders.swift */,
 				7C32BC8C2E3008EA00DE9F8D /* NativeSlider.swift */,
@@ -942,6 +945,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C1B5F3B2E6C530400028CDC /* SequencerTempoControl.swift in Sources */,
 				7C7CB1B92E4E6C7A00569724 /* XYPad.swift in Sources */,
 				AFF2B4FA29A20A3900068DD0 /* Sliders.swift in Sources */,
 				AFF2B4ED29A2094600068DD0 /* RNBOAudioUnitHostModel.swift in Sources */,
