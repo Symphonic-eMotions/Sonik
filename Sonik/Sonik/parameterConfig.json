@@ -5,6 +5,11 @@
     "visible" : true
   },
   {
+    "displayName" : "Harmonic Glisando",
+    "id" : "harmonicGlis",
+    "visible" : true
+  },
+  {
     "displayName" : "Filter",
     "id" : "filter",
     "visible" : true

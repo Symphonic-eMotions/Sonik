@@ -66,6 +66,27 @@
     {
       "type": "ParameterTypeNumber",
       "index": 3,
+      "name": "harmonicGlis",
+      "paramId": "harmonicGlis",
+      "minimum": 40,
+      "maximum": 7500,
+      "exponent": 1,
+      "steps": 0,
+      "initialValue": 200,
+      "isEnum": false,
+      "enumValues": [],
+      "displayName": "",
+      "unit": "",
+      "order": 0,
+      "displayorder": "-",
+      "debug": false,
+      "visible": true,
+      "signalIndex": null,
+      "ioType": "IOTypeUndefined"
+    },
+    {
+      "type": "ParameterTypeNumber",
+      "index": 4,
       "name": "mod_index",
       "paramId": "mod_index",
       "minimum": 0.1,
@@ -86,7 +107,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 4,
+      "index": 5,
       "name": "mod_index_lfo_depth",
       "paramId": "mod_index_lfo_depth",
       "minimum": 0,
@@ -107,7 +128,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 5,
+      "index": 6,
       "name": "modi_index_lfo_freq",
       "paramId": "modi_index_lfo_freq",
       "minimum": 0,
@@ -128,7 +149,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 6,
+      "index": 7,
       "name": "harmonicity",
       "paramId": "poly/harmonicity",
       "minimum": 1,
@@ -149,7 +170,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 7,
+      "index": 8,
       "name": "filter",
       "paramId": "poly/filter",
       "minimum": 20,
@@ -170,7 +191,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 8,
+      "index": 9,
       "name": "q",
       "paramId": "poly/q",
       "minimum": 0.1,
@@ -191,7 +212,28 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 9,
+      "index": 10,
+      "name": "harmonicGlis",
+      "paramId": "poly/harmonicGlis",
+      "minimum": 40,
+      "maximum": 7500,
+      "exponent": 1,
+      "steps": 0,
+      "initialValue": 200,
+      "isEnum": false,
+      "enumValues": [],
+      "displayName": "",
+      "unit": "",
+      "order": 0,
+      "displayorder": "-",
+      "debug": false,
+      "visible": false,
+      "signalIndex": null,
+      "ioType": "IOTypeUndefined"
+    },
+    {
+      "type": "ParameterTypeNumber",
+      "index": 11,
       "name": "mod_index",
       "paramId": "poly/mod_index",
       "minimum": 0.1,
@@ -212,7 +254,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 10,
+      "index": 12,
       "name": "mod_index_lfo_depth",
       "paramId": "poly/mod_index_lfo_depth",
       "minimum": 0,
@@ -233,7 +275,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 11,
+      "index": 13,
       "name": "modi_index_lfo_freq",
       "paramId": "poly/modi_index_lfo_freq",
       "minimum": 0,
@@ -254,7 +296,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 12,
+      "index": 14,
       "name": "attack",
       "paramId": "poly/p_obj-18/attack",
       "minimum": 0,
@@ -275,7 +317,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 13,
+      "index": 15,
       "name": "decay",
       "paramId": "poly/p_obj-18/decay",
       "minimum": 1,
@@ -296,7 +338,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 14,
+      "index": 16,
       "name": "sustain",
       "paramId": "poly/p_obj-18/sustain",
       "minimum": 0,
@@ -317,7 +359,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 15,
+      "index": 17,
       "name": "release",
       "paramId": "poly/p_obj-18/release",
       "minimum": 1,
@@ -338,7 +380,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 16,
+      "index": 18,
       "name": "left_delay",
       "paramId": "poly/stereo_delay/left_delay",
       "minimum": 10,
@@ -359,7 +401,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 17,
+      "index": 19,
       "name": "fb",
       "paramId": "poly/stereo_delay/fb",
       "minimum": 0,
@@ -380,7 +422,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 18,
+      "index": 20,
       "name": "right_delay",
       "paramId": "poly/stereo_delay/right_delay",
       "minimum": 10,
@@ -401,7 +443,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 19,
+      "index": 21,
       "name": "lfotype",
       "paramId": "poly/osc.analog[1]/lfotype",
       "minimum": 0,
@@ -428,7 +470,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 20,
+      "index": 22,
       "name": "on",
       "paramId": "poly/osc.analog[1]/on",
       "minimum": 0,
@@ -452,7 +494,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 21,
+      "index": 23,
       "name": "jitter",
       "paramId": "poly/osc.analog[1]/jitter",
       "minimum": 0,
@@ -473,7 +515,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 22,
+      "index": 24,
       "name": "smooth",
       "paramId": "poly/osc.analog[1]/smooth",
       "minimum": 0,
@@ -494,7 +536,7 @@
     },
     {
       "type": "ParameterTypeNumber",
-      "index": 23,
+      "index": 25,
       "name": "pulsewidth",
       "paramId": "poly/osc.analog[1]/pulsewidth",
       "minimum": 0,
@@ -514,7 +556,7 @@
       "ioType": "IOTypeUndefined"
     }
   ],
-  "numParameters": 24,
+  "numParameters": 26,
   "numSignalInParameters": 0,
   "numSignalOutParameters": 0,
   "numInputChannels": 0,

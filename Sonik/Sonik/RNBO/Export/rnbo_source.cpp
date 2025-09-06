@@ -164,7 +164,7 @@ void prepareToProcess(number sampleRate, Index maxBlockSize, bool force) {
 
     this->globaltransport_dspsetup(forceDSPSetup);
 
-    for (Index i = 0; i < 4; i++) {
+    for (Index i = 0; i < 12; i++) {
         this->poly[i]->prepareToProcess(sampleRate, maxBlockSize, force);
     }
 
@@ -212,7 +212,7 @@ DataRefIndex getNumDataRefs() const {
 }
 
 void processDataViewUpdate(DataRefIndex index, MillisecondTime time) {
-    for (Index i = 0; i < 4; i++) {
+    for (Index i = 0; i < 12; i++) {
         this->poly[i]->processDataViewUpdate(index, time);
     }
 }
@@ -250,7 +250,7 @@ void processTempoEvent(MillisecondTime time, Tempo tempo) {
     this->updateTime(time, (ENGINE*)nullptr);
 
     if (this->globaltransport_setTempo(this->_currentTime, tempo, false)) {
-        for (Index i = 0; i < 4; i++) {
+        for (Index i = 0; i < 12; i++) {
             this->poly[i]->processTempoEvent(time, tempo);
         }
     }
@@ -260,7 +260,7 @@ void processTransportEvent(MillisecondTime time, TransportState state) {
     this->updateTime(time, (ENGINE*)nullptr);
 
     if (this->globaltransport_setState(this->_currentTime, state, false)) {
-        for (Index i = 0; i < 4; i++) {
+        for (Index i = 0; i < 12; i++) {
             this->poly[i]->processTransportEvent(time, state);
         }
     }
@@ -270,7 +270,7 @@ void processBeatTimeEvent(MillisecondTime time, BeatTime beattime) {
     this->updateTime(time, (ENGINE*)nullptr);
 
     if (this->globaltransport_setBeatTime(this->_currentTime, beattime, false)) {
-        for (Index i = 0; i < 4; i++) {
+        for (Index i = 0; i < 12; i++) {
             this->poly[i]->processBeatTimeEvent(time, beattime);
         }
     }
@@ -280,7 +280,7 @@ void processTimeSignatureEvent(MillisecondTime time, Int numerator, Int denomina
     this->updateTime(time, (ENGINE*)nullptr);
 
     if (this->globaltransport_setTimeSignature(this->_currentTime, numerator, denominator, false)) {
-        for (Index i = 0; i < 4; i++) {
+        for (Index i = 0; i < 12; i++) {
             this->poly[i]->processTimeSignatureEvent(time, numerator, denominator);
         }
     }
@@ -290,7 +290,7 @@ void processBBUEvent(MillisecondTime time, number bars, number beats, number uni
     this->updateTime(time, (ENGINE*)nullptr);
 
     if (this->globaltransport_setBBU(this->_currentTime, bars, beats, units, false)) {
-        for (Index i = 0; i < 4; i++) {
+        for (Index i = 0; i < 12; i++) {
             this->poly[i]->processBBUEvent(time, bars, beats, units);
         }
     }
@@ -299,75 +299,77 @@ void processBBUEvent(MillisecondTime time, number bars, number beats, number uni
 void getPreset(PatcherStateInterface& preset) {
     this->updateTime(this->getEngine()->getCurrentTime(), (ENGINE*)nullptr);
     preset["__presetid"] = "rnbo";
-    this->param_19_getPresetValue(getSubState(preset, "harmonicity"));
-    this->param_20_getPresetValue(getSubState(preset, "filter"));
-    this->param_21_getPresetValue(getSubState(preset, "q"));
-    this->param_22_getPresetValue(getSubState(preset, "mod_index"));
-    this->param_23_getPresetValue(getSubState(preset, "mod_index_lfo_depth"));
-    this->param_24_getPresetValue(getSubState(preset, "modi_index_lfo_freq"));
+    this->param_20_getPresetValue(getSubState(preset, "harmonicity"));
+    this->param_21_getPresetValue(getSubState(preset, "filter"));
+    this->param_22_getPresetValue(getSubState(preset, "q"));
+    this->param_23_getPresetValue(getSubState(preset, "harmonicGlis"));
+    this->param_24_getPresetValue(getSubState(preset, "mod_index"));
+    this->param_25_getPresetValue(getSubState(preset, "mod_index_lfo_depth"));
+    this->param_26_getPresetValue(getSubState(preset, "modi_index_lfo_freq"));
 
-    for (Index i = 0; i < 4; i++)
+    for (Index i = 0; i < 12; i++)
         this->poly[i]->getPreset(getSubStateAt(getSubState(preset, "__sps"), "poly", i));
 }
 
 void setPreset(MillisecondTime time, PatcherStateInterface& preset) {
     this->updateTime(time, (ENGINE*)nullptr);
 
-    for (Index i = 0; i < 4; i++)
+    for (Index i = 0; i < 12; i++)
         this->poly[i]->setPreset(time, getSubStateAt(getSubState(preset, "__sps"), "poly", i));
 
-    this->param_19_setPresetValue(getSubState(preset, "harmonicity"));
-    this->param_20_setPresetValue(getSubState(preset, "filter"));
-    this->param_21_setPresetValue(getSubState(preset, "q"));
-    this->param_22_setPresetValue(getSubState(preset, "mod_index"));
-    this->param_23_setPresetValue(getSubState(preset, "mod_index_lfo_depth"));
-    this->param_24_setPresetValue(getSubState(preset, "modi_index_lfo_freq"));
+    this->param_20_setPresetValue(getSubState(preset, "harmonicity"));
+    this->param_21_setPresetValue(getSubState(preset, "filter"));
+    this->param_22_setPresetValue(getSubState(preset, "q"));
+    this->param_23_setPresetValue(getSubState(preset, "harmonicGlis"));
+    this->param_24_setPresetValue(getSubState(preset, "mod_index"));
+    this->param_25_setPresetValue(getSubState(preset, "mod_index_lfo_depth"));
+    this->param_26_setPresetValue(getSubState(preset, "modi_index_lfo_freq"));
 
-    for (Index i1 = 0; i1 < 4; i1++) this->poly[i1]->p_05->param_01_setPresetValue(
+    for (Index i1 = 0; i1 < 12; i1++) this->poly[i1]->p_05->param_01_setPresetValue(
         getSubState(getSubState(getSubState(getSubStateAt(getSubState(preset, "__sps"), "poly", i1), "__sps"), "p_obj-18"), "attack")
     );
 
-    for (Index i1 = 0; i1 < 4; i1++) this->poly[i1]->p_05->param_02_setPresetValue(
+    for (Index i1 = 0; i1 < 12; i1++) this->poly[i1]->p_05->param_02_setPresetValue(
         getSubState(getSubState(getSubState(getSubStateAt(getSubState(preset, "__sps"), "poly", i1), "__sps"), "p_obj-18"), "decay")
     );
 
-    for (Index i1 = 0; i1 < 4; i1++) this->poly[i1]->p_05->param_03_setPresetValue(
+    for (Index i1 = 0; i1 < 12; i1++) this->poly[i1]->p_05->param_03_setPresetValue(
         getSubState(getSubState(getSubState(getSubStateAt(getSubState(preset, "__sps"), "poly", i1), "__sps"), "p_obj-18"), "sustain")
     );
 
-    for (Index i1 = 0; i1 < 4; i1++) this->poly[i1]->p_05->param_04_setPresetValue(
+    for (Index i1 = 0; i1 < 12; i1++) this->poly[i1]->p_05->param_04_setPresetValue(
         getSubState(getSubState(getSubState(getSubStateAt(getSubState(preset, "__sps"), "poly", i1), "__sps"), "p_obj-18"), "release")
     );
 
-    for (Index i1 = 0; i1 < 4; i1++) this->poly[i1]->p_07->param_05_setPresetValue(
+    for (Index i1 = 0; i1 < 12; i1++) this->poly[i1]->p_07->param_05_setPresetValue(
         getSubState(getSubState(getSubState(getSubStateAt(getSubState(preset, "__sps"), "poly", i1), "__sps"), "stereo_delay"), "left_delay")
     );
 
-    for (Index i1 = 0; i1 < 4; i1++) this->poly[i1]->p_07->param_06_setPresetValue(
+    for (Index i1 = 0; i1 < 12; i1++) this->poly[i1]->p_07->param_06_setPresetValue(
         getSubState(getSubState(getSubState(getSubStateAt(getSubState(preset, "__sps"), "poly", i1), "__sps"), "stereo_delay"), "fb")
     );
 
-    for (Index i1 = 0; i1 < 4; i1++) this->poly[i1]->p_07->param_07_setPresetValue(
+    for (Index i1 = 0; i1 < 12; i1++) this->poly[i1]->p_07->param_07_setPresetValue(
         getSubState(getSubState(getSubState(getSubStateAt(getSubState(preset, "__sps"), "poly", i1), "__sps"), "stereo_delay"), "right_delay")
     );
 
-    for (Index i1 = 0; i1 < 4; i1++) this->poly[i1]->p_08->param_08_setPresetValue(
+    for (Index i1 = 0; i1 < 12; i1++) this->poly[i1]->p_08->param_08_setPresetValue(
         getSubState(getSubState(getSubState(getSubStateAt(getSubState(preset, "__sps"), "poly", i1), "__sps"), "osc.analog[1]"), "lfotype")
     );
 
-    for (Index i1 = 0; i1 < 4; i1++) this->poly[i1]->p_08->param_09_setPresetValue(
+    for (Index i1 = 0; i1 < 12; i1++) this->poly[i1]->p_08->param_09_setPresetValue(
         getSubState(getSubState(getSubState(getSubStateAt(getSubState(preset, "__sps"), "poly", i1), "__sps"), "osc.analog[1]"), "on")
     );
 
-    for (Index i1 = 0; i1 < 4; i1++) this->poly[i1]->p_08->param_10_setPresetValue(
+    for (Index i1 = 0; i1 < 12; i1++) this->poly[i1]->p_08->param_10_setPresetValue(
         getSubState(getSubState(getSubState(getSubStateAt(getSubState(preset, "__sps"), "poly", i1), "__sps"), "osc.analog[1]"), "jitter")
     );
 
-    for (Index i1 = 0; i1 < 4; i1++) this->poly[i1]->p_08->param_11_setPresetValue(
+    for (Index i1 = 0; i1 < 12; i1++) this->poly[i1]->p_08->param_11_setPresetValue(
         getSubState(getSubState(getSubState(getSubStateAt(getSubState(preset, "__sps"), "poly", i1), "__sps"), "osc.analog[1]"), "smooth")
     );
 
-    for (Index i1 = 0; i1 < 4; i1++) this->poly[i1]->p_08->param_12_setPresetValue(
+    for (Index i1 = 0; i1 < 12; i1++) this->poly[i1]->p_08->param_12_setPresetValue(
         getSubState(getSubState(getSubState(getSubStateAt(getSubState(preset, "__sps"), "poly", i1), "__sps"), "osc.analog[1]"), "pulsewidth")
     );
 }
@@ -378,37 +380,42 @@ void setParameterValue(ParameterIndex index, ParameterValue v, MillisecondTime t
     switch (index) {
     case 0:
         {
-        this->param_19_value_set(v);
+        this->param_20_value_set(v);
         break;
         }
     case 1:
         {
-        this->param_20_value_set(v);
+        this->param_21_value_set(v);
         break;
         }
     case 2:
         {
-        this->param_21_value_set(v);
+        this->param_22_value_set(v);
         break;
         }
     case 3:
         {
-        this->param_22_value_set(v);
+        this->param_23_value_set(v);
         break;
         }
     case 4:
         {
-        this->param_23_value_set(v);
+        this->param_24_value_set(v);
         break;
         }
     case 5:
         {
-        this->param_24_value_set(v);
+        this->param_25_value_set(v);
+        break;
+        }
+    case 6:
+        {
+        this->param_26_value_set(v);
         break;
         }
     default:
         {
-        index -= 6;
+        index -= 7;
 
         if (index < this->poly[0]->getNumParameters())
             this->poly[0]->setPolyParameterValue(this->poly, index, v, time);
@@ -434,31 +441,35 @@ ParameterValue getParameterValue(ParameterIndex index)  {
     switch (index) {
     case 0:
         {
-        return this->param_19_value;
+        return this->param_20_value;
         }
     case 1:
         {
-        return this->param_20_value;
+        return this->param_21_value;
         }
     case 2:
         {
-        return this->param_21_value;
+        return this->param_22_value;
         }
     case 3:
         {
-        return this->param_22_value;
+        return this->param_23_value;
         }
     case 4:
         {
-        return this->param_23_value;
+        return this->param_24_value;
         }
     case 5:
         {
-        return this->param_24_value;
+        return this->param_25_value;
+        }
+    case 6:
+        {
+        return this->param_26_value;
         }
     default:
         {
-        index -= 6;
+        index -= 7;
 
         if (index < this->poly[0]->getNumParameters())
             return this->poly[0]->getPolyParameterValue(this->poly, index);
@@ -477,7 +488,7 @@ ParameterIndex getNumSignalOutParameters() const {
 }
 
 ParameterIndex getNumParameters() const {
-    return 6 + this->poly[0]->getNumParameters();
+    return 7 + this->poly[0]->getNumParameters();
 }
 
 ConstCharPointer getParameterName(ParameterIndex index) const {
@@ -496,19 +507,23 @@ ConstCharPointer getParameterName(ParameterIndex index) const {
         }
     case 3:
         {
-        return "mod_index";
+        return "harmonicGlis";
         }
     case 4:
         {
-        return "mod_index_lfo_depth";
+        return "mod_index";
         }
     case 5:
+        {
+        return "mod_index_lfo_depth";
+        }
+    case 6:
         {
         return "modi_index_lfo_freq";
         }
     default:
         {
-        index -= 6;
+        index -= 7;
 
         if (index < this->poly[0]->getNumParameters()) {
             {
@@ -537,19 +552,23 @@ ConstCharPointer getParameterId(ParameterIndex index) const {
         }
     case 3:
         {
-        return "mod_index";
+        return "harmonicGlis";
         }
     case 4:
         {
-        return "mod_index_lfo_depth";
+        return "mod_index";
         }
     case 5:
+        {
+        return "mod_index_lfo_depth";
+        }
+    case 6:
         {
         return "modi_index_lfo_freq";
         }
     default:
         {
-        index -= 6;
+        index -= 7;
 
         if (index < this->poly[0]->getNumParameters()) {
             {
@@ -625,6 +644,25 @@ void getParameterInfo(ParameterIndex index, ParameterInfo * info) const {
         case 3:
             {
             info->type = ParameterTypeNumber;
+            info->initialValue = 200;
+            info->min = 40;
+            info->max = 7500;
+            info->exponent = 1;
+            info->steps = 0;
+            info->debug = false;
+            info->saveable = true;
+            info->transmittable = true;
+            info->initialized = true;
+            info->visible = true;
+            info->displayName = "";
+            info->unit = "";
+            info->ioType = IOTypeUndefined;
+            info->signalIndex = INVALID_INDEX;
+            break;
+            }
+        case 4:
+            {
+            info->type = ParameterTypeNumber;
             info->initialValue = 1;
             info->min = 0.1;
             info->max = 10;
@@ -641,7 +679,7 @@ void getParameterInfo(ParameterIndex index, ParameterInfo * info) const {
             info->signalIndex = INVALID_INDEX;
             break;
             }
-        case 4:
+        case 5:
             {
             info->type = ParameterTypeNumber;
             info->initialValue = 0;
@@ -660,7 +698,7 @@ void getParameterInfo(ParameterIndex index, ParameterInfo * info) const {
             info->signalIndex = INVALID_INDEX;
             break;
             }
-        case 5:
+        case 6:
             {
             info->type = ParameterTypeNumber;
             info->initialValue = 0.2;
@@ -681,10 +719,10 @@ void getParameterInfo(ParameterIndex index, ParameterInfo * info) const {
             }
         default:
             {
-            index -= 6;
+            index -= 7;
 
             if (index < this->poly[0]->getNumParameters()) {
-                for (Index i = 0; i < 4; i++) {
+                for (Index i = 0; i < 12; i++) {
                     this->poly[i]->getParameterInfo(index, info);
                 }
             }
@@ -711,8 +749,8 @@ ParameterValue applyStepsToNormalizedParameterValue(ParameterValue normalizedVal
 
 ParameterValue convertToNormalizedParameterValue(ParameterIndex index, ParameterValue value) const {
     switch (index) {
-    case 4:
     case 5:
+    case 6:
         {
         {
             value = (value < 0 ? 0 : (value > 10 ? 10 : value));
@@ -728,6 +766,14 @@ ParameterValue convertToNormalizedParameterValue(ParameterIndex index, Parameter
             return normalizedValue;
         }
         }
+    case 3:
+        {
+        {
+            value = (value < 40 ? 40 : (value > 7500 ? 7500 : value));
+            ParameterValue normalizedValue = (value - 40) / (7500 - 40);
+            return normalizedValue;
+        }
+        }
     case 1:
         {
         return value = rnbo_log2((value / (number)20 <= 0.0000000001 ? 0.0000000001 : value / (number)20)) / (number)10, (value <= 0.0 ? 0.0 : (value >= 1.0 ? 1.0 : value));
@@ -740,7 +786,7 @@ ParameterValue convertToNormalizedParameterValue(ParameterIndex index, Parameter
             return normalizedValue;
         }
         }
-    case 3:
+    case 4:
         {
         {
             value = (value < 0.1 ? 0.1 : (value > 10 ? 10 : value));
@@ -750,7 +796,7 @@ ParameterValue convertToNormalizedParameterValue(ParameterIndex index, Parameter
         }
     default:
         {
-        index -= 6;
+        index -= 7;
 
         if (index < this->poly[0]->getNumParameters()) {
             {
@@ -767,8 +813,8 @@ ParameterValue convertFromNormalizedParameterValue(ParameterIndex index, Paramet
     value = (value < 0 ? 0 : (value > 1 ? 1 : value));
 
     switch (index) {
-    case 4:
     case 5:
+    case 6:
         {
         {
             {
@@ -792,6 +838,14 @@ ParameterValue convertFromNormalizedParameterValue(ParameterIndex index, Paramet
             }
         }
         }
+    case 3:
+        {
+        {
+            {
+                return 40 + value * (7500 - 40);
+            }
+        }
+        }
     case 2:
         {
         {
@@ -800,7 +854,7 @@ ParameterValue convertFromNormalizedParameterValue(ParameterIndex index, Paramet
             }
         }
         }
-    case 3:
+    case 4:
         {
         {
             {
@@ -810,7 +864,7 @@ ParameterValue convertFromNormalizedParameterValue(ParameterIndex index, Paramet
         }
     default:
         {
-        index -= 6;
+        index -= 7;
 
         if (index < this->poly[0]->getNumParameters()) {
             {
@@ -827,31 +881,35 @@ ParameterValue constrainParameterValue(ParameterIndex index, ParameterValue valu
     switch (index) {
     case 0:
         {
-        return this->param_19_value_constrain(value);
+        return this->param_20_value_constrain(value);
         }
     case 1:
         {
-        return this->param_20_value_constrain(value);
+        return this->param_21_value_constrain(value);
         }
     case 2:
         {
-        return this->param_21_value_constrain(value);
+        return this->param_22_value_constrain(value);
         }
     case 3:
         {
-        return this->param_22_value_constrain(value);
+        return this->param_23_value_constrain(value);
         }
     case 4:
         {
-        return this->param_23_value_constrain(value);
+        return this->param_24_value_constrain(value);
         }
     case 5:
         {
-        return this->param_24_value_constrain(value);
+        return this->param_25_value_constrain(value);
+        }
+    case 6:
+        {
+        return this->param_26_value_constrain(value);
         }
     default:
         {
-        index -= 6;
+        index -= 7;
 
         if (index < this->poly[0]->getNumParameters()) {
             {
@@ -868,7 +926,7 @@ void processNumMessage(MessageTag tag, MessageTag objectId, MillisecondTime time
     RNBO_UNUSED(objectId);
     this->updateTime(time, (ENGINE*)nullptr);
 
-    for (Index i = 0; i < 4; i++) {
+    for (Index i = 0; i < 12; i++) {
         this->poly[i]->processNumMessage(tag, objectId, time, payload);
     }
 }
@@ -882,7 +940,7 @@ void processListMessage(
     RNBO_UNUSED(objectId);
     this->updateTime(time, (ENGINE*)nullptr);
 
-    for (Index i = 0; i < 4; i++) {
+    for (Index i = 0; i < 12; i++) {
         this->poly[i]->processListMessage(tag, objectId, time, payload);
     }
 }
@@ -891,7 +949,7 @@ void processBangMessage(MessageTag tag, MessageTag objectId, MillisecondTime tim
     RNBO_UNUSED(objectId);
     this->updateTime(time, (ENGINE*)nullptr);
 
-    for (Index i = 0; i < 4; i++) {
+    for (Index i = 0; i < 12; i++) {
         this->poly[i]->processBangMessage(tag, objectId, time);
     }
 }
@@ -923,16 +981,16 @@ const MessageInfo& getMessageInfo(MessageIndex index) const {
 
 protected:
 
-class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
+class RNBOSubpatcher_194 : public PatcherInterfaceImpl {
     
     friend class rnbomatic;
     
     public:
     
-    RNBOSubpatcher_971()
+    RNBOSubpatcher_194()
     {}
     
-    ~RNBOSubpatcher_971()
+    ~RNBOSubpatcher_194()
     {
         deallocateSignals();
     }
@@ -1092,8 +1150,6 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             n
         );
     
-        this->signaladder_01_perform(this->signals[11], out3, out3, n);
-    
         this->p_06_perform(
             this->signals[0],
             this->signals[1],
@@ -1103,16 +1159,10 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             n
         );
     
-        this->p_05_perform(
-            this->signals[9],
-            this->signals[8],
-            this->signals[11],
-            this->dummyBuffer,
-            n
-        );
+        this->p_05_perform(this->signals[9], this->signals[8], this->signals[1], this->dummyBuffer, n);
     
         this->biquad_tilde_01_perform(
-            this->signals[11],
+            this->signals[1],
             this->signals[3],
             this->signals[4],
             this->signals[5],
@@ -1123,8 +1173,9 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         );
     
         this->p_07_perform(this->signals[8], this->signals[7], this->signals[6], n);
-        this->signaladder_02_perform(this->signals[7], out1, out1, n);
-        this->signaladder_03_perform(this->signals[6], out2, out2, n);
+        this->signaladder_01_perform(this->signals[7], out1, out1, n);
+        this->signaladder_02_perform(this->signals[6], out2, out2, n);
+        this->signaladder_03_perform(this->signals[11], out3, out3, n);
         this->stackprotect_perform(n);
         this->audioProcessSampleCount += this->vs;
     }
@@ -1273,9 +1324,14 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             this->param_18_value_set(v);
             break;
             }
+        case 6:
+            {
+            this->param_19_value_set(v);
+            break;
+            }
         default:
             {
-            index -= 6;
+            index -= 7;
     
             if (index < this->p_05->getNumParameters())
                 this->p_05->setParameterValue(index, v, time);
@@ -1338,9 +1394,13 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             {
             return this->param_18_value;
             }
+        case 6:
+            {
+            return this->param_19_value;
+            }
         default:
             {
-            index -= 6;
+            index -= 7;
     
             if (index < this->p_05->getNumParameters())
                 return this->p_05->getParameterValue(index);
@@ -1374,7 +1434,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
     }
     
     ParameterIndex getNumParameters() const {
-        return 6 + this->p_05->getNumParameters() + this->p_06->getNumParameters() + this->p_07->getNumParameters() + this->p_08->getNumParameters();
+        return 7 + this->p_05->getNumParameters() + this->p_06->getNumParameters() + this->p_07->getNumParameters() + this->p_08->getNumParameters();
     }
     
     ConstCharPointer getParameterName(ParameterIndex index) const {
@@ -1393,19 +1453,23 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             }
         case 3:
             {
-            return "mod_index";
+            return "harmonicGlis";
             }
         case 4:
             {
-            return "mod_index_lfo_depth";
+            return "mod_index";
             }
         case 5:
+            {
+            return "mod_index_lfo_depth";
+            }
+        case 6:
             {
             return "modi_index_lfo_freq";
             }
         default:
             {
-            index -= 6;
+            index -= 7;
     
             if (index < this->p_05->getNumParameters())
                 return this->p_05->getParameterName(index);
@@ -1446,19 +1510,23 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             }
         case 3:
             {
-            return "poly/mod_index";
+            return "poly/harmonicGlis";
             }
         case 4:
             {
-            return "poly/mod_index_lfo_depth";
+            return "poly/mod_index";
             }
         case 5:
+            {
+            return "poly/mod_index_lfo_depth";
+            }
+        case 6:
             {
             return "poly/modi_index_lfo_freq";
             }
         default:
             {
-            index -= 6;
+            index -= 7;
     
             if (index < this->p_05->getNumParameters())
                 return this->p_05->getParameterId(index);
@@ -1546,6 +1614,25 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             case 3:
                 {
                 info->type = ParameterTypeNumber;
+                info->initialValue = 200;
+                info->min = 40;
+                info->max = 7500;
+                info->exponent = 1;
+                info->steps = 0;
+                info->debug = false;
+                info->saveable = true;
+                info->transmittable = true;
+                info->initialized = true;
+                info->visible = false;
+                info->displayName = "";
+                info->unit = "";
+                info->ioType = IOTypeUndefined;
+                info->signalIndex = INVALID_INDEX;
+                break;
+                }
+            case 4:
+                {
+                info->type = ParameterTypeNumber;
                 info->initialValue = 1;
                 info->min = 0.1;
                 info->max = 10;
@@ -1562,7 +1649,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                 info->signalIndex = INVALID_INDEX;
                 break;
                 }
-            case 4:
+            case 5:
                 {
                 info->type = ParameterTypeNumber;
                 info->initialValue = 0;
@@ -1581,7 +1668,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                 info->signalIndex = INVALID_INDEX;
                 break;
                 }
-            case 5:
+            case 6:
                 {
                 info->type = ParameterTypeNumber;
                 info->initialValue = 0.2;
@@ -1602,7 +1689,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                 }
             default:
                 {
-                index -= 6;
+                index -= 7;
     
                 if (index < this->p_05->getNumParameters())
                     this->p_05->getParameterInfo(index, info);
@@ -1644,8 +1731,8 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
     
     ParameterValue convertToNormalizedParameterValue(ParameterIndex index, ParameterValue value) const {
         switch (index) {
-        case 4:
         case 5:
+        case 6:
             {
             {
                 value = (value < 0 ? 0 : (value > 10 ? 10 : value));
@@ -1661,6 +1748,14 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                 return normalizedValue;
             }
             }
+        case 3:
+            {
+            {
+                value = (value < 40 ? 40 : (value > 7500 ? 7500 : value));
+                ParameterValue normalizedValue = (value - 40) / (7500 - 40);
+                return normalizedValue;
+            }
+            }
         case 1:
             {
             return value = rnbo_log2((value / (number)20 <= 0.0000000001 ? 0.0000000001 : value / (number)20)) / (number)10, (value <= 0.0 ? 0.0 : (value >= 1.0 ? 1.0 : value));
@@ -1673,7 +1768,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                 return normalizedValue;
             }
             }
-        case 3:
+        case 4:
             {
             {
                 value = (value < 0.1 ? 0.1 : (value > 10 ? 10 : value));
@@ -1683,7 +1778,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             }
         default:
             {
-            index -= 6;
+            index -= 7;
     
             if (index < this->p_05->getNumParameters())
                 return this->p_05->convertToNormalizedParameterValue(index, value);
@@ -1712,8 +1807,8 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         value = (value < 0 ? 0 : (value > 1 ? 1 : value));
     
         switch (index) {
-        case 4:
         case 5:
+        case 6:
             {
             {
                 {
@@ -1737,6 +1832,14 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                 }
             }
             }
+        case 3:
+            {
+            {
+                {
+                    return 40 + value * (7500 - 40);
+                }
+            }
+            }
         case 2:
             {
             {
@@ -1745,7 +1848,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                 }
             }
             }
-        case 3:
+        case 4:
             {
             {
                 {
@@ -1755,7 +1858,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             }
         default:
             {
-            index -= 6;
+            index -= 7;
     
             if (index < this->p_05->getNumParameters())
                 return this->p_05->convertFromNormalizedParameterValue(index, value);
@@ -1806,9 +1909,13 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             {
             return this->param_18_value_constrain(value);
             }
+        case 6:
+            {
+            return this->param_19_value_constrain(value);
+            }
         default:
             {
-            index -= 6;
+            index -= 7;
     
             if (index < this->p_05->getNumParameters())
                 return this->p_05->constrainParameterValue(index, value);
@@ -1998,17 +2105,17 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
     
     protected:
     
-    class RNBOSubpatcher_967 : public PatcherInterfaceImpl {
+    class RNBOSubpatcher_190 : public PatcherInterfaceImpl {
             
-            friend class RNBOSubpatcher_971;
+            friend class RNBOSubpatcher_194;
             friend class rnbomatic;
             
             public:
             
-            RNBOSubpatcher_967()
+            RNBOSubpatcher_190()
             {}
             
-            ~RNBOSubpatcher_967()
+            ~RNBOSubpatcher_190()
             {
                 deallocateSignals();
             }
@@ -2547,14 +2654,14 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             	updateTime(time, (EXTERNALENGINE*)nullptr);
             }
             
-            RNBOSubpatcher_967* operator->() {
+            RNBOSubpatcher_190* operator->() {
                 return this;
             }
-            const RNBOSubpatcher_967* operator->() const {
+            const RNBOSubpatcher_190* operator->() const {
                 return this;
             }
-            virtual RNBOSubpatcher_971* getPatcher() const {
-                return static_cast<RNBOSubpatcher_971 *>(_parentPatcher);
+            virtual RNBOSubpatcher_194* getPatcher() const {
+                return static_cast<RNBOSubpatcher_194 *>(_parentPatcher);
             }
             
             rnbomatic* getTopLevelPatcher() {
@@ -3306,17 +3413,17 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                 bool _isInitialized = false;
     };
     
-    class RNBOSubpatcher_968 : public PatcherInterfaceImpl {
+    class RNBOSubpatcher_191 : public PatcherInterfaceImpl {
             
-            friend class RNBOSubpatcher_971;
+            friend class RNBOSubpatcher_194;
             friend class rnbomatic;
             
             public:
             
-            RNBOSubpatcher_968()
+            RNBOSubpatcher_191()
             {}
             
-            ~RNBOSubpatcher_968()
+            ~RNBOSubpatcher_191()
             {
                 deallocateSignals();
             }
@@ -3578,14 +3685,14 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             	updateTime(time, (EXTERNALENGINE*)nullptr);
             }
             
-            RNBOSubpatcher_968* operator->() {
+            RNBOSubpatcher_191* operator->() {
                 return this;
             }
-            const RNBOSubpatcher_968* operator->() const {
+            const RNBOSubpatcher_191* operator->() const {
                 return this;
             }
-            virtual RNBOSubpatcher_971* getPatcher() const {
-                return static_cast<RNBOSubpatcher_971 *>(_parentPatcher);
+            virtual RNBOSubpatcher_194* getPatcher() const {
+                return static_cast<RNBOSubpatcher_194 *>(_parentPatcher);
             }
             
             rnbomatic* getTopLevelPatcher() {
@@ -4024,17 +4131,17 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                 bool _isInitialized = false;
     };
     
-    class RNBOSubpatcher_969 : public PatcherInterfaceImpl {
+    class RNBOSubpatcher_192 : public PatcherInterfaceImpl {
             
-            friend class RNBOSubpatcher_971;
+            friend class RNBOSubpatcher_194;
             friend class rnbomatic;
             
             public:
             
-            RNBOSubpatcher_969()
+            RNBOSubpatcher_192()
             {}
             
-            ~RNBOSubpatcher_969()
+            ~RNBOSubpatcher_192()
             {
                 deallocateSignals();
             }
@@ -4500,14 +4607,14 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             	updateTime(time, (EXTERNALENGINE*)nullptr);
             }
             
-            RNBOSubpatcher_969* operator->() {
+            RNBOSubpatcher_192* operator->() {
                 return this;
             }
-            const RNBOSubpatcher_969* operator->() const {
+            const RNBOSubpatcher_192* operator->() const {
                 return this;
             }
-            virtual RNBOSubpatcher_971* getPatcher() const {
-                return static_cast<RNBOSubpatcher_971 *>(_parentPatcher);
+            virtual RNBOSubpatcher_194* getPatcher() const {
+                return static_cast<RNBOSubpatcher_194 *>(_parentPatcher);
             }
             
             rnbomatic* getTopLevelPatcher() {
@@ -5848,17 +5955,17 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                 bool _isInitialized = false;
     };
     
-    class RNBOSubpatcher_970 : public PatcherInterfaceImpl {
+    class RNBOSubpatcher_193 : public PatcherInterfaceImpl {
             
-            friend class RNBOSubpatcher_971;
+            friend class RNBOSubpatcher_194;
             friend class rnbomatic;
             
             public:
             
-            RNBOSubpatcher_970()
+            RNBOSubpatcher_193()
             {}
             
-            ~RNBOSubpatcher_970()
+            ~RNBOSubpatcher_193()
             {
                 deallocateSignals();
             }
@@ -6726,17 +6833,17 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             
             protected:
             
-            class RNBOSubpatcher_963 : public PatcherInterfaceImpl {
+            class RNBOSubpatcher_186 : public PatcherInterfaceImpl {
                         
-                        friend class RNBOSubpatcher_970;
+                        friend class RNBOSubpatcher_193;
                         friend class rnbomatic;
                         
                         public:
                         
-                        RNBOSubpatcher_963()
+                        RNBOSubpatcher_186()
                         {}
                         
-                        ~RNBOSubpatcher_963()
+                        ~RNBOSubpatcher_186()
                         {
                             deallocateSignals();
                         }
@@ -6963,14 +7070,14 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                         	updateTime(time, (EXTERNALENGINE*)nullptr);
                         }
                         
-                        RNBOSubpatcher_963* operator->() {
+                        RNBOSubpatcher_186* operator->() {
                             return this;
                         }
-                        const RNBOSubpatcher_963* operator->() const {
+                        const RNBOSubpatcher_186* operator->() const {
                             return this;
                         }
-                        virtual RNBOSubpatcher_970* getPatcher() const {
-                            return static_cast<RNBOSubpatcher_970 *>(_parentPatcher);
+                        virtual RNBOSubpatcher_193* getPatcher() const {
+                            return static_cast<RNBOSubpatcher_193 *>(_parentPatcher);
                         }
                         
                         rnbomatic* getTopLevelPatcher() {
@@ -7195,17 +7302,17 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                             bool _isInitialized = false;
             };
             
-            class RNBOSubpatcher_964 : public PatcherInterfaceImpl {
+            class RNBOSubpatcher_187 : public PatcherInterfaceImpl {
                         
-                        friend class RNBOSubpatcher_970;
+                        friend class RNBOSubpatcher_193;
                         friend class rnbomatic;
                         
                         public:
                         
-                        RNBOSubpatcher_964()
+                        RNBOSubpatcher_187()
                         {}
                         
-                        ~RNBOSubpatcher_964()
+                        ~RNBOSubpatcher_187()
                         {
                             deallocateSignals();
                         }
@@ -7434,14 +7541,14 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                         	updateTime(time, (EXTERNALENGINE*)nullptr);
                         }
                         
-                        RNBOSubpatcher_964* operator->() {
+                        RNBOSubpatcher_187* operator->() {
                             return this;
                         }
-                        const RNBOSubpatcher_964* operator->() const {
+                        const RNBOSubpatcher_187* operator->() const {
                             return this;
                         }
-                        virtual RNBOSubpatcher_970* getPatcher() const {
-                            return static_cast<RNBOSubpatcher_970 *>(_parentPatcher);
+                        virtual RNBOSubpatcher_193* getPatcher() const {
+                            return static_cast<RNBOSubpatcher_193 *>(_parentPatcher);
                         }
                         
                         rnbomatic* getTopLevelPatcher() {
@@ -7786,17 +7893,17 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                             bool _isInitialized = false;
             };
             
-            class RNBOSubpatcher_965 : public PatcherInterfaceImpl {
+            class RNBOSubpatcher_188 : public PatcherInterfaceImpl {
                         
-                        friend class RNBOSubpatcher_970;
+                        friend class RNBOSubpatcher_193;
                         friend class rnbomatic;
                         
                         public:
                         
-                        RNBOSubpatcher_965()
+                        RNBOSubpatcher_188()
                         {}
                         
-                        ~RNBOSubpatcher_965()
+                        ~RNBOSubpatcher_188()
                         {
                             deallocateSignals();
                         }
@@ -8044,14 +8151,14 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                         	updateTime(time, (EXTERNALENGINE*)nullptr);
                         }
                         
-                        RNBOSubpatcher_965* operator->() {
+                        RNBOSubpatcher_188* operator->() {
                             return this;
                         }
-                        const RNBOSubpatcher_965* operator->() const {
+                        const RNBOSubpatcher_188* operator->() const {
                             return this;
                         }
-                        virtual RNBOSubpatcher_970* getPatcher() const {
-                            return static_cast<RNBOSubpatcher_970 *>(_parentPatcher);
+                        virtual RNBOSubpatcher_193* getPatcher() const {
+                            return static_cast<RNBOSubpatcher_193 *>(_parentPatcher);
                         }
                         
                         rnbomatic* getTopLevelPatcher() {
@@ -8428,17 +8535,17 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                             bool _isInitialized = false;
             };
             
-            class RNBOSubpatcher_966 : public PatcherInterfaceImpl {
+            class RNBOSubpatcher_189 : public PatcherInterfaceImpl {
                         
-                        friend class RNBOSubpatcher_970;
+                        friend class RNBOSubpatcher_193;
                         friend class rnbomatic;
                         
                         public:
                         
-                        RNBOSubpatcher_966()
+                        RNBOSubpatcher_189()
                         {}
                         
-                        ~RNBOSubpatcher_966()
+                        ~RNBOSubpatcher_189()
                         {
                             deallocateSignals();
                         }
@@ -8686,14 +8793,14 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                         	updateTime(time, (EXTERNALENGINE*)nullptr);
                         }
                         
-                        RNBOSubpatcher_966* operator->() {
+                        RNBOSubpatcher_189* operator->() {
                             return this;
                         }
-                        const RNBOSubpatcher_966* operator->() const {
+                        const RNBOSubpatcher_189* operator->() const {
                             return this;
                         }
-                        virtual RNBOSubpatcher_970* getPatcher() const {
-                            return static_cast<RNBOSubpatcher_970 *>(_parentPatcher);
+                        virtual RNBOSubpatcher_193* getPatcher() const {
+                            return static_cast<RNBOSubpatcher_193 *>(_parentPatcher);
                         }
                         
                         rnbomatic* getTopLevelPatcher() {
@@ -9092,14 +9199,14 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             	updateTime(time, (EXTERNALENGINE*)nullptr);
             }
             
-            RNBOSubpatcher_970* operator->() {
+            RNBOSubpatcher_193* operator->() {
                 return this;
             }
-            const RNBOSubpatcher_970* operator->() const {
+            const RNBOSubpatcher_193* operator->() const {
                 return this;
             }
-            virtual RNBOSubpatcher_971* getPatcher() const {
-                return static_cast<RNBOSubpatcher_971 *>(_parentPatcher);
+            virtual RNBOSubpatcher_194* getPatcher() const {
+                return static_cast<RNBOSubpatcher_194 *>(_parentPatcher);
             }
             
             rnbomatic* getTopLevelPatcher() {
@@ -10484,10 +10591,10 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
                 Int _noteNumber;
                 Index isMuted;
                 ParameterIndex parameterOffset;
-                RNBOSubpatcher_963 p_01;
-                RNBOSubpatcher_964 p_02;
-                RNBOSubpatcher_965 p_03;
-                RNBOSubpatcher_966 p_04;
+                RNBOSubpatcher_186 p_01;
+                RNBOSubpatcher_187 p_02;
+                RNBOSubpatcher_188 p_03;
+                RNBOSubpatcher_189 p_04;
                 bool _isInitialized = false;
     };
     
@@ -10497,10 +10604,10 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
     	updateTime(time, (EXTERNALENGINE*)nullptr);
     }
     
-    RNBOSubpatcher_971* operator->() {
+    RNBOSubpatcher_194* operator->() {
         return this;
     }
-    const RNBOSubpatcher_971* operator->() const {
+    const RNBOSubpatcher_194* operator->() const {
         return this;
     }
     virtual rnbomatic* getPatcher() const {
@@ -10588,7 +10695,8 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             this->param_16_lastValue = this->param_16_value;
         }
     
-        this->slide_tilde_10_x_set(v);
+        this->slide_tilde_03_down_set(v);
+        this->slide_tilde_03_up_set(v);
     }
     
     void param_17_value_set(number v) {
@@ -10601,7 +10709,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
             this->param_17_lastValue = this->param_17_value;
         }
     
-        this->slide_tilde_13_x_set(v);
+        this->slide_tilde_10_x_set(v);
     }
     
     void param_18_value_set(number v) {
@@ -10612,6 +10720,19 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         if (this->param_18_value != this->param_18_lastValue) {
             this->getEngine()->presetTouched();
             this->param_18_lastValue = this->param_18_value;
+        }
+    
+        this->slide_tilde_13_x_set(v);
+    }
+    
+    void param_19_value_set(number v) {
+        v = this->param_19_value_constrain(v);
+        this->param_19_value = v;
+        this->sendParameter(6, false);
+    
+        if (this->param_19_value != this->param_19_lastValue) {
+            this->getEngine()->presetTouched();
+            this->param_19_lastValue = this->param_19_value;
         }
     
         this->slide_tilde_12_x_set(v);
@@ -10736,7 +10857,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         this->p_08->setParameterOffset(this->getParameterOffset(this->p_08));
     }
     
-    ParameterValue getPolyParameterValue(RNBOSubpatcher_971* voices, ParameterIndex index)  {
+    ParameterValue getPolyParameterValue(RNBOSubpatcher_194* voices, ParameterIndex index)  {
         switch (index) {
         default:
             {
@@ -10746,7 +10867,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
     }
     
     void setPolyParameterValue(
-        RNBOSubpatcher_971* voices,
+        RNBOSubpatcher_194* voices,
         ParameterIndex index,
         ParameterValue value,
         MillisecondTime time
@@ -10754,7 +10875,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         switch (index) {
         default:
             {
-            for (Index i = 0; i < 4; i++)
+            for (Index i = 0; i < 12; i++)
                 voices[i]->setParameterValue(index, value, time);
             }
         }
@@ -10766,16 +10887,16 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
     
     ParameterIndex getParameterOffset(BaseInterface& subpatcher) const {
         if (addressOf(subpatcher) == addressOf(this->p_05))
-            return 6;
+            return 7;
     
         if (addressOf(subpatcher) == addressOf(this->p_06))
-            return 6 + this->p_05->getNumParameters();
+            return 7 + this->p_05->getNumParameters();
     
         if (addressOf(subpatcher) == addressOf(this->p_07))
-            return 6 + this->p_05->getNumParameters() + this->p_06->getNumParameters();
+            return 7 + this->p_05->getNumParameters() + this->p_06->getNumParameters();
     
         if (addressOf(subpatcher) == addressOf(this->p_08))
-            return 6 + this->p_05->getNumParameters() + this->p_06->getNumParameters() + this->p_07->getNumParameters();
+            return 7 + this->p_05->getNumParameters() + this->p_06->getNumParameters() + this->p_07->getNumParameters();
     
         return 0;
     }
@@ -10850,6 +10971,19 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
     }
     
     number param_16_value_constrain(number v) const {
+        v = (v > 7500 ? 7500 : (v < 40 ? 40 : v));
+        return v;
+    }
+    
+    void slide_tilde_03_down_set(number v) {
+        this->slide_tilde_03_down = v;
+    }
+    
+    void slide_tilde_03_up_set(number v) {
+        this->slide_tilde_03_up = v;
+    }
+    
+    number param_17_value_constrain(number v) const {
         v = (v > 10 ? 10 : (v < 0.1 ? 0.1 : v));
         return v;
     }
@@ -10858,7 +10992,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         this->slide_tilde_10_x = v;
     }
     
-    number param_17_value_constrain(number v) const {
+    number param_18_value_constrain(number v) const {
         v = (v > 10 ? 10 : (v < 0 ? 0 : v));
         return v;
     }
@@ -10867,7 +11001,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         this->slide_tilde_13_x = v;
     }
     
-    number param_18_value_constrain(number v) const {
+    number param_19_value_constrain(number v) const {
         v = (v > 10 ? 10 : (v < 0 ? 0 : v));
         return v;
     }
@@ -11189,11 +11323,11 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
     void ctlin_16_outcontroller_set(number ) {}
     
     void fromnormalized_16_output_set(number v) {
-        this->param_16_value_set(v);
+        this->param_17_value_set(v);
     }
     
     void fromnormalized_16_input_set(number v) {
-        this->fromnormalized_16_output_set(this->fromnormalized(3, v));
+        this->fromnormalized_16_output_set(this->fromnormalized(4, v));
     }
     
     void expr_18_out1_set(number v) {
@@ -11233,11 +11367,9 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
     }
     
     void slide_tilde_03_perform(number x, number up, number down, SampleValue * out1, Index n) {
-        RNBO_UNUSED(down);
-        RNBO_UNUSED(up);
         auto __slide_tilde_03_prev = this->slide_tilde_03_prev;
-        auto iup = this->safediv(1., this->maximum(1., rnbo_abs(40)));
-        auto idown = this->safediv(1., this->maximum(1., rnbo_abs(40)));
+        auto iup = this->safediv(1., this->maximum(1., rnbo_abs(up)));
+        auto idown = this->safediv(1., this->maximum(1., rnbo_abs(down)));
         Index i;
     
         for (i = 0; i < (Index)n; i++) {
@@ -11740,19 +11872,6 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         }
     }
     
-    void signaladder_01_perform(
-        const SampleValue * in1,
-        const SampleValue * in2,
-        SampleValue * out,
-        Index n
-    ) {
-        Index i;
-    
-        for (i = 0; i < (Index)n; i++) {
-            out[(Index)i] = in1[(Index)i] + in2[(Index)i];
-        }
-    }
-    
     void p_06_perform(
         const SampleValue * in1,
         const SampleValue * in2,
@@ -11815,6 +11934,19 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
     
         SampleArray<2> outs = {out1, out2};
         this->p_07->process(ins, 1, outs, 2, n);
+    }
+    
+    void signaladder_01_perform(
+        const SampleValue * in1,
+        const SampleValue * in2,
+        SampleValue * out,
+        Index n
+    ) {
+        Index i;
+    
+        for (i = 0; i < (Index)n; i++) {
+            out[(Index)i] = in1[(Index)i] + in2[(Index)i];
+        }
     }
     
     void signaladder_02_perform(
@@ -12429,6 +12561,17 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         this->param_18_value_set(preset["value"]);
     }
     
+    void param_19_getPresetValue(PatcherStateInterface& preset) {
+        preset["value"] = this->param_19_value;
+    }
+    
+    void param_19_setPresetValue(PatcherStateInterface& preset) {
+        if ((bool)(stateIsEmpty(preset)))
+            return;
+    
+        this->param_19_value_set(preset["value"]);
+    }
+    
     void numberobj_01_init() {
         this->numberobj_01_currentFormat = 6;
     }
@@ -12547,8 +12690,8 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         biquad_tilde_01_b2 = 0;
         p_07_target = 0;
         slide_tilde_03_x = 0;
-        slide_tilde_03_up = 40;
-        slide_tilde_03_down = 40;
+        slide_tilde_03_up = 5000;
+        slide_tilde_03_down = 5000;
         param_13_value = 0.1;
         slide_tilde_04_x = 0;
         slide_tilde_04_up = 40;
@@ -12576,6 +12719,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         slide_tilde_08_x = 0;
         slide_tilde_08_up = 2500;
         slide_tilde_08_down = 2500;
+        param_16_value = 200;
         slide_tilde_09_x = 0;
         slide_tilde_09_up = 2500;
         slide_tilde_09_down = 2500;
@@ -12587,7 +12731,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         slide_tilde_10_x = 0;
         slide_tilde_10_up = 40;
         slide_tilde_10_down = 40;
-        param_16_value = 1;
+        param_17_value = 1;
         slide_tilde_11_x = 0;
         slide_tilde_11_up = 2500;
         slide_tilde_11_down = 2500;
@@ -12600,8 +12744,8 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         slide_tilde_13_x = 0;
         slide_tilde_13_up = 500;
         slide_tilde_13_down = 500;
-        param_17_value = 0;
-        param_18_value = 0.2;
+        param_18_value = 0;
+        param_19_value = 0.2;
         numberobj_01_value = 0;
         numberobj_01_value_setter(numberobj_01_value);
         numberobj_02_value = 0;
@@ -12708,14 +12852,15 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         ip_08_sigbuf = nullptr;
         ip_08_setupDone = false;
         slide_tilde_08_prev = 0;
+        param_16_lastValue = 0;
         slide_tilde_09_prev = 0;
         slide_tilde_10_prev = 0;
-        param_16_lastValue = 0;
+        param_17_lastValue = 0;
         slide_tilde_11_prev = 0;
         slide_tilde_12_prev = 0;
         slide_tilde_13_prev = 0;
-        param_17_lastValue = 0;
         param_18_lastValue = 0;
+        param_19_lastValue = 0;
         numberobj_01_currentFormat = 6;
         numberobj_01_lastValue = 0;
         numberobj_02_currentFormat = 6;
@@ -12789,6 +12934,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         number slide_tilde_08_x;
         number slide_tilde_08_up;
         number slide_tilde_08_down;
+        number param_16_value;
         number slide_tilde_09_x;
         number slide_tilde_09_up;
         number slide_tilde_09_down;
@@ -12800,7 +12946,7 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         number slide_tilde_10_x;
         number slide_tilde_10_up;
         number slide_tilde_10_down;
-        number param_16_value;
+        number param_17_value;
         number slide_tilde_11_x;
         number slide_tilde_11_up;
         number slide_tilde_11_down;
@@ -12813,8 +12959,8 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         number slide_tilde_13_x;
         number slide_tilde_13_up;
         number slide_tilde_13_down;
-        number param_17_value;
         number param_18_value;
+        number param_19_value;
         number numberobj_01_value;
         number numberobj_02_value;
         number numberobj_03_value;
@@ -12909,14 +13055,15 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         signal ip_08_sigbuf;
         bool ip_08_setupDone;
         number slide_tilde_08_prev;
+        number param_16_lastValue;
         number slide_tilde_09_prev;
         number slide_tilde_10_prev;
-        number param_16_lastValue;
+        number param_17_lastValue;
         number slide_tilde_11_prev;
         number slide_tilde_12_prev;
         number slide_tilde_13_prev;
-        number param_17_lastValue;
         number param_18_lastValue;
+        number param_19_lastValue;
         Int numberobj_01_currentFormat;
         number numberobj_01_lastValue;
         Int numberobj_02_currentFormat;
@@ -12942,10 +13089,10 @@ class RNBOSubpatcher_971 : public PatcherInterfaceImpl {
         Int _noteNumber;
         Index isMuted;
         ParameterIndex parameterOffset;
-        RNBOSubpatcher_967 p_05;
-        RNBOSubpatcher_968 p_06;
-        RNBOSubpatcher_969 p_07;
-        RNBOSubpatcher_970 p_08;
+        RNBOSubpatcher_190 p_05;
+        RNBOSubpatcher_191 p_06;
+        RNBOSubpatcher_192 p_07;
+        RNBOSubpatcher_193 p_08;
         bool _isInitialized = false;
 };
 
@@ -13030,79 +13177,92 @@ MillisecondTime sampstoms(number samps) {
     return samps * 1000 / this->sr;
 }
 
-void param_19_value_set(number v) {
-    v = this->param_19_value_constrain(v);
-    this->param_19_value = v;
-    this->sendParameter(0, false);
-
-    if (this->param_19_value != this->param_19_lastValue) {
-        this->getEngine()->presetTouched();
-        this->param_19_lastValue = this->param_19_value;
-    }
-
-    this->poly_harmonicity_set(v);
-}
-
 void param_20_value_set(number v) {
     v = this->param_20_value_constrain(v);
     this->param_20_value = v;
-    this->sendParameter(1, false);
+    this->sendParameter(0, false);
 
     if (this->param_20_value != this->param_20_lastValue) {
         this->getEngine()->presetTouched();
         this->param_20_lastValue = this->param_20_value;
     }
 
-    this->poly_filter_set(v);
+    this->poly_harmonicity_set(v);
 }
 
 void param_21_value_set(number v) {
     v = this->param_21_value_constrain(v);
     this->param_21_value = v;
-    this->sendParameter(2, false);
+    this->sendParameter(1, false);
 
     if (this->param_21_value != this->param_21_lastValue) {
         this->getEngine()->presetTouched();
         this->param_21_lastValue = this->param_21_value;
     }
 
-    this->poly_q_set(v);
+    this->poly_filter_set(v);
 }
 
 void param_22_value_set(number v) {
     v = this->param_22_value_constrain(v);
     this->param_22_value = v;
-    this->sendParameter(3, false);
+    this->sendParameter(2, false);
 
     if (this->param_22_value != this->param_22_lastValue) {
         this->getEngine()->presetTouched();
         this->param_22_lastValue = this->param_22_value;
     }
 
-    this->poly_mod_index_set(v);
+    this->poly_q_set(v);
 }
 
 void param_23_value_set(number v) {
     v = this->param_23_value_constrain(v);
     this->param_23_value = v;
-    this->sendParameter(4, false);
+    this->sendParameter(3, false);
 
     if (this->param_23_value != this->param_23_lastValue) {
         this->getEngine()->presetTouched();
         this->param_23_lastValue = this->param_23_value;
     }
 
-    this->poly_mod_index_lfo_depth_set(v);
+    this->poly_harmonicGlis_set(v);
 }
 
 void param_24_value_set(number v) {
     v = this->param_24_value_constrain(v);
     this->param_24_value = v;
-    this->sendParameter(5, false);
+    this->sendParameter(4, false);
 
     if (this->param_24_value != this->param_24_lastValue) {
         this->getEngine()->presetTouched();
         this->param_24_lastValue = this->param_24_value;
+    }
+
+    this->poly_mod_index_set(v);
+}
+
+void param_25_value_set(number v) {
+    v = this->param_25_value_constrain(v);
+    this->param_25_value = v;
+    this->sendParameter(5, false);
+
+    if (this->param_25_value != this->param_25_lastValue) {
+        this->getEngine()->presetTouched();
+        this->param_25_lastValue = this->param_25_value;
+    }
+
+    this->poly_mod_index_lfo_depth_set(v);
+}
+
+void param_26_value_set(number v) {
+    v = this->param_26_value_constrain(v);
+    this->param_26_value = v;
+    this->sendParameter(6, false);
+
+    if (this->param_26_value != this->param_26_lastValue) {
+        this->getEngine()->presetTouched();
+        this->param_26_lastValue = this->param_26_value;
     }
 
     this->poly_modi_index_lfo_freq_set(v);
@@ -13169,7 +13329,7 @@ void fillDataRef(DataRefIndex index, DataRef& ref) {
 }
 
 void allocateDataRefs() {
-    for (Index i = 0; i < 4; i++) {
+    for (Index i = 0; i < 12; i++) {
         this->poly[i]->allocateDataRefs();
     }
 
@@ -13191,7 +13351,7 @@ void allocateDataRefs() {
 void initializeObjects() {
     this->midinotecontroller_01_init();
 
-    for (Index i = 0; i < 4; i++) {
+    for (Index i = 0; i < 12; i++) {
         this->poly[i]->initializeObjects();
     }
 }
@@ -13209,7 +13369,7 @@ void onSampleRateChanged(double ) {}
 void extractState(PatcherStateInterface& ) {}
 
 void applyState() {
-    for (Index i = 0; i < 4; i++) {
+    for (Index i = 0; i < 12; i++) {
 
         this->poly[(Index)i]->setEngineAndPatcher(this->getEngine(), this);
         this->poly[(Index)i]->initialize();
@@ -13220,7 +13380,7 @@ void applyState() {
 
 ParameterIndex getParameterOffset(BaseInterface& subpatcher) const {
     if (addressOf(subpatcher) == addressOf(this->poly[0]))
-        return 6;
+        return 7;
 
     return 0;
 }
@@ -13246,7 +13406,7 @@ void sendOutlet(OutletIndex index, ParameterValue value) {
 void startup() {
     this->updateTime(this->getEngine()->getCurrentTime(), (ENGINE*)nullptr);
 
-    for (Index i = 0; i < 4; i++) {
+    for (Index i = 0; i < 12; i++) {
         this->poly[i]->startup();
     }
 
@@ -13274,83 +13434,100 @@ void startup() {
         this->scheduleParamInit(5, 0);
     }
 
+    {
+        this->scheduleParamInit(6, 0);
+    }
+
     this->processParamInitEvents();
 }
 
-number param_19_value_constrain(number v) const {
+number param_20_value_constrain(number v) const {
     v = (v > 10 ? 10 : (v < 1 ? 1 : v));
     return v;
 }
 
 void poly_harmonicity_set(number v) {
-    for (number i = 0; i < 4; i++) {
+    for (number i = 0; i < 12; i++) {
         if (i + 1 == this->poly_target || 0 == this->poly_target) {
             this->poly[(Index)i]->setParameterValue(0, v, this->_currentTime);
         }
     }
 }
 
-number param_20_value_constrain(number v) const {
+number param_21_value_constrain(number v) const {
     v = (v > 20480 ? 20480 : (v < 20 ? 20 : v));
     return v;
 }
 
 void poly_filter_set(number v) {
-    for (number i = 0; i < 4; i++) {
+    for (number i = 0; i < 12; i++) {
         if (i + 1 == this->poly_target || 0 == this->poly_target) {
             this->poly[(Index)i]->setParameterValue(1, v, this->_currentTime);
         }
     }
 }
 
-number param_21_value_constrain(number v) const {
+number param_22_value_constrain(number v) const {
     v = (v > 4 ? 4 : (v < 0.1 ? 0.1 : v));
     return v;
 }
 
 void poly_q_set(number v) {
-    for (number i = 0; i < 4; i++) {
+    for (number i = 0; i < 12; i++) {
         if (i + 1 == this->poly_target || 0 == this->poly_target) {
             this->poly[(Index)i]->setParameterValue(2, v, this->_currentTime);
         }
     }
 }
 
-number param_22_value_constrain(number v) const {
-    v = (v > 10 ? 10 : (v < 0.1 ? 0.1 : v));
+number param_23_value_constrain(number v) const {
+    v = (v > 7500 ? 7500 : (v < 40 ? 40 : v));
     return v;
 }
 
-void poly_mod_index_set(number v) {
-    for (number i = 0; i < 4; i++) {
+void poly_harmonicGlis_set(number v) {
+    for (number i = 0; i < 12; i++) {
         if (i + 1 == this->poly_target || 0 == this->poly_target) {
             this->poly[(Index)i]->setParameterValue(3, v, this->_currentTime);
         }
     }
 }
 
-number param_23_value_constrain(number v) const {
-    v = (v > 10 ? 10 : (v < 0 ? 0 : v));
+number param_24_value_constrain(number v) const {
+    v = (v > 10 ? 10 : (v < 0.1 ? 0.1 : v));
     return v;
 }
 
-void poly_mod_index_lfo_depth_set(number v) {
-    for (number i = 0; i < 4; i++) {
+void poly_mod_index_set(number v) {
+    for (number i = 0; i < 12; i++) {
         if (i + 1 == this->poly_target || 0 == this->poly_target) {
             this->poly[(Index)i]->setParameterValue(4, v, this->_currentTime);
         }
     }
 }
 
-number param_24_value_constrain(number v) const {
+number param_25_value_constrain(number v) const {
+    v = (v > 10 ? 10 : (v < 0 ? 0 : v));
+    return v;
+}
+
+void poly_mod_index_lfo_depth_set(number v) {
+    for (number i = 0; i < 12; i++) {
+        if (i + 1 == this->poly_target || 0 == this->poly_target) {
+            this->poly[(Index)i]->setParameterValue(5, v, this->_currentTime);
+        }
+    }
+}
+
+number param_26_value_constrain(number v) const {
     v = (v > 10 ? 10 : (v < 0 ? 0 : v));
     return v;
 }
 
 void poly_modi_index_lfo_freq_set(number v) {
-    for (number i = 0; i < 4; i++) {
+    for (number i = 0; i < 12; i++) {
         if (i + 1 == this->poly_target || 0 == this->poly_target) {
-            this->poly[(Index)i]->setParameterValue(5, v, this->_currentTime);
+            this->poly[(Index)i]->setParameterValue(6, v, this->_currentTime);
         }
     }
 }
@@ -13407,11 +13584,11 @@ void poly_midiininternal_set(number v) {
     if (sendlen > 0) {
         number i;
 
-        if (this->poly_target > 0 && this->poly_target <= 4) {
+        if (this->poly_target > 0 && this->poly_target <= 12) {
             i = this->poly_target - 1;
             this->poly[(Index)i]->processMidiEvent(_currentTime, 0, this->poly_mididata, sendlen);
         } else if (this->poly_target == 0) {
-            for (i = 0; i < 4; i++) {
+            for (i = 0; i < 12; i++) {
                 this->poly[(Index)i]->processMidiEvent(_currentTime, 0, this->poly_mididata, sendlen);
             }
         }
@@ -13452,13 +13629,13 @@ template<typename LISTTYPE> void poly_mute_set(const LISTTYPE& v) {
     Index muteState = (Index)(v[1]);
 
     if (voiceNumber == 0) {
-        for (Index i = 0; i < 4; i++) {
+        for (Index i = 0; i < 12; i++) {
             this->poly[(Index)i]->setIsMuted(muteState);
         }
     } else {
         Index subpatcherIndex = voiceNumber - 1;
 
-        if (subpatcherIndex >= 0 && subpatcherIndex < 4) {
+        if (subpatcherIndex >= 0 && subpatcherIndex < 12) {
             this->poly[(Index)subpatcherIndex]->setIsMuted(muteState);
         }
     }
@@ -13504,7 +13681,7 @@ void midinotecontroller_01_midiin_set(number v) {
             MillisecondTime oldest = (MillisecondTime)(this->midinotecontroller_01_voice_lastontime[0]);
             number target_state = this->midinotecontroller_01_voice_state[0];
 
-            for (Int i = 0; i < 4; i++) {
+            for (Int i = 0; i < 12; i++) {
                 number candidate_state = this->midinotecontroller_01_voice_state[(Index)i];
 
                 if (this->midinotecontroller_01_voice_notenumber[(Index)i] == this->midinotecontroller_01_byte1 && candidate_state == MIDI_NoteState_On) {
@@ -13570,7 +13747,7 @@ void midinotecontroller_01_midiin_set(number v) {
             number notenumber = this->midinotecontroller_01_byte1;
             number channel = (BinOpInt)((BinOpInt)this->midinotecontroller_01_status & (BinOpInt)0x0F);
 
-            for (Int i = 0; i < 4; i++) {
+            for (Int i = 0; i < 12; i++) {
                 if (this->midinotecontroller_01_voice_notenumber[(Index)i] == notenumber && this->midinotecontroller_01_voice_channel[(Index)i] == channel && this->midinotecontroller_01_voice_state[(Index)i] == MIDI_NoteState_On) {
                     target = i + 1;
                     break;
@@ -13644,7 +13821,7 @@ void midinotecontroller_01_midiin_set(number v) {
                     this->midinotecontroller_01_channel_sustain[((bool)(ignoresustainchannel) ? 0 : j)] = pedaldown;
 
                     if ((bool)(!(bool)(pedaldown))) {
-                        for (Index i = 0; i < 4; i++) {
+                        for (Index i = 0; i < 12; i++) {
                             if (((bool)(ignoresustainchannel) || this->midinotecontroller_01_voice_channel[(Index)i] == channel) && this->midinotecontroller_01_voice_state[(Index)i] == MIDI_NoteState_Sustained) {
                                 number currentTarget = this->midinotecontroller_01_currenttarget;
                                 this->midinotecontroller_01_target_set(i + 1);
@@ -13668,7 +13845,7 @@ void midinotecontroller_01_midiin_set(number v) {
                     number timbre = (BinOpInt)(((BinOpInt)((BinOpInt)k & (BinOpInt)0x7F)) << imod_nocast((UBinOpInt)7, 32));
                     this->midinotecontroller_01_channel_timbre[(Index)((BinOpInt)this->midinotecontroller_01_status & (BinOpInt)0x0F)] = timbre;
 
-                    for (Int i = 0; i < 4; i++) {
+                    for (Int i = 0; i < 12; i++) {
                         if (this->midinotecontroller_01_voice_channel[(Index)i] == channel && this->midinotecontroller_01_voice_state[(Index)i] != MIDI_NoteState_Off) {
                             this->midinotecontroller_01_sendtimbre(i);
                         }
@@ -13721,7 +13898,7 @@ void midinotecontroller_01_midiin_set(number v) {
         {
             number channel = (BinOpInt)((BinOpInt)this->midinotecontroller_01_status & (BinOpInt)0x0F);
 
-            for (Int i = 0; i < 4; i++) {
+            for (Int i = 0; i < 12; i++) {
                 if (this->midinotecontroller_01_voice_state[(Index)i] != MIDI_NoteState_Off && this->midinotecontroller_01_voice_channel[(Index)i] == channel) {
                     Int k = (Int)(channel);
                     this->midinotecontroller_01_channel_pressure[(Index)k] = v;
@@ -13739,7 +13916,7 @@ void midinotecontroller_01_midiin_set(number v) {
             Int channel = (Int)((BinOpInt)((BinOpInt)this->midinotecontroller_01_status & (BinOpInt)0x0F));
             this->midinotecontroller_01_channel_pitchbend[(Index)channel] = bendamount;
 
-            for (Int i = 0; i < 4; i++) {
+            for (Int i = 0; i < 12; i++) {
                 if (this->midinotecontroller_01_voice_state[(Index)i] != MIDI_NoteState_Off && this->midinotecontroller_01_voice_channel[(Index)i] == channel) {
                     this->midinotecontroller_01_sendpitchbend(i);
                 }
@@ -13776,7 +13953,7 @@ void ctlin_17_outchannel_set(number ) {}
 void ctlin_17_outcontroller_set(number ) {}
 
 void fromnormalized_17_output_set(number v) {
-    this->param_19_value_set(v);
+    this->param_20_value_set(v);
 }
 
 void fromnormalized_17_input_set(number v) {
@@ -13814,7 +13991,7 @@ void ctlin_18_outchannel_set(number ) {}
 void ctlin_18_outcontroller_set(number ) {}
 
 void fromnormalized_18_output_set(number v) {
-    this->param_20_value_set(v);
+    this->param_21_value_set(v);
 }
 
 void fromnormalized_18_input_set(number v) {
@@ -13852,7 +14029,7 @@ void ctlin_19_outchannel_set(number ) {}
 void ctlin_19_outcontroller_set(number ) {}
 
 void fromnormalized_19_output_set(number v) {
-    this->param_21_value_set(v);
+    this->param_22_value_set(v);
 }
 
 void fromnormalized_19_input_set(number v) {
@@ -13890,11 +14067,11 @@ void ctlin_20_outchannel_set(number ) {}
 void ctlin_20_outcontroller_set(number ) {}
 
 void fromnormalized_20_output_set(number v) {
-    this->param_22_value_set(v);
+    this->param_24_value_set(v);
 }
 
 void fromnormalized_20_input_set(number v) {
-    this->fromnormalized_20_output_set(this->fromnormalized(3, v));
+    this->fromnormalized_20_output_set(this->fromnormalized(4, v));
 }
 
 void expr_22_out1_set(number v) {
@@ -13929,7 +14106,7 @@ void poly_perform(SampleValue * out1, SampleValue * out2, SampleValue * out3, In
     for (number chan = 0; chan < 3; chan++)
         zeroSignal(outs[(Index)chan], n);
 
-    for (Index i = 0; i < 4; i++)
+    for (Index i = 0; i < 12; i++)
         this->poly[(Index)i]->process(nullptr, 0, outs, 3, n);
 }
 
@@ -13938,17 +14115,6 @@ void stackprotect_perform(Index n) {
     auto __stackprotect_count = this->stackprotect_count;
     __stackprotect_count = 0;
     this->stackprotect_count = __stackprotect_count;
-}
-
-void param_19_getPresetValue(PatcherStateInterface& preset) {
-    preset["value"] = this->param_19_value;
-}
-
-void param_19_setPresetValue(PatcherStateInterface& preset) {
-    if ((bool)(stateIsEmpty(preset)))
-        return;
-
-    this->param_19_value_set(preset["value"]);
 }
 
 void param_20_getPresetValue(PatcherStateInterface& preset) {
@@ -14006,11 +14172,33 @@ void param_24_setPresetValue(PatcherStateInterface& preset) {
     this->param_24_value_set(preset["value"]);
 }
 
+void param_25_getPresetValue(PatcherStateInterface& preset) {
+    preset["value"] = this->param_25_value;
+}
+
+void param_25_setPresetValue(PatcherStateInterface& preset) {
+    if ((bool)(stateIsEmpty(preset)))
+        return;
+
+    this->param_25_value_set(preset["value"]);
+}
+
+void param_26_getPresetValue(PatcherStateInterface& preset) {
+    preset["value"] = this->param_26_value;
+}
+
+void param_26_setPresetValue(PatcherStateInterface& preset) {
+    if ((bool)(stateIsEmpty(preset)))
+        return;
+
+    this->param_26_value_set(preset["value"]);
+}
+
 number poly_calcActiveVoices() {
     {
         number activeVoices = 0;
 
-        for (Index i = 0; i < 4; i++) {
+        for (Index i = 0; i < 12; i++) {
             if ((bool)(!(bool)(this->poly[(Index)i]->getIsMuted())))
                 activeVoices++;
         }
@@ -14024,7 +14212,7 @@ void midinotecontroller_01_init() {
         this->midinotecontroller_01_channel_pitchbend[(Index)i] = 0x2000;
     }
 
-    for (Index i = 0; i < 4; i++) {
+    for (Index i = 0; i < 12; i++) {
         this->midinotecontroller_01_voice_lastontime[(Index)i] = -1;
     }
 }
@@ -14048,7 +14236,7 @@ void midinotecontroller_01_sendnoteoff(Int target) {
 }
 
 void midinotecontroller_01_sendpitchbend(Int v) {
-    if (v >= 0 && v < 4) {
+    if (v >= 0 && v < 12) {
         number currentTarget = this->midinotecontroller_01_currenttarget;
         this->midinotecontroller_01_target_set(v + 1);
         Int totalbendamount = (Int)(this->midinotecontroller_01_channel_pitchbend[(Index)this->midinotecontroller_01_voice_channel[(Index)v]]);
@@ -14110,7 +14298,7 @@ void midinotecontroller_01_sendtimbre(Int v) {
 }
 
 void midinotecontroller_01_sendallnotesoff() {
-    for (Int i = 1; i <= 4; i++) {
+    for (Int i = 1; i <= 12; i++) {
         this->midinotecontroller_01_sendnoteoff(i);
     }
 }
@@ -14449,12 +14637,13 @@ void assign_defaults()
 {
     midiin_port = 0;
     midiout_port = 0;
-    param_19_value = 1;
-    param_20_value = 12000;
-    param_21_value = 1;
+    param_20_value = 1;
+    param_21_value = 12000;
     param_22_value = 1;
-    param_23_value = 0;
-    param_24_value = 0.2;
+    param_23_value = 200;
+    param_24_value = 1;
+    param_25_value = 0;
+    param_26_value = 0.2;
     poly_target = 0;
     poly_midiin = 0;
     midinotecontroller_01_currenttarget = 0;
@@ -14496,12 +14685,13 @@ void assign_defaults()
     midiout_currentStatus = -1;
     midiout_status = -1;
     midiout_byte1 = -1;
-    param_19_lastValue = 0;
     param_20_lastValue = 0;
     param_21_lastValue = 0;
     param_22_lastValue = 0;
     param_23_lastValue = 0;
     param_24_lastValue = 0;
+    param_25_lastValue = 0;
+    param_26_lastValue = 0;
     poly_currentStatus = -1;
     poly_mididata[0] = 0;
     poly_mididata[1] = 0;
@@ -14561,12 +14751,13 @@ void assign_defaults()
 
     number midiin_port;
     number midiout_port;
-    number param_19_value;
     number param_20_value;
     number param_21_value;
     number param_22_value;
     number param_23_value;
     number param_24_value;
+    number param_25_value;
+    number param_26_value;
     number poly_target;
     number poly_midiin;
     number midinotecontroller_01_currenttarget;
@@ -14610,12 +14801,13 @@ void assign_defaults()
     Int midiout_status;
     Int midiout_byte1;
     list midiout_sysex;
-    number param_19_lastValue;
     number param_20_lastValue;
     number param_21_lastValue;
     number param_22_lastValue;
     number param_23_lastValue;
     number param_24_lastValue;
+    number param_25_lastValue;
+    number param_26_lastValue;
     Int poly_currentStatus;
     uint8_t poly_mididata[3];
     Int midinotecontroller_01_currentStatus;
@@ -14629,10 +14821,10 @@ void assign_defaults()
     number midinotecontroller_01_channel_pressure[16] = { };
     number midinotecontroller_01_channel_timbre[16] = { };
     Int midinotecontroller_01_channel_sustain[16] = { };
-    MillisecondTime midinotecontroller_01_voice_lastontime[4] = { };
-    number midinotecontroller_01_voice_notenumber[4] = { };
-    number midinotecontroller_01_voice_channel[4] = { };
-    number midinotecontroller_01_voice_state[4] = { };
+    MillisecondTime midinotecontroller_01_voice_lastontime[12] = { };
+    number midinotecontroller_01_voice_notenumber[12] = { };
+    number midinotecontroller_01_voice_channel[12] = { };
+    number midinotecontroller_01_voice_state[12] = { };
     number midinotecontroller_01_notesdown[129] = { };
     number midinotecontroller_01_note_lastvelocity[128] = { };
     list midinotecontroller_01_muteval;
@@ -14667,7 +14859,7 @@ void assign_defaults()
     Index isMuted;
     indexlist paramInitIndices;
     indexlist paramInitOrder;
-    RNBOSubpatcher_971 poly[4];
+    RNBOSubpatcher_194 poly[12];
     bool _isInitialized = false;
 };
 
