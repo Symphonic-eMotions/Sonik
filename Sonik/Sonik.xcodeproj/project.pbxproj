@@ -159,8 +159,15 @@
 			membershipExceptions = (
 				Sources/Public/RNBOKit.h,
 			);
+			privateHeaders = (
+				Sources/Private/RNBOEventHandler.hpp,
+				Sources/Private/RNBOExtensionBufferedAudioBus.hpp,
+				Sources/Private/RNBOList.h,
+			);
 			publicHeaders = (
 				RNBOKit.h,
+				Sources/Public/RNBOAudioUnit.h,
+				Sources/Public/RNBOEventHandlerProtocol.h,
 			);
 			target = 7CD9AF112E70B183008E6C09 /* RNBOKit */;
 		};
