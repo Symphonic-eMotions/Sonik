@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 73;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -156,6 +156,9 @@
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
 		7CD9AF1D2E70B183008E6C09 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Sources/Public/RNBOKit.h,
+			);
 			publicHeaders = (
 				RNBOKit.h,
 			);
@@ -163,8 +166,18 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		7C21CA6D2E71CE71002A4ADC /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 7CD9AF102E70B183008E6C09 /* Resources */;
+			membershipExceptions = (
+				Sources/Public/RNBOKit.h,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		7CD9AF132E70B183008E6C09 /* RNBOKit */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (7CD9AF1D2E70B183008E6C09 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = RNBOKit; sourceTree = "<group>"; };
+		7CD9AF132E70B183008E6C09 /* RNBOKit */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (7CD9AF1D2E70B183008E6C09 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 7C21CA6D2E71CE71002A4ADC /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = RNBOKit; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,7 +458,6 @@
 				};
 			};
 			buildConfigurationList = AFF2B41529A2090200068DD0 /* Build configuration list for PBXProject "Sonik" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -457,6 +469,7 @@
 				AF4B40992B06C4B100FAACBF /* XCRemoteSwiftPackageReference "Keyboard" */,
 				7C32BC892E30015700DE9F8D /* XCRemoteSwiftPackageReference "AudioKitUI" */,
 			);
+			preferredProjectObjectVersion = 56;
 			productRefGroup = AFF2B41B29A2090200068DD0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
