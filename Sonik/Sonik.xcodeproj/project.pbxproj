@@ -164,9 +164,6 @@
 		7CD9AF1D2E70B183008E6C09 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Sources/CPP/Export/dependencies.json,
-				Sources/CPP/Export/description.json,
-				Sources/CPP/Export/presets.json,
 				Sources/CPP/Export/rnbo/adapters/juce/LICENSE,
 				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessor.cpp,
 				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessor.h,

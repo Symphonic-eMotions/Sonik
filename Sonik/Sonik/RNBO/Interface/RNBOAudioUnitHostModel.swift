@@ -192,6 +192,10 @@ final class RNBOAudioUnitHostModel: ObservableObject {
     }
     
     let description: RNBODescription?
+    private let rnboBundle: Bundle = {
+        // Pak de bundle waar RNBOKit in zit
+        return Bundle(for: RNBOAudioUnit.self)
+    }()
 
     // MARK: - Progression (structuur blijft leidend)
     @Published var progression: Progression = Progression(
@@ -299,7 +303,9 @@ final class RNBOAudioUnitHostModel: ObservableObject {
 
     init() {
         do {
-            let url = Bundle.main.url(forResource: "description", withExtension: "json")!
+            guard let url = rnboBundle.url(forResource: "description", withExtension: "json") else {
+                fatalError("RNBOKit resource 'description.json' niet gevonden in framework bundle")
+            }
             let data = try Data(contentsOf: url)
             description = try JSONDecoder().decode(RNBODescription.self, from: data)
         } catch {
