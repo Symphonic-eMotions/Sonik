@@ -42,6 +42,11 @@
 		7C6EF5962E756F2700C74BA6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6EF5952E756F2700C74BA6 /* CoreAudio.framework */; };
 		7C6EF5982E756F4100C74BA6 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6EF5972E756F4100C74BA6 /* CoreMIDI.framework */; };
 		7C6EF59A2E756F4C00C74BA6 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6EF5992E756F4C00C74BA6 /* Accelerate.framework */; };
+		7C6EF5A52E75D47400C74BA6 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6EF5992E756F4C00C74BA6 /* Accelerate.framework */; };
+		7C6EF5A62E75D47400C74BA6 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6EF5972E756F4100C74BA6 /* CoreMIDI.framework */; };
+		7C6EF5A72E75D47400C74BA6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6EF5952E756F2700C74BA6 /* CoreAudio.framework */; };
+		7C6EF5A82E75D47400C74BA6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6EF5932E756F1F00C74BA6 /* AudioToolbox.framework */; };
+		7C6EF5A92E75D47400C74BA6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6EF58F2E756F0D00C74BA6 /* AVFoundation.framework */; };
 		7C7CB1B52E4E6BAF00569724 /* XYPadConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7CB1B42E4E6BAF00569724 /* XYPadConfig.swift */; };
 		7C7CB1B72E4E6C5D00569724 /* XYPresetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7CB1B62E4E6C5D00569724 /* XYPresetStore.swift */; };
 		7C7CB1B92E4E6C7A00569724 /* XYPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7CB1B82E4E6C7A00569724 /* XYPad.swift */; };
@@ -130,6 +135,7 @@
 		7C6EF5952E756F2700C74BA6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		7C6EF5972E756F4100C74BA6 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		7C6EF5992E756F4C00C74BA6 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		7C6EF5AE2E75D47400C74BA6 /* RNBOKitKarplusStrong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RNBOKitKarplusStrong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C7CB1B42E4E6BAF00569724 /* XYPadConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XYPadConfig.swift; sourceTree = "<group>"; };
 		7C7CB1B62E4E6C5D00569724 /* XYPresetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XYPresetStore.swift; sourceTree = "<group>"; };
 		7C7CB1B82E4E6C7A00569724 /* XYPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XYPad.swift; sourceTree = "<group>"; };
@@ -161,6 +167,219 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7C6EF5AF2E75D47400C74BA6 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/dependencies.json,
+				Resources/description.json,
+				Resources/presets.json,
+				RNBOKit.h,
+				Sources/CPP/Export/rnbo_source.cpp,
+				Sources/CPP/Export/rnbo/adapters/juce/LICENSE,
+				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessor.cpp,
+				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessor.h,
+				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessorEditor.cpp,
+				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessorEditor.h,
+				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessorUtils.cpp,
+				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessorUtils.h,
+				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/au.cpp,
+				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/AUInfo.plist.in,
+				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/common.cpp,
+				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/PkgInfo,
+				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/unity.cpp,
+				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/UnityInfo.plist.in,
+				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/vst3.cpp,
+				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/VST3Info.plist.in,
+				Sources/CPP/Export/rnbo/adapters/max/external/rnbo_external_wrapper/rnbo_external_wrapper.cpp,
+				Sources/CPP/Export/rnbo/adapters/max/LICENSE,
+				Sources/CPP/Export/rnbo/adapters/max/rnbo_bufferref.cpp,
+				Sources/CPP/Export/rnbo/adapters/max/rnbo_bufferref.h,
+				Sources/CPP/Export/rnbo/adapters/max/rnbo_data_loader.cpp,
+				Sources/CPP/Export/rnbo/adapters/max/rnbo_data_loader.h,
+				Sources/CPP/Export/rnbo/adapters/max/RNBO_MaxExternalPlatform.h,
+				Sources/CPP/Export/rnbo/adapters/max/RNBO_MaxPresetAdapter.cpp,
+				Sources/CPP/Export/rnbo/adapters/max/RNBO_MaxPresetAdapter.h,
+				Sources/CPP/Export/rnbo/adapters/wasm/LICENSE,
+				Sources/CPP/Export/rnbo/adapters/wasm/RNBO_WebAssembly.cpp,
+				Sources/CPP/Export/rnbo/cmake/CCache.cmake,
+				Sources/CPP/Export/rnbo/cmake/conan.cmake,
+				Sources/CPP/Export/rnbo/cmake/MinGWSTDThreads.cmake,
+				Sources/CPP/Export/rnbo/cmake/rnbo_description.h.in,
+				Sources/CPP/Export/rnbo/cmake/RNBOConan.cmake,
+				Sources/CPP/Export/rnbo/cmake/RNBODescriptionHeader.cmake,
+				Sources/CPP/Export/rnbo/cmake/RNBOJuce.cmake,
+				Sources/CPP/Export/rnbo/cmake/SCCache.cmake,
+				Sources/CPP/Export/rnbo/common/RNBO_Array.h,
+				Sources/CPP/Export/rnbo/common/RNBO_AudioSignal.h,
+				Sources/CPP/Export/rnbo/common/RNBO_BaseInterface.h,
+				Sources/CPP/Export/rnbo/common/RNBO_CMath.h,
+				Sources/CPP/Export/rnbo/common/RNBO_Common.h,
+				Sources/CPP/Export/rnbo/common/RNBO_CompilerMacros.h,
+				Sources/CPP/Export/rnbo/common/RNBO_DataRef.h,
+				Sources/CPP/Export/rnbo/common/RNBO_Debug.h,
+				Sources/CPP/Export/rnbo/common/RNBO_EngineInterface.h,
+				Sources/CPP/Export/rnbo/common/RNBO_EngineLink.h,
+				Sources/CPP/Export/rnbo/common/RNBO_EventTarget.h,
+				Sources/CPP/Export/rnbo/common/RNBO_ExternalBase.h,
+				Sources/CPP/Export/rnbo/common/RNBO_ExternalPtr.h,
+				Sources/CPP/Export/rnbo/common/RNBO_List.h,
+				Sources/CPP/Export/rnbo/common/RNBO_ListHelpers.h,
+				Sources/CPP/Export/rnbo/common/RNBO_ListU.cpp,
+				Sources/CPP/Export/rnbo/common/RNBO_Logger.h,
+				Sources/CPP/Export/rnbo/common/RNBO_LoggerImpl.h,
+				Sources/CPP/Export/rnbo/common/RNBO_Math.h,
+				Sources/CPP/Export/rnbo/common/RNBO_MathFast.h,
+				Sources/CPP/Export/rnbo/common/RNBO_MIDIHelper.h,
+				Sources/CPP/Export/rnbo/common/RNBO_MinimalEngine.h,
+				Sources/CPP/Export/rnbo/common/RNBO_MinimalEngineU.cpp,
+				Sources/CPP/Export/rnbo/common/RNBO_ParameterInterface.h,
+				Sources/CPP/Export/rnbo/common/RNBO_PatcherEventTarget.h,
+				Sources/CPP/Export/rnbo/common/RNBO_PatcherFactory.h,
+				Sources/CPP/Export/rnbo/common/RNBO_PatcherInterface.h,
+				Sources/CPP/Export/rnbo/common/RNBO_PatcherInterfaceImpl.h,
+				Sources/CPP/Export/rnbo/common/RNBO_PatcherStateInterface.h,
+				Sources/CPP/Export/rnbo/common/RNBO_Platform.h,
+				Sources/CPP/Export/rnbo/common/RNBO_ProbingInterface.h,
+				Sources/CPP/Export/rnbo/common/RNBO_ProcessInterface.h,
+				Sources/CPP/Export/rnbo/common/RNBO_Std.h,
+				Sources/CPP/Export/rnbo/common/RNBO_String.h,
+				Sources/CPP/Export/rnbo/common/RNBO_TimeConverter.h,
+				Sources/CPP/Export/rnbo/common/RNBO_Types.h,
+				Sources/CPP/Export/rnbo/common/RNBO_UniquePtr.h,
+				Sources/CPP/Export/rnbo/common/RNBO_Version.h,
+				Sources/CPP/Export/rnbo/externals/ext_rnbo.h,
+				Sources/CPP/Export/rnbo/externals/RNBO_DllExternal.h,
+				Sources/CPP/Export/rnbo/externals/RNBO_External.h,
+				Sources/CPP/Export/rnbo/LICENSE,
+				Sources/CPP/Export/rnbo/RNBO.cpp,
+				Sources/CPP/Export/rnbo/RNBO.h,
+				Sources/CPP/Export/rnbo/src/3rdparty/concurrentqueue/blockingconcurrentqueue.h,
+				Sources/CPP/Export/rnbo/src/3rdparty/concurrentqueue/concurrentqueue.h,
+				Sources/CPP/Export/rnbo/src/3rdparty/concurrentqueue/internal/concurrentqueue_internal_debug.h,
+				Sources/CPP/Export/rnbo/src/3rdparty/concurrentqueue/LICENSE.md,
+				Sources/CPP/Export/rnbo/src/3rdparty/concurrentqueue/lightweightsemaphore.h,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base32_crockford.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base32_default_crockford.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base32_default_hex.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base32_default_rfc4648.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base32_hex.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base32_rfc4648.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base64_default_rfc4648.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base64_default_url_unpadded.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base64_default_url.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base64_rfc4648.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base64_url_unpadded.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base64_url.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/data/access.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/data/raw_result_buffer.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/detail/base32.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/detail/base64.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/detail/codec.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/detail/config.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/detail/hex.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/detail/stream_codec.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/hex_default_lower.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/hex_default_upper.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/hex_lower.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/hex_upper.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/parse_error.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/json/json.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/MPark_variant/variant.hpp,
+				Sources/CPP/Export/rnbo/src/3rdparty/readerwriterqueue/atomicops.h,
+				Sources/CPP/Export/rnbo/src/3rdparty/readerwriterqueue/LICENSE.md,
+				Sources/CPP/Export/rnbo/src/3rdparty/readerwriterqueue/readerwriterqueue.h,
+				Sources/CPP/Export/rnbo/src/EngineCoreU.cpp,
+				Sources/CPP/Export/rnbo/src/platforms/nostdlib/RNBO_LoggerNoStdLib.cpp,
+				Sources/CPP/Export/rnbo/src/platforms/nostdlib/RNBO_PlatformInterfaceNoStdLib.cpp,
+				Sources/CPP/Export/rnbo/src/platforms/stdlib/RNBO_PlatformInterfaceStdLib.h,
+				Sources/CPP/Export/rnbo/src/RNBO_AudioBufferConverter.h,
+				Sources/CPP/Export/rnbo/src/RNBO_BBUEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_BeatTimeEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_BinaryData.h,
+				Sources/CPP/Export/rnbo/src/RNBO_ClangInterface.h,
+				Sources/CPP/Export/rnbo/src/RNBO_ClockEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_Config.h,
+				Sources/CPP/Export/rnbo/src/RNBO_CoreObject.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_CoreObject.h,
+				Sources/CPP/Export/rnbo/src/RNBO_DataBuffer.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_DataBuffer.h,
+				Sources/CPP/Export/rnbo/src/RNBO_DataRefEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_DataRefList.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_DataRefList.h,
+				Sources/CPP/Export/rnbo/src/RNBO_DynamicPatcherFactory.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_DynamicPatcherFactory.h,
+				Sources/CPP/Export/rnbo/src/RNBO_DynamicSymbolRegistry.h,
+				Sources/CPP/Export/rnbo/src/RNBO_EmptyEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_Engine.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_Engine.h,
+				Sources/CPP/Export/rnbo/src/RNBO_EngineCore.h,
+				Sources/CPP/Export/rnbo/src/RNBO_EngineU.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_EventList.h,
+				Sources/CPP/Export/rnbo/src/RNBO_EventQueue.h,
+				Sources/CPP/Export/rnbo/src/RNBO_EventSender.h,
+				Sources/CPP/Export/rnbo/src/RNBO_EventVariant.h,
+				Sources/CPP/Export/rnbo/src/RNBO_ExternalData.h,
+				Sources/CPP/Export/rnbo/src/RNBO_ExternalLoader.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_ExternalLoader.h,
+				Sources/CPP/Export/rnbo/src/RNBO_FileChangeWatcher.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_FileChangeWatcher.h,
+				Sources/CPP/Export/rnbo/src/RNBO_HardwareDevice.h,
+				Sources/CPP/Export/rnbo/src/RNBO_LoggerImpl.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_MaxClang.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_MaxClang.h,
+				Sources/CPP/Export/rnbo/src/RNBO_MaxPlatform.h,
+				Sources/CPP/Export/rnbo/src/RNBO_MessageEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_MidiEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_MidiStreamParser.h,
+				Sources/CPP/Export/rnbo/src/RNBO_MidiStreamParserU.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_NullPatcher.h,
+				Sources/CPP/Export/rnbo/src/RNBO_OutletEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_ParameterEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_ParameterEventInterface.h,
+				Sources/CPP/Export/rnbo/src/RNBO_ParameterEventQueue.h,
+				Sources/CPP/Export/rnbo/src/RNBO_ParameterInterfaceAsync.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_ParameterInterfaceAsync.h,
+				Sources/CPP/Export/rnbo/src/RNBO_ParameterInterfaceAsyncImpl.h,
+				Sources/CPP/Export/rnbo/src/RNBO_ParameterInterfaceSync.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_ParameterInterfaceSync.h,
+				Sources/CPP/Export/rnbo/src/RNBO_ParamNameHash.h,
+				Sources/CPP/Export/rnbo/src/RNBO_PatcherEventSender.h,
+				Sources/CPP/Export/rnbo/src/RNBO_PatcherFactory.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_PatcherState.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_PatcherState.h,
+				Sources/CPP/Export/rnbo/src/RNBO_PatcherStateDummy.h,
+				Sources/CPP/Export/rnbo/src/RNBO_PlatformInterface.h,
+				Sources/CPP/Export/rnbo/src/RNBO_PresetEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_PresetList.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_PresetList.h,
+				Sources/CPP/Export/rnbo/src/RNBO_Presets.h,
+				Sources/CPP/Export/rnbo/src/RNBO_RemoteParameterClient.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_ServiceNotification.h,
+				Sources/CPP/Export/rnbo/src/RNBO_StartupEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_TempoEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_TimeSignatureEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_TransportEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_UnitTests.cpp,
+				Sources/CPP/Export/rnbo/src/RNBO_UnitTests.h,
+				Sources/CPP/Export/rnbo/src/RNBO_UniversalEvent.h,
+				Sources/CPP/Export/rnbo/src/RNBO_Utils.h,
+				Sources/CPP/Export/rnbo/src/RNBO_Vector.h,
+				Sources/CPP/Export/rnbo/test/generate.js,
+				Sources/CPP/Export/rnbo/test/main.cpp,
+				Sources/CPP/Export/rnbo/test/package.json,
+				Sources/CPP/Export/rnbo/version.cmake,
+				Sources/CPP/RNBOAudioUnit.mm,
+				Sources/CPP/RNBOEventHandler.mm,
+				Sources/CPP/RNBOList.mm,
+				Sources/Private/RNBOEventHandler.hpp,
+				Sources/Private/RNBOExtensionBufferedAudioBus.hpp,
+				Sources/Private/RNBOList.h,
+				Sources/Public/RNBOAudioUnit.h,
+				Sources/Public/RNBOEventHandlerProtocol.h,
+				Sources/Public/RNBOKit.h,
+			);
+			target = 7C6EF5A12E75D47400C74BA6 /* RNBOKitKarplusStrong */;
+		};
 		7CD9AF1D2E70B183008E6C09 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -354,10 +573,23 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		7CD9AF132E70B183008E6C09 /* RNBOKit */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (7CD9AF1D2E70B183008E6C09 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = RNBOKit; sourceTree = "<group>"; };
+		7C6EF9232E75E15700C74BA6 /* RNBOKitKarplusStrong */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RNBOKitKarplusStrong; sourceTree = "<group>"; };
+		7CD9AF132E70B183008E6C09 /* RNBOKit */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (7CD9AF1D2E70B183008E6C09 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 7C6EF5AF2E75D47400C74BA6 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = RNBOKit; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7C6EF5A42E75D47400C74BA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C6EF5A52E75D47400C74BA6 /* Accelerate.framework in Frameworks */,
+				7C6EF5A62E75D47400C74BA6 /* CoreMIDI.framework in Frameworks */,
+				7C6EF5A72E75D47400C74BA6 /* CoreAudio.framework in Frameworks */,
+				7C6EF5A82E75D47400C74BA6 /* AudioToolbox.framework in Frameworks */,
+				7C6EF5A92E75D47400C74BA6 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7CD9AF0F2E70B183008E6C09 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -506,6 +738,7 @@
 			children = (
 				AFF2B41C29A2090200068DD0 /* Sonik */,
 				7CD9AF132E70B183008E6C09 /* RNBOKit */,
+				7C6EF9232E75E15700C74BA6 /* RNBOKitKarplusStrong */,
 				7C6EF58E2E756F0C00C74BA6 /* Frameworks */,
 				AFF2B41B29A2090200068DD0 /* Products */,
 			);
@@ -516,6 +749,7 @@
 			children = (
 				AFF2B41A29A2090200068DD0 /* Sonik.app */,
 				7CD9AF122E70B183008E6C09 /* RNBOKit.framework */,
+				7C6EF5AE2E75D47400C74BA6 /* RNBOKitKarplusStrong.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -576,6 +810,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		7C6EF5A22E75D47400C74BA6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7CD9AF0D2E70B183008E6C09 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -586,6 +827,30 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		7C6EF5A12E75D47400C74BA6 /* RNBOKitKarplusStrong */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C6EF5AB2E75D47400C74BA6 /* Build configuration list for PBXNativeTarget "RNBOKitKarplusStrong" */;
+			buildPhases = (
+				7C6EF5A22E75D47400C74BA6 /* Headers */,
+				7C6EF5A32E75D47400C74BA6 /* Sources */,
+				7C6EF5A42E75D47400C74BA6 /* Frameworks */,
+				7C6EF5AA2E75D47400C74BA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7C6EF9232E75E15700C74BA6 /* RNBOKitKarplusStrong */,
+				7CD9AF132E70B183008E6C09 /* RNBOKit */,
+			);
+			name = RNBOKitKarplusStrong;
+			packageProductDependencies = (
+			);
+			productName = RNBOKit;
+			productReference = 7C6EF5AE2E75D47400C74BA6 /* RNBOKitKarplusStrong.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		7CD9AF112E70B183008E6C09 /* RNBOKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7CD9AF1E2E70B183008E6C09 /* Build configuration list for PBXNativeTarget "RNBOKit" */;
@@ -600,6 +865,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				7C6EF9232E75E15700C74BA6 /* RNBOKitKarplusStrong */,
 				7CD9AF132E70B183008E6C09 /* RNBOKit */,
 			);
 			name = RNBOKit;
@@ -670,11 +936,19 @@
 			targets = (
 				AFF2B41929A2090200068DD0 /* Sonik */,
 				7CD9AF112E70B183008E6C09 /* RNBOKit */,
+				7C6EF5A12E75D47400C74BA6 /* RNBOKitKarplusStrong */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7C6EF5AA2E75D47400C74BA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7CD9AF102E70B183008E6C09 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -708,6 +982,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7C6EF5A32E75D47400C74BA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7CD9AF0E2E70B183008E6C09 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -769,6 +1050,90 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		7C6EF5AC2E75D47400C74BA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = JJM4XR9TZN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.symphonic-emotions.rnbo.RNBOKitKarplusStrong";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7C6EF5AD2E75D47400C74BA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = JJM4XR9TZN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(SRCROOT)/RNBOKit/Sources/Private",
+					"$(SRCROOT)/RNBOKit/Sources/CPP/Export/rnbo/**/**",
+					"$(SRCROOT)/RNBOKit/Sources/CPP/Export/**/**",
+					"$(SRCROOT)/RNBOKit/Sources/CPP",
+					"$(SRCROOT)/RNBOKit/Sources/Public",
+				);
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.symphonic-emotions.rnbo.RNBOKitKarplusStrong";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		7CD9AF1B2E70B183008E6C09 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1065,6 +1430,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7C6EF5AB2E75D47400C74BA6 /* Build configuration list for PBXNativeTarget "RNBOKitKarplusStrong" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C6EF5AC2E75D47400C74BA6 /* Debug */,
+				7C6EF5AD2E75D47400C74BA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7CD9AF1E2E70B183008E6C09 /* Build configuration list for PBXNativeTarget "RNBOKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
