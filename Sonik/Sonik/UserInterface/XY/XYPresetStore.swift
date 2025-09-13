@@ -4,7 +4,7 @@
 //
 //  Created by Frans-Jan Wind on 14/08/2025.
 //
-
+import Foundation
 
 enum XYPresetStore {
     static let fileName = "xyPresets" // xyPresets.json in Bundle

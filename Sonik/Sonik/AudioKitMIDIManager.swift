@@ -7,6 +7,7 @@
 
 
 import AudioKit
+import SwiftUI
 
 class AudioKitMIDIManager: ObservableObject {
     static let shared = AudioKitMIDIManager()

@@ -7,6 +7,7 @@
 
 import Foundation
 import AudioKit
+import RNBOKit
 
 typealias RNBOContext = RNBOAudioUnitHostModel
 

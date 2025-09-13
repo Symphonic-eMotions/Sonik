@@ -1,6 +1,5 @@
 //
-//  MyV3AudioUnit5.h
-//  auv3test5
+//  RNBOAudioUnit.h
 //
 //  Created by Ronald Nicholson on 7/31/17.
 //  Copyright © 2017 HotPaw Productions.
@@ -8,8 +7,9 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
-#import "RNBOEventHandlerProtocol.h"
+@protocol RNBOEventHandlerProtocol;
 
 extern long int toneCount;
 extern double sampleRateHz;

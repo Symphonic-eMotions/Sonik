@@ -7,10 +7,12 @@
 
 #import <Foundation/Foundation.h>
 
-//! Project version number for RNBOKit.
+// Project version number for RNBOKit.
 FOUNDATION_EXPORT double RNBOKitVersionNumber;
 
-//! Project version string for RNBOKit.
+// Project version string for RNBOKit.
 FOUNDATION_EXPORT const unsigned char RNBOKitVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <RNBOKit/PublicHeader.h>
+// Publieke headers van dit framework:
+#import <RNBOKit/RNBOAudioUnit.h>
+#import <RNBOKit/RNBOEventHandlerProtocol.h>

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RNBOKit
 
 class RNBOEventHandler: NSObject, RNBOEventHandlerProtocol {
     var rnbo: RNBOContext?

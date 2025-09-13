@@ -7,6 +7,7 @@
 
 import AVFoundation
 import AudioToolbox
+import RNBOKit
 
 extension RNBOAudioEngine {
     /// AVAudioUnit-node van de RNBO Audio Unit

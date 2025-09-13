@@ -4,6 +4,7 @@
 //
 //  Created by Frans-Jan Wind on 05/09/2025.
 //
+import SwiftUI
 
 struct MIDIItem: Identifiable, Hashable {
     let id = UUID()
