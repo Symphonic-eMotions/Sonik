@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RNBOList : NSObject
+@interface RNBOListKarplusStrong : NSObject
 
 - (void)fromArrayOfNumbers:(NSArray<NSNumber *> *)array;
 - (NSArray<NSNumber *> *)toArrayOfNumbers;

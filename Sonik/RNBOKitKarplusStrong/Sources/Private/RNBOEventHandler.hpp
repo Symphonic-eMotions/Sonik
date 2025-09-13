@@ -7,7 +7,7 @@
 
 #pragma once
 
-#import "RNBOEventHandlerProtocol.h"
+#import "RNBOEventHandlerProtocolKarplusStrong.h"
 
 #include "RNBO.h"
 

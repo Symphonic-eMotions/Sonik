@@ -5,8 +5,8 @@
 //  Copyright © 2017 HotPaw Productions.
 //
 
-#import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
 @protocol RNBOEventHandlerProtocolKarplusStrong;
@@ -14,7 +14,6 @@
 extern long int toneCount;
 extern double sampleRateHz;
 extern float testFrequency;
-
 extern long int testMagnitude;
 
 extern void processBuffer(float *p, int len);
@@ -30,8 +29,6 @@ typedef NS_ENUM(uint8_t, MidiCommand) {
 };
 
 @interface RNBOAudioUnitKarplusStrong : AUAudioUnit {
-//    AUAudioUnitBusArray *outputBusArray;
-//    AUAudioUnitBusArray *inputBusArray;
     NSObject<RNBOEventHandlerProtocolKarplusStrong> *_handler;
 }
 
@@ -40,7 +37,6 @@ typedef NS_ENUM(uint8_t, MidiCommand) {
 - (size_t)getParameterCount;
 
 - (float)getParameterValue:(size_t)number;
-
 - (float)getParameterInitialValue:(size_t)number;
 - (float)getParameterMin:(size_t)number;
 - (float)getParameterMax:(size_t)number;
@@ -64,6 +60,7 @@ typedef NS_ENUM(uint8_t, MidiCommand) {
 - (void)sendChannelPressureMessageWithPressure:(uint8_t)pressure channel:(uint8_t)channel;
 - (void)sendPitchBendMessageWithValue:(uint16_t)value channel:(uint8_t)channel;
 
-- (void)setEventHandler:(NSObject<RNBOEventHandlerProtocol> *)handler;
+- (void)setEventHandler:(NSObject<RNBOEventHandlerProtocolKarplusStrong> *)handler;
 - (void)eventHandlerEventsAvailable;
+
 @end
