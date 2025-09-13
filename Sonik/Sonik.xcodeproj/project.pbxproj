@@ -130,7 +130,6 @@
 		7C494EBD2E43B15800CA760B /* OctaafStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctaafStepperView.swift; sourceTree = "<group>"; };
 		7C68D25A2E5B3510003C3F89 /* ParameterConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterConfig.swift; sourceTree = "<group>"; };
 		7C6EF58F2E756F0D00C74BA6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		7C6EF5912E756F1700C74BA6 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		7C6EF5932E756F1F00C74BA6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7C6EF5952E756F2700C74BA6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		7C6EF5972E756F4100C74BA6 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
@@ -167,15 +166,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		7C6EF5AF2E75D47400C74BA6 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		7C6EFB972E76070300C74BA6 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Resources/dependencies.json,
-				Resources/description.json,
-				Resources/presets.json,
-				RNBOKit.h,
-				Sources/CPP/Export/rnbo_source.cpp,
-				Sources/CPP/Export/rnbo/adapters/juce/LICENSE,
 				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessor.cpp,
 				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessor.h,
 				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessorEditor.cpp,
@@ -183,15 +176,10 @@
 				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessorUtils.cpp,
 				Sources/CPP/Export/rnbo/adapters/juce/RNBO_JuceAudioProcessorUtils.h,
 				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/au.cpp,
-				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/AUInfo.plist.in,
 				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/common.cpp,
-				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/PkgInfo,
 				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/unity.cpp,
-				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/UnityInfo.plist.in,
 				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/vst3.cpp,
-				Sources/CPP/Export/rnbo/adapters/juce/staticplugin/VST3Info.plist.in,
 				Sources/CPP/Export/rnbo/adapters/max/external/rnbo_external_wrapper/rnbo_external_wrapper.cpp,
-				Sources/CPP/Export/rnbo/adapters/max/LICENSE,
 				Sources/CPP/Export/rnbo/adapters/max/rnbo_bufferref.cpp,
 				Sources/CPP/Export/rnbo/adapters/max/rnbo_bufferref.h,
 				Sources/CPP/Export/rnbo/adapters/max/rnbo_data_loader.cpp,
@@ -199,16 +187,7 @@
 				Sources/CPP/Export/rnbo/adapters/max/RNBO_MaxExternalPlatform.h,
 				Sources/CPP/Export/rnbo/adapters/max/RNBO_MaxPresetAdapter.cpp,
 				Sources/CPP/Export/rnbo/adapters/max/RNBO_MaxPresetAdapter.h,
-				Sources/CPP/Export/rnbo/adapters/wasm/LICENSE,
 				Sources/CPP/Export/rnbo/adapters/wasm/RNBO_WebAssembly.cpp,
-				Sources/CPP/Export/rnbo/cmake/CCache.cmake,
-				Sources/CPP/Export/rnbo/cmake/conan.cmake,
-				Sources/CPP/Export/rnbo/cmake/MinGWSTDThreads.cmake,
-				Sources/CPP/Export/rnbo/cmake/rnbo_description.h.in,
-				Sources/CPP/Export/rnbo/cmake/RNBOConan.cmake,
-				Sources/CPP/Export/rnbo/cmake/RNBODescriptionHeader.cmake,
-				Sources/CPP/Export/rnbo/cmake/RNBOJuce.cmake,
-				Sources/CPP/Export/rnbo/cmake/SCCache.cmake,
 				Sources/CPP/Export/rnbo/common/RNBO_Array.h,
 				Sources/CPP/Export/rnbo/common/RNBO_AudioSignal.h,
 				Sources/CPP/Export/rnbo/common/RNBO_BaseInterface.h,
@@ -224,14 +203,12 @@
 				Sources/CPP/Export/rnbo/common/RNBO_ExternalPtr.h,
 				Sources/CPP/Export/rnbo/common/RNBO_List.h,
 				Sources/CPP/Export/rnbo/common/RNBO_ListHelpers.h,
-				Sources/CPP/Export/rnbo/common/RNBO_ListU.cpp,
 				Sources/CPP/Export/rnbo/common/RNBO_Logger.h,
 				Sources/CPP/Export/rnbo/common/RNBO_LoggerImpl.h,
 				Sources/CPP/Export/rnbo/common/RNBO_Math.h,
 				Sources/CPP/Export/rnbo/common/RNBO_MathFast.h,
 				Sources/CPP/Export/rnbo/common/RNBO_MIDIHelper.h,
 				Sources/CPP/Export/rnbo/common/RNBO_MinimalEngine.h,
-				Sources/CPP/Export/rnbo/common/RNBO_MinimalEngineU.cpp,
 				Sources/CPP/Export/rnbo/common/RNBO_ParameterInterface.h,
 				Sources/CPP/Export/rnbo/common/RNBO_PatcherEventTarget.h,
 				Sources/CPP/Export/rnbo/common/RNBO_PatcherFactory.h,
@@ -250,13 +227,11 @@
 				Sources/CPP/Export/rnbo/externals/ext_rnbo.h,
 				Sources/CPP/Export/rnbo/externals/RNBO_DllExternal.h,
 				Sources/CPP/Export/rnbo/externals/RNBO_External.h,
-				Sources/CPP/Export/rnbo/LICENSE,
 				Sources/CPP/Export/rnbo/RNBO.cpp,
 				Sources/CPP/Export/rnbo/RNBO.h,
 				Sources/CPP/Export/rnbo/src/3rdparty/concurrentqueue/blockingconcurrentqueue.h,
 				Sources/CPP/Export/rnbo/src/3rdparty/concurrentqueue/concurrentqueue.h,
 				Sources/CPP/Export/rnbo/src/3rdparty/concurrentqueue/internal/concurrentqueue_internal_debug.h,
-				Sources/CPP/Export/rnbo/src/3rdparty/concurrentqueue/LICENSE.md,
 				Sources/CPP/Export/rnbo/src/3rdparty/concurrentqueue/lightweightsemaphore.h,
 				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base32_crockford.hpp,
 				Sources/CPP/Export/rnbo/src/3rdparty/cppcodec/base32_default_crockford.hpp,
@@ -286,9 +261,7 @@
 				Sources/CPP/Export/rnbo/src/3rdparty/json/json.hpp,
 				Sources/CPP/Export/rnbo/src/3rdparty/MPark_variant/variant.hpp,
 				Sources/CPP/Export/rnbo/src/3rdparty/readerwriterqueue/atomicops.h,
-				Sources/CPP/Export/rnbo/src/3rdparty/readerwriterqueue/LICENSE.md,
 				Sources/CPP/Export/rnbo/src/3rdparty/readerwriterqueue/readerwriterqueue.h,
-				Sources/CPP/Export/rnbo/src/EngineCoreU.cpp,
 				Sources/CPP/Export/rnbo/src/platforms/nostdlib/RNBO_LoggerNoStdLib.cpp,
 				Sources/CPP/Export/rnbo/src/platforms/nostdlib/RNBO_PlatformInterfaceNoStdLib.cpp,
 				Sources/CPP/Export/rnbo/src/platforms/stdlib/RNBO_PlatformInterfaceStdLib.h,
@@ -299,61 +272,44 @@
 				Sources/CPP/Export/rnbo/src/RNBO_ClangInterface.h,
 				Sources/CPP/Export/rnbo/src/RNBO_ClockEvent.h,
 				Sources/CPP/Export/rnbo/src/RNBO_Config.h,
-				Sources/CPP/Export/rnbo/src/RNBO_CoreObject.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_CoreObject.h,
-				Sources/CPP/Export/rnbo/src/RNBO_DataBuffer.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_DataBuffer.h,
 				Sources/CPP/Export/rnbo/src/RNBO_DataRefEvent.h,
-				Sources/CPP/Export/rnbo/src/RNBO_DataRefList.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_DataRefList.h,
-				Sources/CPP/Export/rnbo/src/RNBO_DynamicPatcherFactory.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_DynamicPatcherFactory.h,
 				Sources/CPP/Export/rnbo/src/RNBO_DynamicSymbolRegistry.h,
 				Sources/CPP/Export/rnbo/src/RNBO_EmptyEvent.h,
-				Sources/CPP/Export/rnbo/src/RNBO_Engine.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_Engine.h,
 				Sources/CPP/Export/rnbo/src/RNBO_EngineCore.h,
-				Sources/CPP/Export/rnbo/src/RNBO_EngineU.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_EventList.h,
 				Sources/CPP/Export/rnbo/src/RNBO_EventQueue.h,
 				Sources/CPP/Export/rnbo/src/RNBO_EventSender.h,
 				Sources/CPP/Export/rnbo/src/RNBO_EventVariant.h,
 				Sources/CPP/Export/rnbo/src/RNBO_ExternalData.h,
-				Sources/CPP/Export/rnbo/src/RNBO_ExternalLoader.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_ExternalLoader.h,
-				Sources/CPP/Export/rnbo/src/RNBO_FileChangeWatcher.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_FileChangeWatcher.h,
 				Sources/CPP/Export/rnbo/src/RNBO_HardwareDevice.h,
-				Sources/CPP/Export/rnbo/src/RNBO_LoggerImpl.cpp,
-				Sources/CPP/Export/rnbo/src/RNBO_MaxClang.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_MaxClang.h,
 				Sources/CPP/Export/rnbo/src/RNBO_MaxPlatform.h,
 				Sources/CPP/Export/rnbo/src/RNBO_MessageEvent.h,
 				Sources/CPP/Export/rnbo/src/RNBO_MidiEvent.h,
 				Sources/CPP/Export/rnbo/src/RNBO_MidiStreamParser.h,
-				Sources/CPP/Export/rnbo/src/RNBO_MidiStreamParserU.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_NullPatcher.h,
 				Sources/CPP/Export/rnbo/src/RNBO_OutletEvent.h,
 				Sources/CPP/Export/rnbo/src/RNBO_ParameterEvent.h,
 				Sources/CPP/Export/rnbo/src/RNBO_ParameterEventInterface.h,
 				Sources/CPP/Export/rnbo/src/RNBO_ParameterEventQueue.h,
-				Sources/CPP/Export/rnbo/src/RNBO_ParameterInterfaceAsync.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_ParameterInterfaceAsync.h,
 				Sources/CPP/Export/rnbo/src/RNBO_ParameterInterfaceAsyncImpl.h,
-				Sources/CPP/Export/rnbo/src/RNBO_ParameterInterfaceSync.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_ParameterInterfaceSync.h,
 				Sources/CPP/Export/rnbo/src/RNBO_ParamNameHash.h,
 				Sources/CPP/Export/rnbo/src/RNBO_PatcherEventSender.h,
-				Sources/CPP/Export/rnbo/src/RNBO_PatcherFactory.cpp,
-				Sources/CPP/Export/rnbo/src/RNBO_PatcherState.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_PatcherState.h,
 				Sources/CPP/Export/rnbo/src/RNBO_PatcherStateDummy.h,
 				Sources/CPP/Export/rnbo/src/RNBO_PlatformInterface.h,
 				Sources/CPP/Export/rnbo/src/RNBO_PresetEvent.h,
-				Sources/CPP/Export/rnbo/src/RNBO_PresetList.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_PresetList.h,
 				Sources/CPP/Export/rnbo/src/RNBO_Presets.h,
-				Sources/CPP/Export/rnbo/src/RNBO_RemoteParameterClient.cpp,
 				Sources/CPP/Export/rnbo/src/RNBO_ServiceNotification.h,
 				Sources/CPP/Export/rnbo/src/RNBO_StartupEvent.h,
 				Sources/CPP/Export/rnbo/src/RNBO_TempoEvent.h,
@@ -364,19 +320,18 @@
 				Sources/CPP/Export/rnbo/src/RNBO_UniversalEvent.h,
 				Sources/CPP/Export/rnbo/src/RNBO_Utils.h,
 				Sources/CPP/Export/rnbo/src/RNBO_Vector.h,
-				Sources/CPP/Export/rnbo/test/generate.js,
 				Sources/CPP/Export/rnbo/test/main.cpp,
-				Sources/CPP/Export/rnbo/test/package.json,
-				Sources/CPP/Export/rnbo/version.cmake,
-				Sources/CPP/RNBOAudioUnit.mm,
-				Sources/CPP/RNBOEventHandler.mm,
-				Sources/CPP/RNBOList.mm,
+				Sources/Public/RNBOKitKarplusStrong.h,
+			);
+			privateHeaders = (
 				Sources/Private/RNBOEventHandler.hpp,
 				Sources/Private/RNBOExtensionBufferedAudioBus.hpp,
-				Sources/Private/RNBOList.h,
-				Sources/Public/RNBOAudioUnit.h,
-				Sources/Public/RNBOEventHandlerProtocol.h,
-				Sources/Public/RNBOKit.h,
+				Sources/Private/RNBOListKarplusStrong.h,
+			);
+			publicHeaders = (
+				RNBOKitKarplusStrong.h,
+				Sources/Public/RNBOAudioUnitKarplusStrong.h,
+				Sources/Public/RNBOEventHandlerProtocolKarplusStrong.h,
 			);
 			target = 7C6EF5A12E75D47400C74BA6 /* RNBOKitKarplusStrong */;
 		};
@@ -573,8 +528,8 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		7C6EF9232E75E15700C74BA6 /* RNBOKitKarplusStrong */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RNBOKitKarplusStrong; sourceTree = "<group>"; };
-		7CD9AF132E70B183008E6C09 /* RNBOKit */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (7CD9AF1D2E70B183008E6C09 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 7C6EF5AF2E75D47400C74BA6 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = RNBOKit; sourceTree = "<group>"; };
+		7C6EF9232E75E15700C74BA6 /* RNBOKitKarplusStrong */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (7C6EFB972E76070300C74BA6 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = RNBOKitKarplusStrong; sourceTree = "<group>"; };
+		7CD9AF132E70B183008E6C09 /* RNBOKit */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (7CD9AF1D2E70B183008E6C09 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = RNBOKit; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -673,7 +628,6 @@
 				7C6EF5972E756F4100C74BA6 /* CoreMIDI.framework */,
 				7C6EF5952E756F2700C74BA6 /* CoreAudio.framework */,
 				7C6EF5932E756F1F00C74BA6 /* AudioToolbox.framework */,
-				7C6EF5912E756F1700C74BA6 /* AudioUnit.framework */,
 				7C6EF58F2E756F0D00C74BA6 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
@@ -842,7 +796,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				7C6EF9232E75E15700C74BA6 /* RNBOKitKarplusStrong */,
-				7CD9AF132E70B183008E6C09 /* RNBOKit */,
 			);
 			name = RNBOKitKarplusStrong;
 			packageProductDependencies = (
@@ -865,7 +818,6 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				7C6EF9232E75E15700C74BA6 /* RNBOKitKarplusStrong */,
 				7CD9AF132E70B183008E6C09 /* RNBOKit */,
 			);
 			name = RNBOKit;

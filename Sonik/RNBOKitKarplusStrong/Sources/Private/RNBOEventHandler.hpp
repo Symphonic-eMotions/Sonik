@@ -14,12 +14,12 @@
 #import <Foundation/Foundation.h>
 
 class RNBOEventHandler: public RNBO::EventHandler {
-    NSObject<RNBOEventHandlerProtocol> *_obj;
+    NSObject<RNBOEventHandlerProtocolKarplusStrong> *_obj;
 
 public:
-    RNBOEventHandler(NSObject<RNBOEventHandlerProtocol> *handler = nil);
+    RNBOEventHandler(NSObject<RNBOEventHandlerProtocolKarplusStrong> *handler = nil);
 
-    inline void setEventHandler(NSObject<RNBOEventHandlerProtocol> *obj) {
+    inline void setEventHandler(NSObject<RNBOEventHandlerProtocolKarplusStrong> *obj) {
         _obj = obj;
     }
 

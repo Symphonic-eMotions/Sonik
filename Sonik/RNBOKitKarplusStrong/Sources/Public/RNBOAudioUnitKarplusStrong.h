@@ -11,10 +11,10 @@
 
 @protocol RNBOEventHandlerProtocolKarplusStrong;
 
-extern long int toneCount;
-extern double sampleRateHz;
-extern float testFrequency;
-extern long int testMagnitude;
+extern long int toneCountKarplusStrong;
+extern double sampleRateHzKarplusStrong;
+extern float testFrequencyKarplusStrong;
+extern float testVolumeKarplusStrong;
 
 extern void processBuffer(float *p, int len);
 

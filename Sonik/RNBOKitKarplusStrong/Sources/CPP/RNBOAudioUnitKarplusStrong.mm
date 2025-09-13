@@ -7,7 +7,7 @@
 
 #include "RNBO.h"
 
-#import "RNBOAudioUnit.h"
+#import "RNBOAudioUnitKarplusStrong.h"
 
 #include <fstream>
 #include <iostream>
@@ -17,18 +17,18 @@
 #include "RNBOEventHandler.hpp"
 #import "RNBOExtensionBufferedAudioBus.hpp"
 
-long int toneCount = 1;
-float testFrequency = 880.0; // an audio frequency in Hz
-float testVolume = 0.5; // volume setting
-double sampleRateHz = 44100.0;
+long int toneCountKarplusStrong = 1;
+float testFrequencyKarplusStrong = 880.0; // an audio frequency in Hz
+float testVolumeKarplusStrong = 0.5; // volume setting
+double sampleRateHzKarplusStrong = 44100.0;
 
-@interface RNBOAudioUnit ()
+@interface RNBOAudioUnitKarplusStrong ()
 @property AUAudioUnitBusArray *outputBusArray;
 @property AUAudioUnitBusArray *inputBusArray;
 @property (nonatomic, readonly) AUAudioUnitBus *outputBus;
 @end
 
-@implementation RNBOAudioUnit {
+@implementation RNBOAudioUnitKarplusStrong {
     BufferedInputBus _inputBus;
     std::unique_ptr<RNBO::CoreObject> _object;
     std::unique_ptr<RNBOEventHandler> _eventHandler;
