@@ -52,6 +52,7 @@
 		7CD9AF192E70B183008E6C09 /* RNBOKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD9AF122E70B183008E6C09 /* RNBOKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7CF226572E6078F100103A6A /* ArpAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF226562E6078F100103A6A /* ArpAppView.swift */; };
 		7CF226592E60791300103A6A /* ArpEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF226582E60791300103A6A /* ArpEditorView.swift */; };
+		7CF3305B2EAC231F00863A6D /* Package.swift in Resources */ = {isa = PBXBuildFile; fileRef = 7CF3305A2EAC231F00863A6D /* Package.swift */; };
 		AF4B40932B06326800FAACBF /* RNBOEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4B40922B06326800FAACBF /* RNBOEventHandler.swift */; };
 		AF4B409B2B06C4B100FAACBF /* Keyboard in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, macos, ); productRef = AF4B409A2B06C4B100FAACBF /* Keyboard */; };
 		AF865DE82B0A381B0019FB28 /* MIDIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF865DE72B0A381B0019FB28 /* MIDIHelpers.swift */; };
@@ -139,6 +140,7 @@
 		7CD9AF122E70B183008E6C09 /* RNBOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RNBOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF226562E6078F100103A6A /* ArpAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArpAppView.swift; sourceTree = "<group>"; };
 		7CF226582E60791300103A6A /* ArpEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArpEditorView.swift; sourceTree = "<group>"; };
+		7CF3305A2EAC231F00863A6D /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		AF4B40922B06326800FAACBF /* RNBOEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNBOEventHandler.swift; sourceTree = "<group>"; };
 		AF865DE72B0A381B0019FB28 /* MIDIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIHelpers.swift; sourceTree = "<group>"; };
 		AFA214B62B20D01000BCD4E6 /* Sonik-info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sonik-info.plist"; sourceTree = SOURCE_ROOT; };
@@ -523,6 +525,7 @@
 		AFF2B41C29A2090200068DD0 /* Sonik */ = {
 			isa = PBXGroup;
 			children = (
+				7CF3305A2EAC231F00863A6D /* Package.swift */,
 				AFF2B42329A2090300068DD0 /* Sonik.entitlements */,
 				AFA214B62B20D01000BCD4E6 /* Sonik-info.plist */,
 				AFF2B41D29A2090200068DD0 /* Sonik.swift */,
@@ -691,6 +694,7 @@
 				AFF2B42629A2090300068DD0 /* Preview Assets.xcassets in Resources */,
 				7C446AAF2E57D13D008622EA /* chordSchema.json in Resources */,
 				AFF4B5222A006A8200087CB8 /* Synth.aif in Resources */,
+				7CF3305B2EAC231F00863A6D /* Package.swift in Resources */,
 				AFF2B42229A2090300068DD0 /* Assets.xcassets in Resources */,
 				7C087DE22E6B892D002F60F2 /* strauss-blue-danube.mid in Resources */,
 				7C087DE32E6B892D002F60F2 /* tchaikovsky-waltz-flowers.mid in Resources */,
