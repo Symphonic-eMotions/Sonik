@@ -355,11 +355,11 @@ class MIDISequencer: ObservableObject {
 
             switch command {
             case 0x90 where velocity > 0:
-                rnbo.audioUnit.sendNoteOnMessage(withPitch: noteNumber,
+                rnbo.audioUnit?.sendNoteOnMessage(withPitch: noteNumber,
                                                           velocity: velocity,
                                                           channel: UInt8(channel))
             case 0x80, 0x90:
-                rnbo.audioUnit.sendNoteOffMessage(withPitch: noteNumber,
+                rnbo.audioUnit?.sendNoteOffMessage(withPitch: noteNumber,
                                                            releaseVelocity: 0,
                                                            channel: UInt8(channel))
             default:
@@ -481,7 +481,7 @@ class MIDISequencer: ObservableObject {
         isPlaying = false
         sequencer.stop()
         noteEvents.map(\.noteNumber).forEach {
-            rnbo?.audioUnit.sendNoteOffMessage(withPitch: $0, releaseVelocity: 0, channel: 0)
+            rnbo?.audioUnit?.sendNoteOffMessage(withPitch: $0, releaseVelocity: 0, channel: 0)
         }
         print("■ Sequencer gestopt")
     }
