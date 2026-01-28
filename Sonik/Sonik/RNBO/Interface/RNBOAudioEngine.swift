@@ -31,13 +31,13 @@ final class RNBOAudioEngine {
     // Optional file player
     private let audioFile: AVAudioFile?
 
-    public var audioUnit: RNBOAudioUnit {
-        avAudioUnit!.auAudioUnit as! RNBOAudioUnit
+    public var audioUnit: RNBOAudioUnit? {
+        avAudioUnit?.auAudioUnit as? RNBOAudioUnit
     }
 
     // MARK: - Init
 
-    init() {
+    init(completion: @escaping (Result<Void, Error>) -> Void) {
         // AudioSession
         do {
             let audioSession = AVAudioSession.sharedInstance()
@@ -81,11 +81,16 @@ final class RNBOAudioEngine {
 
         AVAudioUnit.instantiate(with: desc, options: .loadOutOfProcess) { avAudioUnit, error in
             guard let avAudioUnit = avAudioUnit, error == nil else {
-                print("Error instantiating AVAudioUnit: \(error!.localizedDescription)")
+                let err = error ?? NSError(domain: "RNBOAudioEngine", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unknown error instantiating AVAudioUnit"])
+                print("Error instantiating AVAudioUnit: \(err.localizedDescription)")
+                completion(.failure(err))
                 return
             }
             self.avAudioUnit = avAudioUnit
-            DispatchQueue.main.async { self.setupAudioChain() }
+            DispatchQueue.main.async {
+                self.setupAudioChain()
+                completion(.success(()))
+            }
         }
     }
 
@@ -154,10 +159,6 @@ final class RNBOAudioEngine {
     }
 
     // MARK: - Convenience
-
-    func getAudioUnit() -> RNBOAudioUnit {
-        return avAudioUnit!.auAudioUnit as! RNBOAudioUnit
-    }
 
     func playAudioFile() {
         playerNode.stop()

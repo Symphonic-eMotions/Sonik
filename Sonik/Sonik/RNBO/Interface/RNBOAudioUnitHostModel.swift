@@ -139,7 +139,7 @@ extension RNBOAudioUnitHostModel {
             return false
         }
         let v = value.clamped(to: 0...1)
-        audioUnit.setParameterValueNormalized(idx, valueNormalized: Float(v))
+        audioUnit?.setParameterValueNormalized(idx, valueNormalized: Float(v))
         // Houd lokale mirror bij (voor UI sync)
         parameters[idx].valueNormalized = v
         return true
@@ -160,9 +160,9 @@ extension RNBOAudioUnitHostModel {
 }
 
 final class RNBOAudioUnitHostModel: ObservableObject {
-    private let audioEngine = RNBOAudioEngine()
-    private var _audioUnit: RNBOAudioUnit!
-    public var audioUnit: RNBOAudioUnit { _audioUnit }
+    private var audioEngine: RNBOAudioEngine!
+    private var _audioUnit: RNBOAudioUnit?
+    public var audioUnit: RNBOAudioUnit? { _audioUnit }
     private let eventHandler = RNBOEventHandler()
     private var paramIndexById: [String: Int] = [:]
 
@@ -313,12 +313,22 @@ final class RNBOAudioUnitHostModel: ObservableObject {
             description = nil
         }
 
-        _audioUnit = audioEngine.getAudioUnit()
         let localParameters = description?.getParametersArray() ?? []
         self.parameters = localParameters
         self.parameterConfigs = Self.loadParameterConfiguration(from: localParameters)
         self.showInterface = UserInterface.xy
         rebuildParamIndexMap()
+
+        self.audioEngine = RNBOAudioEngine { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                self._audioUnit = self.audioEngine.audioUnit
+                print("RNBOAudioEngine ready")
+            case .failure(let error):
+                print("Failed to init RNBOAudioEngine: \(error)")
+            }
+        }
     }
 
     func ensureProgressionLoadedFromBundle() {
@@ -357,11 +367,13 @@ final class RNBOAudioUnitHostModel: ObservableObject {
     }
 
     func refreshParameterValue(at parameterIndex: Int) {
-        parameters[parameterIndex].value = Double(audioUnit.getParameterValue(parameterIndex))
+        if let val = audioUnit?.getParameterValue(parameterIndex) {
+            parameters[parameterIndex].value = Double(val)
+        }
     }
 
     func setParameterValue(to value: Double, at parameterIndex: Int) {
-        audioUnit.setParameterValue(parameterIndex, value: Float(value))
+        audioUnit?.setParameterValue(parameterIndex, value: Float(value))
     }
 
     func setParameterValueHot(to value: Double, at parameterIndex: Int) {
@@ -370,7 +382,7 @@ final class RNBOAudioUnitHostModel: ObservableObject {
     }
 
     func setParameterValueNormalized(to valueNormalized: Double, at parameterIndex: Int) {
-        audioUnit.setParameterValueNormalized(parameterIndex, valueNormalized: Float(valueNormalized))
+        audioUnit?.setParameterValueNormalized(parameterIndex, valueNormalized: Float(valueNormalized))
     }
 
     func setParameterValueNormalizedHot(to valueNormalized: Double, at parameterIndex: Int) {
@@ -380,52 +392,52 @@ final class RNBOAudioUnitHostModel: ObservableObject {
 
     // MARK: - RNBO MIDI (ongewijzigd + logging)
     func sendMessage(_ message: [Double]) {
-        audioUnit.sendMessage("foo", list: message)
+        audioUnit?.sendMessage("foo", list: message)
     }
 
     func sendNoteOn(_ pitch: UInt8, velocity: UInt8 = 127, channel: UInt8 = 0) {
         let transposedPitch = UInt8(Int(pitch) + currentOctave * 12)
         print("🎹 NOTE ON \(transposedPitch) vel \(velocity) ch \(channel)")
-        audioUnit.sendNoteOnMessage(withPitch: transposedPitch, velocity: velocity, channel: channel)
+        audioUnit?.sendNoteOnMessage(withPitch: transposedPitch, velocity: velocity, channel: channel)
         activeMIDINotes.insert(transposedPitch)
     }
 
     func sendNoteOff(_ pitch: UInt8, releaseVelocity: UInt8 = 0, channel: UInt8 = 0) {
         let transposedPitch = UInt8(Int(pitch) + currentOctave * 12)
         print("🎹 NOTE OFF \(transposedPitch) ch \(channel)")
-        audioUnit.sendNoteOffMessage(withPitch: transposedPitch, releaseVelocity: releaseVelocity, channel: channel)
+        audioUnit?.sendNoteOffMessage(withPitch: transposedPitch, releaseVelocity: releaseVelocity, channel: channel)
         activeMIDINotes.remove(transposedPitch)
     }
 
     func sendAllNotesOff(channel: UInt8 = 0) {
         for pitch in activeMIDINotes {
-            audioUnit.sendNoteOffMessage(withPitch: pitch, releaseVelocity: 0, channel: channel)
+            audioUnit?.sendNoteOffMessage(withPitch: pitch, releaseVelocity: 0, channel: channel)
         }
         activeMIDINotes.removeAll()
     }
 
     func sendAftertouch(_ pitch: UInt8, pressure: UInt8, channel: UInt8 = 0) {
-        audioUnit.sendAftertouchMessage(withPitch: pitch, pressure: pressure, channel: channel)
+        audioUnit?.sendAftertouchMessage(withPitch: pitch, pressure: pressure, channel: channel)
     }
 
     func sendContinuousController(_ number: UInt8, value: UInt8, channel: UInt8 = 0) {
-        audioUnit.sendContinuousController(withNumber: number, value: value, channel: channel)
+        audioUnit?.sendContinuousController(withNumber: number, value: value, channel: channel)
     }
 
     func sendPatchChange(_ program: UInt8, channel: UInt8 = 0) {
-        audioUnit.sendPatchChangeMessage(withProgram: program, channel: channel)
+        audioUnit?.sendPatchChangeMessage(withProgram: program, channel: channel)
     }
 
     func sendChannelPressure(_ pressure: UInt8, channel: UInt8 = 0) {
-        audioUnit.sendChannelPressureMessage(withPressure: pressure, channel: channel)
+        audioUnit?.sendChannelPressureMessage(withPressure: pressure, channel: channel)
     }
 
     func sendPitchBend(_ value: UInt16, channel: UInt8 = 0) {
-        audioUnit.sendPitchBendMessage(withValue: value, channel: channel)
+        audioUnit?.sendPitchBendMessage(withValue: value, channel: channel)
     }
 
     func connectEventHandler() {
-        audioUnit.setEventHandler(eventHandler)
+        audioUnit?.setEventHandler(eventHandler)
         eventHandler.rnbo = self
     }
 

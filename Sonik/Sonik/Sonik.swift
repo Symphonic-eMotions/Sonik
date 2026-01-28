@@ -9,21 +9,14 @@ import SwiftUI
 
 @main
 struct Sonik: App {
-    @ObservedObject var rnbo = RNBOAudioUnitHostModel()
-    @StateObject  var sequencer: MIDISequencer
-
-    init() {
-        let hostModel = RNBOAudioUnitHostModel()
-        _rnbo = ObservedObject(wrappedValue: hostModel)
-        _sequencer = StateObject(wrappedValue: MIDISequencer(rnbo: hostModel))
-    }
+    @StateObject var rnbo = RNBOAudioUnitHostModel()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .onAppear { rnbo.connectEventHandler() }
                 .environmentObject(rnbo)
-                .environmentObject(sequencer)
+                .environmentObject(rnbo.midiSequencer)
         }
     }
 }
